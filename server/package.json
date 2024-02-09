@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "API-CRUD",
+  "main": "index.js",
+  "author": "PetPal",
+  "license": "ISC",
+  "scripts": {
+    "start": "node ./index.js",
+    "dev": "cross-env LOCATION=localhost nodemon ./index.js",
+    "test": "cross-env LOCATION=localhost DB_NAME='test' mocha ./tests/*.spec.js -w"
+  },
+  "dependencies": {
+    "bcrypt": "5.1.1",
+    "cors": "2.8.5",
+    "dotenv": "16.4.5",
+    "eslint": "8.57.0",
+    "express": "4.18.2",
+    "jsonwebtoken": "9.0.2",
+    "mongoose": "8.2.0",
+    "morgan": "1.10.0",
+    "nodemailer": "6.9.10"
+  },
+  "devDependencies": {
+    "chai": "4.1.1",
+    "cross-env": "7.0.3",
+    "mocha": "10.3.0",
+    "nodemon": "3.1.0",
+    "supertest-session": "5.0.1"
+  }
+}
