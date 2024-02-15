@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "API-CRUD",
+  "main": "src/index.js",
+  "author": "PetPal",
+  "license": "ISC",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "dev": "cross-env LOCATION=localhost nodemon ./src/index.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.4",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.3"
+  }
+}
