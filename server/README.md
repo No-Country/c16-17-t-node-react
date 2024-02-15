@@ -1,7 +1,7 @@
 ## Back-End:
 
 - Node.js
-- Typescript
+- javascript
 - Express
 - MongoDB
 - Mongoose
@@ -14,6 +14,8 @@
     - [Instalación](#instalación)
   - [**Endpoint Users**](#endpoint-users)
     - [Crear Usuario](#crear-usuario)
+    - [Inicio de sesión](#inicio-de-sesión)
+    - [Cambio de contraseña](#cambio-de-contraseña)
     - [Obtener usuario especifico](#obtener-usuario-especifico)
     - [Actualizar usuario especifico](#actualizar-usuario-especifico)
     - [Eliminar usuario especifico](#eliminar-usuario-especifico)
@@ -61,7 +63,7 @@ Asegúrate de tener instalados los siguientes requisitos antes de ejecutar la ap
 - ```env
   PORT=puerto_por_defecto_3001
   MONGO_URL=uri_mongo_db o 'mongodb://127.0.0.1:27017/'
-  DB_NAME=name_mongoDB_por_defecto_
+  DB_NAME=name_mongoDB_por_defecto_'PetPal'
   ```
 
 5. Para iniciar la aplicación:
@@ -83,21 +85,65 @@ Volver al [Índice](#índice)
 - **Query**:
 - **header**:
 - **Body**:
-  ```typescript
+  ```javascript
   {
     "email": string - required - Correo electrónico del usuario.
     "password": string - required - Password del usuario.
   }
   ```
 - **Request Body** example: Status **201**
-  ```typescript
+  ```javascript
   {
     id: "6570bb7db2ad523394706c12",
     email: "test@gmail.com",
-    nickName: "",
+    name: "",
+    lastName: "",
     pets: [],
     telephone: 0,
     image: "",
+  }
+  ```
+  volver al [Índice](#índice)
+
+### Inicio de sesión
+
+- **`POST /users/login`** - Inicio de sesión de usuario.
+- **Params**:
+- **Query**:
+- **header**:
+- **Body**:
+  ```javascript
+  {
+    "email": string - required - Correo electrónico del usuario.
+    "password": string - required - Password del usuario.
+  }
+  ```
+- **Request Body** example: Status **201**
+  ```javascript
+  {
+    "message": "El JWT"
+  }
+  ```
+  volver al [Índice](#índice)
+
+### Cambio de contraseña
+
+- **`POST /users/password`** - Inicio de sesión de usuario.
+- **Params**:
+- **Query**:
+- **header**:
+- **Body**:
+  ```javascript
+  {
+    "email": string - required - Correo electrónico del usuario.
+    "oldPassword": string - required - Password antigua del usuario.
+    "newPassword": string - required - Password nueva del usuario.
+  }
+  ```
+- **Request Body** example: Status **201**
+  ```javascript
+  {
+    "message": "El JWT"
   }
   ```
   volver al [Índice](#índice)
@@ -106,18 +152,19 @@ Volver al [Índice](#índice)
 
 - **`GET /users/{:id}`** - Obtener detalles de un usuario específico.
 - **Params**:
-  ```typescript
+  ```javascript
   "id": string - required - id del usuario.
   ```
 - **Query**:
 - **header**:
 - **Body**:
 - **Request Body** example: Status **200**
-  ```typescript
+  ```javascript
   {
     id: "6570bb7db2ad523394706c12",
     email: "test@gmail.com",
-    nickName: "",
+    name: "",
+    lastName: "",
     pets: [],
     telephone: 0,
     image: "",
@@ -130,13 +177,13 @@ volver al [Índice](#índice)
 
 - **`PUT /users/{:id}`** - Actualizar un usuario específico.
 - **Params**:
-  ```typescript
+  ```javascript
   "id": string - required - id del usuario.
   ```
 - **Query**:
 - **header**:
 - **Body**:
-  ```typescript
+  ```javascript
   {
     "nickName": string - optional - Nombre de usuario.
     "telephone": number - optional - Teléfono del usuario.
@@ -144,11 +191,12 @@ volver al [Índice](#índice)
   }
   ```
 - **Request Body** example: Status **200**
-  ```typescript
+  ```javascript
   {
     id: "6570bb7db2ad523394706c12",
     email: "test@gmail.com",
-    nickName: "",
+    name: "",
+    lastName: "",
     pets: [],
     telephone: 0,
     image: "",
@@ -161,14 +209,14 @@ volver al [Índice](#índice)
 
 - **`DELETE /users/{:id}`** - Eliminar un usuario especifico.
 - **Params**:
-  ```typescript
+  ```javascript
   "id": string - required - id del usuario.
   ```
 - **Query**:
 - **header**:
 - **Body**:
 - **Request Body** example: Status **200**
-  ```typescript
+  ```javascript
   {
     acknowledged: true,
     deletedCount: 1
@@ -186,14 +234,14 @@ Volver al [Índice](#índice)
 - **Query**:
 - **header**:
 - **Body**:
-  ```typescript
+  ```javascript
   {
     "owner": string - required - Nombre del dueño de la mascota.
     "nickName": string - required - Nombre de la mascota.
   }
   ```
 - **Request Body** example: Status **201**
-  ```typescript
+  ```javascript
   {
     id: "65ccbc44a4e9f43e7b4460b4",
     nickName: "loky",
@@ -210,14 +258,14 @@ volver al [Índice](#índice)
 
 - **`GET /users/{:id}`** - Obtener detalles de una mascota específica.
 - **Params**:
-  ```typescript
+  ```javascript
   "id": string - required - id de la mascota.
   ```
 - **Query**:
 - **header**:
 - **Body**:
 - **Request Body** example: Status **200**
-  ```typescript
+  ```javascript
   {
     id: "65ccbc44a4e9f43e7b4460b4",
     nickName: "loky",
@@ -234,13 +282,13 @@ volver al [Índice](#índice)
 
 - **`PUT /users/{:id}`** - Actualizar una mascota específica.
 - **Params**:
-  ```typescript
+  ```javascript
   "id": string - required - id del usuario.
   ```
 - **Query**:
 - **header**:
 - **Body**:
-  ```typescript
+  ```javascript
   {
     "nickName": string - optional - Nombre de la mascota.
     "breed": string - optional - Raza de la mascota.
@@ -249,7 +297,7 @@ volver al [Índice](#índice)
   }
   ```
 - **Request Body** example: Status **200**
-  ```typescript
+  ```javascript
   {
     id: "65ccbc44a4e9f43e7b4460b4",
     nickName: "loky",
@@ -266,14 +314,14 @@ volver al [Índice](#índice)
 
 - **`DELETE /users/{:id}`** - Eliminar una mascota específica.
 - **Params**:
-  ```typescript
+  ```javascript
   "id": string - required - id del usuario.
   ```
 - **Query**:
 - **header**:
 - **Body**:
 - **Request Body** example: Status **200**
-  ```typescript
+  ```javascript
   {
     acknowledged: true,
     deletedCount: 1

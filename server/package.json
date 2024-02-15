@@ -1,17 +1,13 @@
 {
-  "author": "",
   "name": "server",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "API-CRUD",
+  "main": "src/index.js",
+  "author": "PetPal",
   "license": "ISC",
-  "keywords": [],
   "scripts": {
-    "start": "nodemon src/index.ts",
-    "build": "rimraf dist && tsc",
-    "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist",
-    "dev": "cross-env LOCATION=localhost nodemon --exec ts-node ./src/index.ts"
+    "start": "nodemon src/index.js",
+    "dev": "cross-env LOCATION=localhost nodemon ./src/index.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -21,20 +17,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
-    "@types/morgan": "^1.9.9",
-    "@types/node": "^20.11.17",
     "cross-env": "^7.0.3",
-    "nodemon": "^3.0.3",
-    "pre-commit": "^1.2.2",
-    "rimraf": "^5.0.5",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
-  },
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-  ]
+    "nodemon": "^3.0.3"
+  }
 }

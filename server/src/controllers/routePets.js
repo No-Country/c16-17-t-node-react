@@ -1,20 +1,25 @@
-// route.ts
-import { Router, Request, Response, NextFunction } from 'express';
-import petSchema from '../models/pet.schema';
-import { PetCreate, PetUpdate } from '../models/pet.dto';
-import {
+/**
+ * Ruta y controlador de Mascota
+ *
+ * Destinado a la definición de endpoints,
+ * middlewares de protección de ruta
+ * y especificación de campos a aceptar
+ */
+
+const { Router } = require('express');
+const {
 	createPet,
 	deletePet,
 	searchPet,
 	updatePet,
-} from '../services/petService';
+} = require('../services/petService');
 const route = Router();
 
 // Ruta para crear una nueva mascota
-route.post('/', async (req: Request, res: Response, next: NextFunction) => {
+route.post('/', async (req, res, next) => {
 	try {
 		const { body } = req;
-		const newData: PetCreate = {
+		const newData = {
 			nickName: body.nickName,
 			owner: body.owner,
 		};
@@ -26,7 +31,7 @@ route.post('/', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 // Ruta para obtener una mascota por ID
-route.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+route.get('/:id', async (req, res, next) => {
 	try {
 		const { id } = req.params;
 		const pet = await searchPet(id);
@@ -37,11 +42,11 @@ route.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 // Ruta para actualizar una mascota por ID
-route.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
+route.put('/:id', async (req, res, next) => {
 	try {
 		const { id } = req.params;
 		const { body } = req;
-		const updateData: PetUpdate = {
+		const updateData = {
 			nickName: body.nickName,
 			breed: body.breed,
 			birth: body.birth,
@@ -55,17 +60,14 @@ route.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 // Ruta para eliminar una mascota por ID
-route.delete(
-	'/:id',
-	async (req: Request, res: Response, next: NextFunction) => {
-		try {
-			const { id } = req.params;
-			const data = await deletePet(id);
-			res.status(200).json(data).end();
-		} catch (err) {
-			next(err);
-		}
-	},
-);
+route.delete('/:id', async (req, res, next) => {
+	try {
+		const { id } = req.params;
+		const data = await deletePet(id);
+		res.status(200).json(data).end();
+	} catch (err) {
+		next(err);
+	}
+});
 
-export default route;
+module.exports = route;

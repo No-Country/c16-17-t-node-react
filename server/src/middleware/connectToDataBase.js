@@ -1,18 +1,18 @@
-// connectToDatabase.ts
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
+// connectToDatabase.js
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 
 dotenv.config();
 
-const MONGO_URL: string = process.env.MONGO_URL as string;
-const DB_NAME: string = process.env.DB_NAME || 'PetPal';
+const MONGO_URL = process.env.MONGO_URL;
+const DB_NAME = process.env.DB_NAME || 'PetPal';
 
 // Función para conectar a la base de datos
-const connectToDatabase = async (): Promise<void> => {
+const connectToDatabase = async () => {
 	try {
 		const db = await mongoose.connect(MONGO_URL, { dbName: DB_NAME });
 		console.log('Database is connected to', db.connection.name);
-	} catch (err: any) {
+	} catch (err) {
 		console.error('Error connecting to the database:', err.stack);
 	}
 };
@@ -23,10 +23,10 @@ process.on('SIGINT', async () => {
 		await mongoose.connection.close();
 		console.log('Disconnected from the database.');
 		process.exit(0);
-	} catch (err: any) {
+	} catch (err) {
 		console.error(err.stack);
 		process.exit(1);
 	}
 });
 
-export default connectToDatabase;
+module.exports = connectToDatabase;

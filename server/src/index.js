@@ -1,37 +1,37 @@
-// index.ts
-import express, { Application, Request, Response, NextFunction } from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
+// index.js
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
 
-import routerUsers from './controllers/routeUsers';
-import routerPets from './controllers/routePets';
-import notFound from './middleware/notFound';
-import handleErrors from './middleware/handleErrors';
+const routerUsers = require('./controllers/routeUsers');
+const routerPets = require('./controllers/routePets');
+const notFound = require('./middleware/notFound');
+const handleErrors = require('./middleware/handleErrors');
 
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 dotenv.config();
-import connectToDatabase from './middleware/connectToDataBase';
+const connectToDatabase = require('./middleware/connectToDataBase');
 connectToDatabase();
 
-const app: Application = express();
+const app = express();
 app.set('appName', 'API');
 app.use(cors());
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json({ limit: '50mb' }));
 app.use(morgan('dev'));
-app.use((_req: Request, res: Response, next: NextFunction) => {
+app.use((_req, res, next) => {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Credentials', 'true');
 	res.header(
 		'Access-Control-Allow-Headers',
-		'Origin, X-Requested-With, Content-Type, Accept'
+		'Origin, X-Requested-With, Content-Type, Accept',
 	);
 	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
 	next();
 });
 
 // Ruta de bienvenida
-app.get('/', (_req: Request, res: Response, next: NextFunction) => {
+app.get('/', (_req, res, next) => {
 	try {
 		res.send('¡Hola, mundo!').end();
 	} catch (err) {
@@ -44,7 +44,7 @@ app.use('/pets', routerPets);
 app.use(notFound);
 app.use(handleErrors);
 
-const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3001;
+const port = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 app.listen(port, () => {
 	console.log(`Server listening on http://localhost:${port}`);
 });
