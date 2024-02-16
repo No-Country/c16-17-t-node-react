@@ -1,0 +1,5 @@
+{
+  "singleQuot": true,
+  "jsxSingleQuote": true,
+  "arrowParens": "avoid"
+}
