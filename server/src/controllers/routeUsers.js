@@ -12,7 +12,11 @@ const {
 	deleteUser,
 	searchUser,
 	updateUser,
+	searchUserEmail,
 } = require('../services/userService');
+const { createAccessToken } = require("../libs/jwt");
+const { ValidationError } = require('../middleware/customErrors');
+const bcrypt = require('bcrypt');
 const route = Router();
 
 // Ruta para crear un nuevo usuario
@@ -35,13 +39,35 @@ route.post('/', async (req, res, next) => {
 // Ruta para inicio de sesión de un usuario
 route.post('/login', async (req, res, next) => {
 	try {
-		const { body } = req;
-		const newData = {
-			email: body.email,
-			password: body.password,
-		};
-		const userJWT = { message: 'El JWT' };
-		res.status(201).json(userJWT).end();
+		const { email, password } = req.body;
+		const userFound = await searchUserEmail(email)
+
+		if (!userFound) {
+			throw new ValidationError(
+				'User not found.',
+			);
+		  }
+		  const isMatch = await bcrypt.compare(password, userFound.password);
+
+      if (!isMatch) {
+        throw new ValidationError(
+			'Incorrect password.',
+		);
+      }
+
+      const token = await createAccessToken({ id: userFound._id });
+
+      res.cookie("token", token, {
+        sameSite: 'none',
+        secure: true
+      });
+
+      res.json({
+        id: userFound._id,
+        email: userFound.email,
+        name: userFound.name,
+        lastName: userFound.lastName,
+        token: token}).end();
 	} catch (err) {
 		next(err);
 	}

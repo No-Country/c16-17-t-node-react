@@ -44,6 +44,11 @@ const searchUser = async (id) => {
 	return user;
 };
 
+const searchUserEmail = async (email) => {
+	const user = await userSchema.findOne({email});
+	return user;
+};
+
 const updateUser = async (id, updateData) => {
 	const updatedUser = await userSchema.findByIdAndUpdate(id, updateData, {
 		new: true,
@@ -57,4 +62,4 @@ const deleteUser = async (id) => {
 	return data;
 };
 
-module.exports = { createUser, searchUser, updateUser, deleteUser };
+module.exports = { createUser, searchUser, updateUser, deleteUser, searchUserEmail };
