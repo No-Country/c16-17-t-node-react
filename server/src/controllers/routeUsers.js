@@ -22,6 +22,8 @@ route.post('/', async (req, res, next) => {
 		const newData = {
 			email: body.email,
 			password: body.password,
+			name: body.name,
+			lastName: body.lastName,
 		};
 		const newUser = await createUser(newData);
 		res.status(201).json(newUser).end();
