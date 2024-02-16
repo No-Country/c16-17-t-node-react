@@ -5,9 +5,37 @@
  */
 
 const userSchema = require('../models/userSchema');
+const bcrypt = require('bcrypt');
+const { ValidationError } = require('../middleware/customErrors');
 
-const createUser = async (newData) => {
-	const newUser = await userSchema.create(newData);
+const createUser = async ({ email, password, name, lastName }) => {
+	if (!email || !password || !name || !lastName) {
+		throw new ValidationError(
+			'Email, password, name and lastName are required for user creation.',
+		);
+	}
+	if (password.length < 8) {
+		throw new ValidationError('Password must be at least 8 characters.');
+	}
+
+	if (!/[A-Z]/.test(password)) {
+		throw new ValidationError(
+			'The password must contain at least one uppercase letter.',
+		);
+	}
+
+	if (!/[\W_]/.test(password)) {
+		throw new ValidationError(
+			'The password must contain at least one special character.',
+		);
+	}
+	const hashedPassword = await bcrypt.hash(password, 10);
+	const newUser = await userSchema.create({
+		email,
+		password: hashedPassword,
+		name,
+		lastName,
+	});
 	return newUser;
 };
 
