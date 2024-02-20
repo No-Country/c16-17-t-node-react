@@ -33,6 +33,15 @@ const petSchema = new Schema({
 	},
 });
 
+petSchema.statics.createPet = async function ({ nickName, owner }) {
+	const User = require('./userSchema');
+	const user = await User.findById(owner);
+	if (!user) throw new Error("The 'User' field must reference a valid UserID.");
+	const newPet = await this.model('Pet').create({ nickName, owner });
+	await User.findByIdAndUpdate(user._id, { $push: { pets: newPet._id } });
+	return newPet;
+};
+
 petSchema.methods.toJSON = function () {
 	const petObject = this.toObject();
 	petObject.id = petObject._id;
