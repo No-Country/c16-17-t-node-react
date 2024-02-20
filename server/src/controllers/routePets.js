@@ -13,17 +13,18 @@ const {
 	searchPet,
 	updatePet,
 } = require('../services/petService');
+const userExtractor = require('../middleware/userExtractor');
 const route = Router();
 
 // Ruta para crear una nueva mascota
-route.post('/', async (req, res, next) => {
+route.post('/', userExtractor, async (req, res, next) => {
 	try {
+		owner = req.user.userId;
 		const { body } = req;
 		const newData = {
 			nickName: body.nickName,
-			owner: body.owner,
 		};
-		const newPet = await createPet(newData);
+		const newPet = await createPet({ ...newData, owner });
 		res.status(201).json(newPet).end();
 	} catch (err) {
 		next(err);

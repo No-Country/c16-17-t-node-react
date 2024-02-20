@@ -1,13 +1,14 @@
 /**
  * Servicios de Mascota
  *
- * Destinado a la validación de campos y la conexión con la base de datos.
+ * Destinado a la validación de campos 
+ * y la conexión con la base de datos.
  */
 
 const petSchema = require('../models/petSchema');
 
 const createPet = async (newData) => {
-	const newPet = await petSchema.create(newData);
+	const newPet = await petSchema.createPet(newData);
 	return newPet;
 };
 

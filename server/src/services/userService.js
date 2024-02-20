@@ -1,14 +1,67 @@
 /**
  * Servicios de Usuario
  *
- * Destinado a la validación de campos y la conexión con la base de datos.
+ * Destinado a la validación de campos
+ * y la conexión con la base de datos.
  */
 
 const userSchema = require('../models/userSchema');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
+const { ValidationError } = require('../middleware/customErrors');
 
-const createUser = async (newData) => {
-	const newUser = await userSchema.create(newData);
+const createUser = async ({ email, password, name, lastName }) => {
+	if (!email || !password || !name || !lastName) {
+		throw new ValidationError(
+			'Email, password, name and lastName are required for user creation.',
+		);
+	}
+	if (password.length < 8) {
+		throw new ValidationError('Password must be at least 8 characters.');
+	}
+
+	if (!/[A-Z]/.test(password)) {
+		throw new ValidationError(
+			'The password must contain at least one uppercase letter.',
+		);
+	}
+
+	if (!/[\W_]/.test(password)) {
+		throw new ValidationError(
+			'The password must contain at least one special character.',
+		);
+	}
+	const hashedPassword = await bcrypt.hash(password, 10);
+	const newUser = await userSchema.create({
+		email,
+		password: hashedPassword,
+		name,
+		lastName,
+	});
 	return newUser;
+};
+
+const loginUser = async ({ email = '', password = '' }) => {
+	const userFound = await userSchema.findOne({ email });
+	const isMatch =
+		userFound === null
+			? false
+			: await bcrypt.compare(password, userFound.password);
+
+	if (!isMatch) throw new ValidationError('Invalid user or password.');
+
+	const accessToken = jwt.sign(
+		{ id: userFound._id },
+		process.env.SECRET_TOKEN,
+		{ expiresIn: 60 * 60 * 24 * 7 }, //Tiempo de expiración en seg
+	);
+
+	return {
+		...userFound.toJSON(),
+		accessToken,
+	};
 };
 
 const searchUser = async (id) => {
@@ -29,4 +82,4 @@ const deleteUser = async (id) => {
 	return data;
 };
 
-module.exports = { createUser, searchUser, updateUser, deleteUser };
+module.exports = { createUser, loginUser, searchUser, updateUser, deleteUser };
