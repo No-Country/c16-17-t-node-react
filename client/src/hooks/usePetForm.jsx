@@ -1,15 +1,17 @@
 import { useState } from "react";
+// import { getPetUrl } from "../services/petForm";
+// import {userStore} from '../store/user'
 
-const cloudUrl = import.meta.env.VITE_APP_CLOUDINARY_API
 const usePetForm = () => {
+  // const { tokenUsuario } = userStore
   const [petBlob, setPetBlob] = useState("");
   const [petCloudData, setPetCloudData] = useState({
     url:'',
-    public_id:''
+    public_id:'',
+    img_tag:''
   });
-
   //OBTENER BLOB
-  const handlePetFile = async (e) => {
+  const handlePetFile = (e) => {
     const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onloadend = () => {
@@ -17,10 +19,9 @@ const usePetForm = () => {
       getPetUrl(reader.result)
     };
   };
-
   //SUBIR A CLOUDINARY Y OBTENER URL DE IMAGEN
   const getPetUrl = petBlob => {
-    fetch(cloudUrl, {
+    fetch(import.meta.env.VITE_APP_CLOUDINARY_API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -63,7 +64,15 @@ const usePetForm = () => {
         description: petDescription,
         isLost: petIsLost 
     }
+    // await fetch('api', {
+    //   method: 'POST',
+    //   headers: {
+    //     Authorization: `Bearer ${token}`
+    //   },
+    //   body: JSON.stringify(petData)
+    // }).then(res => res.json()).then(response => console.log(response))
     console.log(petData)
+    e.target.reset()
     setPetBlob('')
   }
   return {

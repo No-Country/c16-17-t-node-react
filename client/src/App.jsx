@@ -5,7 +5,7 @@ import PetForm from './components/testPetForm/PetForm';
 export function App() {
 
 	return (
-		<div>
+		<div className='flex justify-center items-center w-full h-full mt-5'>
 			<PetForm />
 		</div>
 		// <HashRouter>

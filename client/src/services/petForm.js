@@ -1,23 +1,13 @@
-export const handleSubmit = (e, petImgUrl) => {
-    e.preventDefault();
-    //Datos
-    const formData = new FormData(e.target)
-    const petName = formData.get('petName')
-    const petBirthDate = formData.get('petBirthDate')
-    const petDescription = formData.get('petDescription')
-    const petIsLost = formData.get('petIsLost')
-    let petImg = petImgUrl
-    // //Validacion
-    if(petName == '' || petBirthDate == '' || petDescription == ''){
-        throw new Error('Todos los campos son obligatorios')
-    }
-    const petData = {
-        id: crypto.randomUUID(),
-        name: petName,
-        birthDate: petBirthDate,
-        image: petImg,
-        description: petDescription,
-        isLost: petIsLost 
-    }
-    console.log(petData)
+export const getPetUrl = petBlob => {
+    const cloudUrl = import.meta.env.VITE_APP_CLOUDINARY_API
+    return (fetch(cloudUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+        file: petBlob,
+        upload_preset: "ml_default",
+        folder: "petpal",
+        tags: ["petpal"]
+        }),
+    }).then(res => res.json()))
 };
