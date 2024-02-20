@@ -1,1 +1,1 @@
-
+export { authRegister } from './auth';
