@@ -13,6 +13,7 @@ const {
 	deleteUser,
 	searchUser,
 	updateUser,
+	searchUserEmail,
 } = require('../services/userService');
 const userExtractor = require('../middleware/userExtractor');
 const route = Router();
