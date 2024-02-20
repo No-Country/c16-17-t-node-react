@@ -1,11 +1,15 @@
 /**
  * Servicios de Usuario
  *
- * Destinado a la validación de campos y la conexión con la base de datos.
+ * Destinado a la validación de campos
+ * y la conexión con la base de datos.
  */
 
 const userSchema = require('../models/userSchema');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
 const { ValidationError } = require('../middleware/customErrors');
 
 const createUser = async ({ email, password, name, lastName }) => {
@@ -39,6 +43,27 @@ const createUser = async ({ email, password, name, lastName }) => {
 	return newUser;
 };
 
+const loginUser = async ({ email = '', password = '' }) => {
+	const userFound = await userSchema.findOne({ email });
+	const isMatch =
+		userFound === null
+			? false
+			: await bcrypt.compare(password, userFound.password);
+
+	if (!isMatch) throw new ValidationError('Invalid user or password.');
+
+	const accessToken = jwt.sign(
+		{ id: userFound._id },
+		process.env.SECRET_TOKEN,
+		{ expiresIn: 60 * 60 * 24 * 7 }, //Tiempo de expiración en seg
+	);
+
+	return {
+		...userFound.toJSON(),
+		accessToken,
+	};
+};
+
 const searchUser = async (id) => {
 	const user = await userSchema.findById(id);
 	return user;
@@ -57,4 +82,4 @@ const deleteUser = async (id) => {
 	return data;
 };
 
-module.exports = { createUser, searchUser, updateUser, deleteUser };
+module.exports = { createUser, loginUser, searchUser, updateUser, deleteUser };

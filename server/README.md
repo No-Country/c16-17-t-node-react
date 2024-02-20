@@ -118,10 +118,10 @@ Volver al [Índice](#índice)
     "password": string - required - Password del usuario.
   }
   ```
-- **Request Body** example: Status **201**
+- **Request Body** example: Status **200**
   ```javascript
   {
-    "message": "El JWT"
+  	accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC';
   }
   ```
   volver al [Índice](#índice)
@@ -157,6 +157,9 @@ Volver al [Índice](#índice)
   ```
 - **Query**:
 - **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
 - **Body**:
 - **Request Body** example: Status **200**
   ```javascript
