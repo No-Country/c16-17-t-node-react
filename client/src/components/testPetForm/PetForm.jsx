@@ -1,13 +1,13 @@
-import { handleSubmit } from "../../services/petForm";
+// import { handleSubmit } from "../../services/petForm";
 import "./petform.css";
 import usePetForm from "../../hooks/usePetForm";
 
 const PetForm = () => {
-  const { petImgUrl, handlePetFile, petBlob } = usePetForm();
+  const { handlePetFile, petBlob, handleSubmit } = usePetForm();
 
   return (
     <div className='formContainer'>
-      <form onSubmit={e => handleSubmit(e, petImgUrl)} id='petform'>
+      <form onSubmit={e => handleSubmit(e)} id='petform'>
         <div>
           <label htmlFor='petName'>Nombre de tu mascota</label>
           <input type='text' id='petName' name='petName' required />

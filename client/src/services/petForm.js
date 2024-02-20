@@ -6,12 +6,13 @@ export const handleSubmit = (e, petImgUrl) => {
     const petBirthDate = formData.get('petBirthDate')
     const petDescription = formData.get('petDescription')
     const petIsLost = formData.get('petIsLost')
-    const petImg = petImgUrl
+    let petImg = petImgUrl
     // //Validacion
     if(petName == '' || petBirthDate == '' || petDescription == ''){
         throw new Error('Todos los campos son obligatorios')
     }
     const petData = {
+        id: crypto.randomUUID(),
         name: petName,
         birthDate: petBirthDate,
         image: petImg,
