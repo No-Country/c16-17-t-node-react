@@ -9,14 +9,13 @@
 const { Router } = require('express');
 const {
 	createUser,
+	loginUser,
 	deleteUser,
 	searchUser,
 	updateUser,
 	searchUserEmail,
 } = require('../services/userService');
-const { createAccessToken } = require("../libs/jwt");
-const { ValidationError } = require('../middleware/customErrors');
-const bcrypt = require('bcrypt');
+const userExtractor = require('../middleware/userExtractor');
 const route = Router();
 
 // Ruta para crear un nuevo usuario
@@ -39,35 +38,13 @@ route.post('/', async (req, res, next) => {
 // Ruta para inicio de sesión de un usuario
 route.post('/login', async (req, res, next) => {
 	try {
-		const { email, password } = req.body;
-		const userFound = await searchUserEmail(email)
-
-		if (!userFound) {
-			throw new ValidationError(
-				'User not found.',
-			);
-		  }
-		  const isMatch = await bcrypt.compare(password, userFound.password);
-
-      if (!isMatch) {
-        throw new ValidationError(
-			'Incorrect password.',
-		);
-      }
-
-      const token = await createAccessToken({ id: userFound._id });
-
-      res.cookie("token", token, {
-        sameSite: 'none',
-        secure: true
-      });
-
-      res.json({
-        id: userFound._id,
-        email: userFound.email,
-        name: userFound.name,
-        lastName: userFound.lastName,
-        token: token}).end();
+		const { body } = req;
+		const data = {
+			email: body.email,
+			password: body.password,
+		};
+		const user = await loginUser(data);
+		res.status(201).json(user).end();
 	} catch (err) {
 		next(err);
 	}
@@ -90,10 +67,10 @@ route.post('/password', async (req, res, next) => {
 });
 
 // Ruta para obtener un usuario por ID
-route.get('/:id', async (req, res, next) => {
+route.get('/:id', userExtractor, async (req, res, next) => {
 	try {
-		const { id } = req.params;
-		const user = await searchUser(id);
+		const { userId } = req.user;
+		const user = await searchUser(userId);
 		res.status(200).json(user).end();
 	} catch (err) {
 		next(err);
