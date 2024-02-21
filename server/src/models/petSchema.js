@@ -14,9 +14,21 @@ const petSchema = new Schema({
 		type: Number,
 		default: 0,
 	},
-	image: {
-		type: String,
-		default: '',
+	images: {
+		type: [
+			{
+				id: { type: String },
+				URL: { type: String },
+			},
+		],
+		default: [],
+		validate: {
+			validator: function (images) {
+				return images.every((image) => image.id && image.URL);
+			},
+			message:
+				"Each image object in the 'images' array must have both 'id' and 'URL' properties.",
+		},
 	},
 	owner: {
 		type: Schema.Types.ObjectId,
