@@ -5,10 +5,14 @@ module.exports = {
 	},
 	settings: {
 		react: {
-			version: 'detect'
-		}
+			version: 'detect',
+		},
 	},
-	extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react/jsx-runtime'],
+	extends: [
+		'eslint:recommended',
+		'plugin:react/recommended',
+		'plugin:react/jsx-runtime',
+	],
 	overrides: [
 		{
 			env: {
@@ -27,7 +31,8 @@ module.exports = {
 	plugins: ['react'],
 	rules: {
 		indent: ['error', 'tab'],
-		'linebreak-style': ['error', 'unix'],
+		'no-tabs': 'off',
+		'no-trailing-spaces': 'error',
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
 	},
