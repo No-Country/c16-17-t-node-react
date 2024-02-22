@@ -29,7 +29,7 @@ const PetForm = () => {
             required
           />
         </div>
-        <div className="flex flex-col w-full items-start gap-3 p-2">
+        {/* <div className="flex flex-col w-full items-start gap-3 p-2">
           <p>Está Perdid@?</p>
           <div>
             <label htmlFor='petIsLost'>Si</label>
@@ -37,7 +37,7 @@ const PetForm = () => {
             <label htmlFor='petIsLost'>No</label>
             <input type='radio' name='petIsLost' value={false} />
           </div>
-        </div>
+        </div> */}
         <div className="flex flex-col w-full items-start gap-3 p-2">
           <p>Agrega su foto</p>
           <input

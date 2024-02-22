@@ -46,7 +46,7 @@ const usePetForm = () => {
     //Datos
     const formData = new FormData(e.target)
     const petName = formData.get('petName')
-    const petBirthDate = formData.get('petBirthDate')
+    const petBirthDate = Number(new Date(formData.get('petBirthDate')))
     const petDescription = formData.get('petDescription')
     const petIsLost = formData.get('petIsLost')
     let petImg = petCloudData.url
@@ -56,22 +56,28 @@ const usePetForm = () => {
       throw new Error('Todos los campos son obligatorios')
     }
     const petData = {
-      id: crypto.randomUUID(),
-        name: petName,
-        birthDate: petBirthDate,
-        image: petImg,
-        image_id: img_id,
-        description: petDescription,
-        isLost: petIsLost 
+      nickName: petName,
+      breed: petDescription,
+      images: {
+        id: img_id,
+        url: petImg
+      },
+      birth: petBirthDate,
+      // isLost: petIsLost 
     }
-    // await fetch('api', {
-    //   method: 'POST',
-    //   headers: {
-    //     Authorization: `Bearer ${token}`
-    //   },
-    //   body: JSON.stringify(petData)
-    // }).then(res => res.json()).then(response => console.log(response))
-    console.log(petData)
+    const sendPetData = async () => {
+      const response = await fetch('http://localhost:3001/pets', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`
+          },
+          body: JSON.stringify(petData)
+      })
+      const result = await response.json()
+      console.log(result)
+    }
+    sendPetData()
     e.target.reset()
     setPetBlob('')
   }
