@@ -1,7 +1,14 @@
 import React from 'react'
 import { handleSubmit } from '../../services/login'
+import { useStore } from 'zustand'
+import { useUserStore } from '../../store/user'
+
 const FormLogin = () => {
-  return (
+
+    // const userData = useUserStore((state)=> state.user)
+    // const token = useUserStore((state)=> state.token)
+    
+    return (
     <form
         onSubmit={handleSubmit} 
         className='container flex flex-col items-center justify-center gap-5 border-2 mx-auto p-5 h-[600px]'>

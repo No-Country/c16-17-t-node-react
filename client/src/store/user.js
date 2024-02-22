@@ -1,8 +1,7 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
-export const useUserStore = create(persist((set, get) => ({
-	user: null,
-}), {
-	name: 'petpal_user',
+export const useUserStore = create((set, get) => ({
+	user: JSON.parse(localStorage.getItem('userLogged')) || {},
+	token: JSON.parse(localStorage.getItem('token')) || ''
 }));
