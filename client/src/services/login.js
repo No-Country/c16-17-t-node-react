@@ -6,16 +6,20 @@ export const handleSubmit = (e) => {
         password: formData.get('password')
     }
     const loginToPetPal = async () => {
-        const response = await fetch('http://localhost:3001/users/login',{
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json',
-            },
-            body: JSON.stringify(userData)
-        })
-        const result = await response.json() 
-        localStorage.setItem('userLogged', JSON.stringify(result))
-        localStorage.setItem('token', JSON.stringify(result.accessToken))
+        try{
+            const response = await fetch('http://localhost:3001/users/login',{
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json',
+                },
+                body: JSON.stringify(userData)
+            })
+            const result = await response.json() 
+            localStorage.setItem('petpal_user', JSON.stringify(result))
+            localStorage.setItem('petpal_token', JSON.stringify(result.accessToken))
+        }catch (error){
+            throw new Error(error.message)
+        }
     }
     loginToPetPal()
 }

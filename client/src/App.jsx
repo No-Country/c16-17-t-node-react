@@ -1,14 +1,17 @@
-// import { HashRouter } from 'react-router-dom';
-// import { AppRoutes } from './routes/AppRoutes';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
+import { AppRoutes } from './routes/AppRoutes';
+import PrivateRoute from './routes/PrivateRoutes';
+import { FormLogin } from './components';
+import { ErrorPage, Home } from './pages';
 
-import FormLogin from "./components/formLogin/FormLogin";
+
 
 export function App() {
-
+	
 	return (
-		<div className="w-[900px] flex justify-center items-center p-5 m-auto">
-			<FormLogin />
-		</div>
+		<BrowserRouter>
+			<AppRoutes/>
+		</BrowserRouter>
 		// <HashRouter>
 		// 	<AppRoutes />
 		// </HashRouter>

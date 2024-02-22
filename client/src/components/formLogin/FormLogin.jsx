@@ -1,13 +1,7 @@
-import React from 'react'
-import { handleSubmit } from '../../services/login'
-import { useStore } from 'zustand'
-import { useUserStore } from '../../store/user'
+import { handleSubmit } from "../../services"
 
-const FormLogin = () => {
+export const FormLogin = () => {
 
-    // const userData = useUserStore((state)=> state.user)
-    // const token = useUserStore((state)=> state.token)
-    
     return (
     <form
         onSubmit={handleSubmit} 
@@ -77,7 +71,6 @@ const FormLogin = () => {
                     </svg>
                 </span>
             </div>
-        {/* <p className='mt-[10px] text-sm text-green'>Password is strong</p> */}
         </div>
         <div className='w-full px-4 md:w-1/2 flex justify-center flex-col items-center gap-5'>
             <button
@@ -90,12 +83,10 @@ const FormLogin = () => {
                 <span>
                     <a
                         className='font-semibold'
-                        href="/">Registrarse</a>
+                        href="/registro">Registrarse</a>
                 </span> 
             </p>
         </div>
     </form>
   )
 }
-
-export default FormLogin
