@@ -13,7 +13,6 @@ const {
 	deleteUser,
 	searchUser,
 	updateUser,
-	searchUserEmail,
 } = require('../services/userService');
 const userExtractor = require('../middleware/userExtractor');
 const route = Router();
@@ -95,10 +94,11 @@ route.put('/:id', async (req, res, next) => {
 });
 
 // Ruta para eliminar un usuario por ID
-route.delete('/:id', async (req, res, next) => {
+route.delete('/:id', userExtractor, async (req, res, next) => {
 	try {
+		const { userId } = req.user;
 		const { id } = req.params;
-		const data = await deleteUser(id);
+		const data = await deleteUser({ id, userId });
 		res.status(200).json(data).end();
 	} catch (err) {
 		next(err);
