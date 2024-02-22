@@ -64,10 +64,11 @@ route.put('/:id', async (req, res, next) => {
 });
 
 // Ruta para eliminar una mascota por ID
-route.delete('/:id', async (req, res, next) => {
+route.delete('/:id', userExtractor, async (req, res, next) => {
 	try {
+		owner = req.user.userId;
 		const { id } = req.params;
-		const data = await deletePet(id);
+		const data = await deletePet({ id, owner });
 		res.status(200).json(data).end();
 	} catch (err) {
 		next(err);

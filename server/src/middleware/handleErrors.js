@@ -1,6 +1,11 @@
 // handleErrors.js
 
 const ERROR_HANDLERS = {
+	IncorrectData: (err, res) => {
+		const name = err.name || err.code || 'Error';
+		const message = err.message || 'Internal Server Error';
+		res.status(400).json({ name, message }).end();
+	},
 	JsonWebTokenError: (err, res) => {
 		const name = err.name || err.code || 'Error';
 		const message = err.message || 'Internal Server Error';
@@ -25,6 +30,7 @@ const ERROR_HANDLERS = {
 	},
 };
 
+// eslint-disable-next-line no-unused-vars
 module.exports = (err, _req, res, _next) => {
 	const handler = ERROR_HANDLERS[err.name] || ERROR_HANDLERS.defaultError;
 	handler(err, res);

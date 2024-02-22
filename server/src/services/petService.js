@@ -25,8 +25,8 @@ const updatePet = async (id, updateData) => {
 	return updatedPet;
 };
 
-const deletePet = async (id) => {
-	const data = await petSchema.deleteOne({ _id: id });
+const deletePet = async (petData) => {
+	const data = await petSchema.deletePet(petData);
 	return data;
 };
 
