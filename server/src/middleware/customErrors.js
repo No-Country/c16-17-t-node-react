@@ -5,6 +5,13 @@ class ValidationError extends Error {
 	}
 }
 
+class IncorrectData extends Error {
+	constructor(message) {
+		super(message);
+		this.name = 'IncorrectData';
+	}
+}
 module.exports = {
 	ValidationError,
+	IncorrectData,
 };

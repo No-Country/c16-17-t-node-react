@@ -1,5 +1,6 @@
 // pet.schema.js
 const { Schema, model } = require('mongoose');
+const { IncorrectData } = require('../middleware/customErrors');
 
 const petSchema = new Schema({
 	nickName: {
@@ -27,7 +28,7 @@ const petSchema = new Schema({
 				return images.every((image) => image.id && image.url);
 			},
 			message:
-				"Each image object in the 'images' array must have both 'id' and 'URL' properties.",
+				'Each image object in the "images" array must have both "id" and "URL" properties.',
 		},
 	},
 	owner: {
@@ -40,7 +41,7 @@ const petSchema = new Schema({
 				const user = await User.findById(value);
 				return user !== null;
 			},
-			message: "The 'User' field must reference a valid UserID.",
+			message: 'The "User" field must reference a valid UserID.',
 		},
 	},
 });
@@ -48,10 +49,20 @@ const petSchema = new Schema({
 petSchema.statics.createPet = async function ({ owner, ...newData }) {
 	const User = require('./userSchema');
 	const user = await User.findById(owner);
-	if (!user) throw new Error("The 'User' field must reference a valid UserID.");
+	if (!user) throw new IncorrectData('The "User" field must reference a valid UserID.');
 	const newPet = await this.model('Pet').create({ owner, ...newData });
 	await User.findByIdAndUpdate(user._id, { $push: { pets: newPet._id } });
 	return newPet;
+};
+
+petSchema.statics.deletePet = async function ({ id, owner }) {
+	const pet = await this.findById(id);
+	if (!pet) throw new IncorrectData(`The pet with id ${id} was not found.`);
+	if (pet.owner != owner) throw new IncorrectData('Insufficient permissions.');
+	const User = require('./userSchema');
+	await User.findOneAndUpdate({ _id: pet.owner }, { $pull: { pets: id } });
+	const isDelete = await this.deleteOne({ _id: id });
+	return isDelete;
 };
 
 petSchema.methods.toJSON = function () {

@@ -35,14 +35,14 @@ const userSchema = new Schema({
 		{
 			type: Schema.Types.ObjectId,
 			default: [],
-			ref: "Pet",
+			ref: 'Pet',
 			validate: {
 				validator: async function (value) {
-					const Pet = require("./petSchema");
+					const Pet = require('./petSchema');
 					const pet = await Pet.findById(value);
 					return pet !== null;
 				},
-				message: "The 'Pet' field must reference a valid PetID.",
+				message: 'The "Pet" field must reference a valid PetID.',
 			},
 		},
 	],
@@ -57,4 +57,4 @@ userSchema.methods.toJSON = function () {
 	return userObject;
 };
 
-module.exports = model("User", userSchema);
+module.exports = model('User', userSchema);
