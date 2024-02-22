@@ -243,6 +243,9 @@ Volver al [Índice](#índice)
   ```javascript
   {
     "nickName": string - required - Nombre de la mascota.
+    "breed": string - requires - Raza de la mascota.
+    "images": array - requires - Imágenes de la mascota.
+    "birth": number - optional - Nacimiento de la mascota.
   }
   ```
 - **Request Body** example: Status **201**
@@ -253,7 +256,12 @@ Volver al [Índice](#índice)
     owner: "65ccba58e023b17ef6697de1",
     breed: "",
     birth: 0,
-    image: "",
+    images: [
+      {
+        id: "String",
+        URL: "String",
+      }
+    ],
   }
   ```
 
@@ -277,7 +285,12 @@ volver al [Índice](#índice)
     owner: "65ccba58e023b17ef6697de1",
     breed: "",
     birth: 0,
-    image: "",
+    images: [
+      {
+        id: "String",
+        URL: "String",
+      }
+    ],
   }
   ```
 
@@ -295,10 +308,10 @@ volver al [Índice](#índice)
 - **Body**:
   ```javascript
   {
-    "nickName": string - optional - Nombre de la mascota.
-    "breed": string - optional - Raza de la mascota.
+    "nickName": string - required - Nombre de la mascota.
+    "breed": string - requires - Raza de la mascota.
+    "images": array - requires - Imágenes de la mascota.
     "birth": number - optional - Nacimiento de la mascota.
-    "image": string - optional - Imagen de la mascota.
   }
   ```
 - **Request Body** example: Status **200**
@@ -309,7 +322,12 @@ volver al [Índice](#índice)
     owner: "65ccba58e023b17ef6697de1",
     breed: "",
     birth: 0,
-    image: "",
+    images: [
+      {
+        id: "String",
+        URL: "String",
+      }
+    ],
   }
   ```
 
