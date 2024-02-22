@@ -1,9 +1,7 @@
 import { useState } from "react";
-// import { getPetUrl } from "../services/petForm";
-// import {userStore} from '../store/user'
+
 
 const usePetForm = () => {
-  // const { tokenUsuario } = userStore
   const [petBlob, setPetBlob] = useState("");
   const [petCloudData, setPetCloudData] = useState({
     url:'',
@@ -48,11 +46,11 @@ const usePetForm = () => {
     const petName = formData.get('petName')
     const petBirthDate = Number(new Date(formData.get('petBirthDate')))
     const petDescription = formData.get('petDescription')
-    const petIsLost = formData.get('petIsLost')
+    // const petIsLost = formData.get('petIsLost')
     let petImg = petCloudData.url
     const img_id = petCloudData.public_id
     // //Validacion
-    if(petName == '' || petBirthDate == '' || petDescription == ''){
+    if(petName.trim() == ''|| petBirthDate.trim() == '' || petDescription.trim() == '' || petImg.trim() == ''){
       throw new Error('Todos los campos son obligatorios')
     }
     const petData = {
@@ -70,7 +68,7 @@ const usePetForm = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem('petpal_token'))}`
           },
           body: JSON.stringify(petData)
       })
