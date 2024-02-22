@@ -77,8 +77,9 @@ const updateUser = async (id, updateData) => {
 	return updatedUser;
 };
 
-const deleteUser = async (id) => {
-	const data = await userSchema.deleteOne({ _id: id });
+const deleteUser = async ({ id, userId }) => {
+	if (id != userId) throw new ValidationError('Insufficient permissions');
+	const data = await userSchema.deleteUserAndPets({ _id: id });
 	return data;
 };
 
