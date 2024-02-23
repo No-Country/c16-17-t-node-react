@@ -6,10 +6,14 @@ module.exports = {
 	},
 	settings: {
 		react: {
-			version: 'detect'
-		}
+			version: 'detect',
+		},
 	},
-	extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react/jsx-runtime'],
+	extends: [
+		'eslint:recommended',
+		'plugin:react/recommended',
+		'plugin:react/jsx-runtime',
+	],
 	overrides: [
 		{
 			env: {
