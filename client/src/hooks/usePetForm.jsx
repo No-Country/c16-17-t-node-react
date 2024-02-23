@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 
 const usePetForm = () => {
@@ -43,39 +44,47 @@ const usePetForm = () => {
     e.preventDefault();
     //Datos
     const formData = new FormData(e.target)
-    const petName = formData.get('petName')
-    const petBirthDate = Number(new Date(formData.get('petBirthDate')))
-    const petDescription = formData.get('petDescription')
+    const petName = formData.get('nickName')
+    const petBirth = Number(new Date(formData.get('birth')))
+    const petDetail = formData.get('detail')
+    const petBreed = formData.get('breed')
     // const petIsLost = formData.get('petIsLost')
     let petImg = petCloudData.url
     const img_id = petCloudData.public_id
     // //Validacion
-    if(petName.trim() == ''|| petBirthDate.trim() == '' || petDescription.trim() == '' || petImg.trim() == ''){
+    if(petName.trim() == ''|| petBirth.length<0 || petDetail.trim() == '' || petImg.trim() == '' || petBreed.trim() == ''){
       throw new Error('Todos los campos son obligatorios')
     }
     const petData = {
       nickName: petName,
-      breed: petDescription,
+      breed: petDetail,
       images: {
         id: img_id,
         url: petImg
       },
-      birth: petBirthDate,
+      breed: petBreed,
+      birth: petBirth,
       // isLost: petIsLost 
     }
     const sendPetData = async () => {
-      const response = await fetch('http://localhost:3001/pets', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${JSON.parse(localStorage.getItem('petpal_token'))}`
-          },
-          body: JSON.stringify(petData)
-      })
+      const response = await toast.promise(
+        fetch('https://c16-17-t-node-react.vercel.app/pets/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${JSON.parse(localStorage.getItem('petpal_token'))}`
+            },
+            body: JSON.stringify(petData)
+        }),
+        {
+          pending: 'Ingresando...',
+          success: 'Mascota creada',
+          error: 'Ocurrió un error'
+        }
+      ) 
       const result = await response.json()
-      console.log(result)
     }
-    sendPetData()
+    await sendPetData()
     e.target.reset()
     setPetBlob('')
   }
