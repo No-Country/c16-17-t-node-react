@@ -1,18 +1,19 @@
 /**
  * Servicios de Mascota
  *
- * Destinado a la validación de campos y la conexión con la base de datos.
+ * Destinado a la validación de campos
+ * y la conexión con la base de datos.
  */
 
 const petSchema = require('../models/petSchema');
 
 const createPet = async (newData) => {
-	const newPet = await petSchema.create(newData);
+	const newPet = await petSchema.createPet(newData);
 	return newPet;
 };
 
 const searchPet = async (id) => {
-	const pet = await petSchema.findById(id);
+	const pet = await petSchema.findById(id).populate('owner', 'name telephone');
 	return pet;
 };
 
@@ -24,8 +25,8 @@ const updatePet = async (id, updateData) => {
 	return updatedPet;
 };
 
-const deletePet = async (id) => {
-	const data = await petSchema.deleteOne({ _id: id });
+const deletePet = async (petData) => {
+	const data = await petSchema.deletePet(petData);
 	return data;
 };
 

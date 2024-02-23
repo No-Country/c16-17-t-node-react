@@ -1,5 +1,6 @@
 // user.schema.js
 const { Schema, model } = require('mongoose');
+const { IncorrectData } = require('../middleware/customErrors');
 
 const userSchema = new Schema({
 	email: {
@@ -35,18 +36,26 @@ const userSchema = new Schema({
 		{
 			type: Schema.Types.ObjectId,
 			default: [],
-			ref: "Pet",
+			ref: 'Pet',
 			validate: {
 				validator: async function (value) {
-					const Pet = require("./petSchema");
+					const Pet = require('./petSchema');
 					const pet = await Pet.findById(value);
 					return pet !== null;
 				},
-				message: "The 'Pet' field must reference a valid PetID.",
+				message: 'The "Pet" field must reference a valid PetID.',
 			},
 		},
 	],
 });
+
+userSchema.statics.deleteUserAndPets = async function (userId) {
+	const user = await this.findById(userId);
+	if (!user) IncorrectData(`The user with id ${userId} was not found.`);
+	const Pet = require('./petSchema');
+	await Pet.deleteMany({ owner: userId });
+	return await this.deleteOne({ _id: userId });
+};
 
 userSchema.methods.toJSON = function () {
 	const userObject = this.toObject();
@@ -57,4 +66,4 @@ userSchema.methods.toJSON = function () {
 	return userObject;
 };
 
-module.exports = model("User", userSchema);
+module.exports = model('User', userSchema);
