@@ -12,8 +12,5 @@ export function App() {
 		<BrowserRouter>
 			<AppRoutes/>
 		</BrowserRouter>
-		// <HashRouter>
-		// 	<AppRoutes />
-		// </HashRouter>
 	);
 }

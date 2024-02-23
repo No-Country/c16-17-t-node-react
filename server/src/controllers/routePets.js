@@ -23,6 +23,9 @@ route.post('/', userExtractor, async (req, res, next) => {
 		const { body } = req;
 		const newData = {
 			nickName: body.nickName,
+			breed: body.breed,
+			images: body.images,
+			birth: body.birth,
 		};
 		const newPet = await createPet({ ...newData, owner });
 		res.status(201).json(newPet).end();
@@ -51,7 +54,7 @@ route.put('/:id', async (req, res, next) => {
 			nickName: body.nickName,
 			breed: body.breed,
 			birth: body.birth,
-			image: body.image,
+			images: body.images,
 		};
 		const updatedPet = await updatePet(id, updateData);
 		res.status(200).json(updatedPet).end();

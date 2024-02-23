@@ -1,7 +1,7 @@
 /**
  * Servicios de Mascota
  *
- * Destinado a la validación de campos 
+ * Destinado a la validación de campos
  * y la conexión con la base de datos.
  */
 
@@ -13,7 +13,7 @@ const createPet = async (newData) => {
 };
 
 const searchPet = async (id) => {
-	const pet = await petSchema.findById(id);
+	const pet = await petSchema.findById(id).populate('owner', 'name telephone');
 	return pet;
 };
 
