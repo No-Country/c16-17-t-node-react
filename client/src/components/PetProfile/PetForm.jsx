@@ -8,7 +8,10 @@ export const PetForm = () => {
     
  return (
      
-    <form encType="multipart/form-data" method="post"  onSubmit={e => handleSubmit(e)}  id="petform" className="w-11/12 sm:w-4/5">
+    <form 
+        onSubmit={e => handleSubmit(e)}  
+        id="petform" 
+        className="w-11/12 sm:w-4/5">
         <h2 className="text-base font-semibold leading-7 text-gray-900">Registra tu mascota</h2>
             
         <div className="mt-10 flex flex-col gap-x-6 gap-y-8 ">
@@ -89,7 +92,9 @@ export const PetForm = () => {
                 <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 sm:px-6 py-10">
                     <div className="text-center">
                                  {
-                                    petBlob? <img src={petBlob} width={200} height={200} /> : <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
+                                    petBlob
+                                        ? <img src={petBlob} width={200} height={200} /> 
+                                        : <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                                  }                     
                         <div className="mt-4 flex flex-col lg:flex-row text-sm justify-center leading-6 text-gray-600">
                             <label
