@@ -118,10 +118,10 @@ Volver al [Índice](#índice)
     "password": string - required - Password del usuario.
   }
   ```
-- **Request Body** example: Status **201**
+- **Request Body** example: Status **200**
   ```javascript
   {
-    "message": "El JWT"
+  	accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC';
   }
   ```
   volver al [Índice](#índice)
@@ -157,6 +157,9 @@ Volver al [Índice](#índice)
   ```
 - **Query**:
 - **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
 - **Body**:
 - **Request Body** example: Status **200**
   ```javascript
@@ -233,11 +236,16 @@ Volver al [Índice](#índice)
 - **Params**:
 - **Query**:
 - **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
 - **Body**:
   ```javascript
   {
-    "owner": string - required - Nombre del dueño de la mascota.
     "nickName": string - required - Nombre de la mascota.
+    "breed": string - requires - Raza de la mascota.
+    "images": array - requires - Imágenes de la mascota.
+    "birth": number - optional - Nacimiento de la mascota.
   }
   ```
 - **Request Body** example: Status **201**
@@ -248,7 +256,12 @@ Volver al [Índice](#índice)
     owner: "65ccba58e023b17ef6697de1",
     breed: "",
     birth: 0,
-    image: "",
+    images: [
+      {
+        id: "String",
+        URL: "String",
+      }
+    ],
   }
   ```
 
@@ -256,7 +269,7 @@ volver al [Índice](#índice)
 
 ### Obtener mascota especifica
 
-- **`GET /users/{:id}`** - Obtener detalles de una mascota específica.
+- **`GET /pets/{:id}`** - Obtener detalles de una mascota específica.
 - **Params**:
   ```javascript
   "id": string - required - id de la mascota.
@@ -272,7 +285,12 @@ volver al [Índice](#índice)
     owner: "65ccba58e023b17ef6697de1",
     breed: "",
     birth: 0,
-    image: "",
+    images: [
+      {
+        id: "String",
+        URL: "String",
+      }
+    ],
   }
   ```
 
@@ -280,7 +298,7 @@ volver al [Índice](#índice)
 
 ### Actualizar mascota especifica
 
-- **`PUT /users/{:id}`** - Actualizar una mascota específica.
+- **`PUT /pets/{:id}`** - Actualizar una mascota específica.
 - **Params**:
   ```javascript
   "id": string - required - id del usuario.
@@ -290,10 +308,10 @@ volver al [Índice](#índice)
 - **Body**:
   ```javascript
   {
-    "nickName": string - optional - Nombre de la mascota.
-    "breed": string - optional - Raza de la mascota.
+    "nickName": string - required - Nombre de la mascota.
+    "breed": string - requires - Raza de la mascota.
+    "images": array - requires - Imágenes de la mascota.
     "birth": number - optional - Nacimiento de la mascota.
-    "image": string - optional - Imagen de la mascota.
   }
   ```
 - **Request Body** example: Status **200**
@@ -304,7 +322,12 @@ volver al [Índice](#índice)
     owner: "65ccba58e023b17ef6697de1",
     breed: "",
     birth: 0,
-    image: "",
+    images: [
+      {
+        id: "String",
+        URL: "String",
+      }
+    ],
   }
   ```
 
@@ -312,7 +335,7 @@ volver al [Índice](#índice)
 
 ### Eliminar mascota especifica
 
-- **`DELETE /users/{:id}`** - Eliminar una mascota específica.
+- **`DELETE /pets/{:id}`** - Eliminar una mascota específica.
 - **Params**:
   ```javascript
   "id": string - required - id del usuario.

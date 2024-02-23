@@ -2,6 +2,7 @@ module.exports = {
 	env: {
 		browser: true,
 		es2021: true,
+		node: true
 	},
 	settings: {
 		react: {
@@ -30,9 +31,8 @@ module.exports = {
 	},
 	plugins: ['react'],
 	rules: {
-		indent: ['error', 'tab'],
-		'no-tabs': 'off',
-		'no-trailing-spaces': 'error',
+		indent: ['error', '4'],
+		'linebreak-style': ['error', 'windows'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
 	},
