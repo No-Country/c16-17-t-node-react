@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { FormLogin } from '../components';
+import { FormLogin, PetForm } from '../components';
 import { ErrorPage, Home } from '../pages';
 import PrivateRoute from './PrivateRoutes';
 
@@ -12,6 +12,10 @@ export function AppRoutes() {
 				<Route path="/home" element={
 					<PrivateRoute>
 						<Home/>
+					</PrivateRoute>}/>
+				<Route path="/petform" element={
+					<PrivateRoute>
+						<PetForm/>
 					</PrivateRoute>}/>
 				<Route path='*' element={<ErrorPage/>}/>
 			</Routes>

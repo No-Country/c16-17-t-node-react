@@ -43,19 +43,21 @@ const usePetForm = () => {
     e.preventDefault();
     //Datos
     const formData = new FormData(e.target)
-    const petName = formData.get('petName')
-    const petBirthDate = Number(new Date(formData.get('petBirthDate')))
-    const petDescription = formData.get('petDescription')
+    const petName = formData.get('nickName')
+    const petBreed = formData.get('breed')
+    const petBirthDate = Number(new Date(formData.get('birth')))
+    const petDescription = formData.get('detail')
     // const petIsLost = formData.get('petIsLost')
     let petImg = petCloudData.url
     const img_id = petCloudData.public_id
     // //Validacion
-    if(petName.trim() == ''|| petBirthDate.trim() == '' || petDescription.trim() == '' || petImg.trim() == ''){
+    if(petName.trim() == ''|| petBirthDate.trim() == '' || petDescription.trim() == '' || petImg.trim() == '' || petBreed.trim() == ''){
       throw new Error('Todos los campos son obligatorios')
     }
     const petData = {
       nickName: petName,
-      breed: petDescription,
+      breed: petBreed,
+      description: petDescription,
       images: {
         id: img_id,
         url: petImg
