@@ -1,11 +1,41 @@
+import React from 'react'
+import { authRegister } from '../../services'
 
-import { handleLogin } from "../../services"
-
-export const FormLogin = () => {
-    return (
-    <form
-        onSubmit={handleLogin} 
+const FormRegistry = () => {
+  return (
+    <div>
+        <form
+        onSubmit={authRegister} 
         className='container flex flex-col items-center justify-center gap-5 border-2 mx-auto p-5 h-[600px]'>
+
+        <div className='px-4 md:w-1/2'>
+            <label className='mb-[10px] block text-base font-medium text-dark dark:text-white'>
+                Nombre
+            </label>
+            <div className='relative'>
+                <input
+                    id="name"
+                    name="name"
+                    type='text'
+                    placeholder='Nombre'
+                    className='w-full bg-transparent rounded-md border border-stroke dark:border-dark-3 py-[10px] pr-3 pl-12 text-dark-6 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-2'
+                    />
+            </div>
+        </div>
+        <div className='px-4 md:w-1/2'>
+            <label className='mb-[10px] block text-base font-medium text-dark dark:text-white'>
+                Apellido
+            </label>
+            <div className='relative'>
+                <input
+                    id="lastName"
+                    name="lastName"
+                    type='text'
+                    placeholder='Apellido'
+                    className='w-full bg-transparent rounded-md border border-stroke dark:border-dark-3 py-[10px] pr-3 pl-12 text-dark-6 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-2'
+                    />
+            </div>
+        </div>
         <div className='px-4 md:w-1/2'>
             <label className='mb-[10px] block text-base font-medium text-dark dark:text-white'>
                 Email
@@ -76,17 +106,12 @@ export const FormLogin = () => {
             <button
                 type='submit' 
                 className='bg-black dark:bg-black-2 border-black dark:border-black-2 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-white hover:bg-body-color hover:border-body-color disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5'>
-                Ingresar
+                Registrarse
             </button>
-            <p className='flex justify-center items-center gap-4'>
-                Todavia no estas registrado?
-                <span>
-                    <a
-                        className='font-semibold'
-                        href="/registro">Registrarse</a>
-                </span> 
-            </p>
         </div>
     </form>
+    </div>
   )
 }
+
+export default FormRegistry

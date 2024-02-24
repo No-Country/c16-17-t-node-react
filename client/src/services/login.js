@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 
 
-export const handleSubmit = (e) => {
+export const handleLogin = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target)

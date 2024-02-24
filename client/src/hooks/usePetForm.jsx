@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-
 const usePetForm = () => {
   const [petBlob, setPetBlob] = useState("");
   const [petCloudData, setPetCloudData] = useState({
@@ -20,7 +19,7 @@ const usePetForm = () => {
   };
   //SUBIR A CLOUDINARY Y OBTENER URL DE IMAGEN
   const getPetUrl = petBlob => {
-    fetch(import.meta.env.VITE_APP_CLOUDINARY_API, {
+    fetch(`${import.meta.env.VITE_APP_CLOUDINARY_API}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -68,7 +67,7 @@ const usePetForm = () => {
     }
     const sendPetData = async () => {
       const response = await toast.promise(
-        fetch('https://c16-17-t-node-react.vercel.app/pets/', {
+        fetch(`${import.meta.env.VITE_API_URL}/pets/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

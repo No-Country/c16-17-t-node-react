@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { FormLogin } from '../components';
 import { ErrorPage, Home, PetFormView, PetProfile } from '../pages';
 import PrivateRoute from './PrivateRoutes';
+import FormRegistry from '../components/testFormRegUser/FormRegistry';
 
 
 
@@ -11,7 +12,12 @@ export function AppRoutes() {
 		<>	
 			<Routes>
 				<Route path="/login" element={<FormLogin/>}/>
-				<Route path="/petform" element={<PetFormView/>}/>
+				<Route path="/registro" element={<FormRegistry/>}/>
+				<Route path="/petform" element={
+					<PrivateRoute>
+						<PetFormView/>
+					</PrivateRoute>
+					}/>
 				<Route path="/pets/:id" element={
 					<PrivateRoute>
 						<PetProfile/>
