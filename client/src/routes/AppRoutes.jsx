@@ -27,6 +27,10 @@ export function AppRoutes() {
 					<PrivateRoute>
 						<Home/>
 					</PrivateRoute>}/>
+				<Route path="/petform" element={
+					<PrivateRoute>
+						<PetForm/>
+					</PrivateRoute>}/>
 				<Route path='*' element={<ErrorPage/>}/>
 			</Routes>
 		</>

@@ -89,7 +89,9 @@ export const PetForm = () => {
                 <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 sm:px-6 py-10">
                     <div className="text-center">
                                  {
-                                    petBlob? <img src={petBlob} width={200} height={200} /> : <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
+                                    petBlob
+                                        ? <img src={petBlob} width={200} height={200} /> 
+                                        : <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                                  }                     
                         <div className="mt-4 flex flex-col lg:flex-row text-sm justify-center leading-6 text-gray-600">
                             <label

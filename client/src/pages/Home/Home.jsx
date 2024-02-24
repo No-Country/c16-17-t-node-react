@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { PetCard } from '../../components'
 import { useGetUserPets } from '../../hooks/useGetUserPets'
-import { removeFromStorage } from '../../services'
+import { handleLogout } from '../../services'
 
 export const Home = () => {
   const notifySuccess = () => toast.success('Todo OK!', {
@@ -33,7 +33,7 @@ export const Home = () => {
           }
         </section>
         <Link
-          onClick={removeFromStorage} 
+          onClick={handleLogout} 
           className='border rounded-md w-fit p-5 bg-black text-white font-bold'
           to='/login'>Desloguear</Link>
         <Link 

@@ -56,7 +56,7 @@ const usePetForm = () => {
     }
     const petData = {
       nickName: petName,
-      breed: petDetail,
+      detail: petDetail,
       images: {
         id: img_id,
         url: petImg
