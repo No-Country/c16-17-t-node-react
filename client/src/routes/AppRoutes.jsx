@@ -12,7 +12,11 @@ export function AppRoutes() {
 			<Routes>
 				<Route path="/login" element={<FormLogin/>}/>
 				<Route path="/petform" element={<PetFormView/>}/>
-				<Route path="/pets/:id" element={<PetProfile/>}/>
+				<Route path="/pets/:id" element={
+					<PrivateRoute>
+						<PetProfile/>
+					</PrivateRoute>
+					}/>
 				<Route path="/home" element={
 					<PrivateRoute>
 						<Home/>

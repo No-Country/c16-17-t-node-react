@@ -78,10 +78,10 @@ const usePetForm = () => {
         }),
         {
           pending: 'Ingresando...',
-          success: 'Mascota creada',
-          error: 'Ocurrió un error'
         }
-      ) 
+      )
+      if(!response.ok) return toast.error('Ocurrió un error')
+      toast.success('Mascota creada exitosamente')
       const result = await response.json()
     }
     await sendPetData()
