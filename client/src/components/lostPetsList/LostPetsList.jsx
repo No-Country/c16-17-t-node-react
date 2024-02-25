@@ -7,16 +7,15 @@ const LostPetsList = () => {
     
   return (
     <>
-        <h2 className='text-center font-bold text-4xl'>Lista de mascotas perdidas</h2>
-            <div className='container m-auto flex justify-center items-center'>
-                {
-                    lostPets.map(pet => (
-                        <PetCard 
-                            key={pet.id}
-                            petId={pet.id}/>
-                    ))
-                }
-            </div>
+        <div className='container m-auto flex justify-center items-center'>
+            {
+                lostPets.map(pet => (
+                    <PetCard 
+                        key={pet.id}
+                        petId={pet.id}/>
+                ))
+            }
+        </div>
     </>
   )
 }

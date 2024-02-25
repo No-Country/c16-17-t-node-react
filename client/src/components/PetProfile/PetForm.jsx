@@ -1,5 +1,6 @@
 import { PhotoIcon } from '@heroicons/react/24/solid'
 import usePetForm from "../../hooks/usePetForm";
+import { Link } from 'react-router-dom';
 
 
 export const PetForm = () => {
@@ -47,6 +48,15 @@ export const PetForm = () => {
                         required
                     />
                     </div>
+                </div>
+            </div>
+            <div className="flex flex-col w-full items-start gap-3 p-2">
+                <p className='block text-sm font-medium leading-6 text-gray-900'>Está Perdid@?</p>
+                <div className='flex justify-center items-center gap-10'>
+                    <label className='block text-md font-medium leading-6 text-gray-900' htmlFor='petIsLost'>Si</label>
+                    <input className='ms-[-30px] w-6 h-6' type='radio' name='petIsLost' value={true} />
+                    <label className='block text-sm font-medium leading-6 text-gray-900' htmlFor='petIsLost'>No</label>
+                    <input className='ms-[-30px] w-6 h-6' type='radio' name='petIsLost' value={false} defaultChecked/>
                 </div>
             </div>
             <div className="">
@@ -109,21 +119,20 @@ export const PetForm = () => {
             </div>
             
                 <div className="mt-6 flex justify-center gap-x-6">
-                    <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                    Cancelar
-                    </button>
                     <button
                     type="submit"
-                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="rounded-md bg-secondaryBtn px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                     Guardar
                     </button>
-                    <button
-                    type="button"
-                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                        <a href="/">Volver al Inicio</a>
-                    </button>
+                    <Link to='/'>
+                        <button
+                        type="button"
+                        className="rounded-md bg-secondary px-3 py-2 text-sm font-semibold text-black border-2 shadow-sm hover:bg-black hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            Volver al Inicio
+                        </button>
+                    </Link>
                 </div>
         </div>
     </form>     

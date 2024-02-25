@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 export const useUserStore = create((set, get) => ({
+	visible: false,
 	lostPets: JSON.parse(localStorage.getItem('lostPets')) || [],
 	user: JSON.parse(localStorage.getItem('petpal_user')) || {},
 	token: JSON.parse(localStorage.getItem('petpal_token')) || '',
@@ -27,5 +28,6 @@ export const useUserStore = create((set, get) => ({
 		}))
 		const newLostList = get().lostPets
 		localStorage.setItem('lostPets', JSON.stringify(newLostList))
-	}
+	},
+	handleVisible: () => set((state) => ({visible: !state.visible})),
 }));

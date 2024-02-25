@@ -9,7 +9,8 @@ export const Home = () => {
       <div className='container m-auto flex flex-col gap-5'>
         <Services />
       </div>
-      <div className='border w-[80%] m-auto mt-10 rounded-md p-10'>
+      <div className='m-auto mt-10 rounded-md p-10 bg-bgBtn'>
+        <h2 className='text-center font-bold text-4xl text-white mb-10'>Últimas mascotas reportadas</h2>
         <LostPetsList />
       </div>
     </div>

@@ -1,7 +1,7 @@
 export { PetForm } from './PetProfile/PetForm'
 export { FormLogin } from './formLogin/FormLogin'
 export { PetCard } from './petCard/PetCard'
-export { Navbar } from './Navbar/Navbar'
+export { Header } from './Header/Header'
 export { Banner } from './Banner/Banner'
 export { Services } from './SectionServices/Services'
 export { Footer } from './Footer/Footer'

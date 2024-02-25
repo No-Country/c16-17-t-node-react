@@ -14,7 +14,7 @@ export const MyPets = () => {
         <Link 
             className='border rounded-md w-fit p-2 bg-black text-white font-bold'
             to='/petform'>Agregar Mascota</Link>
-        <section>
+        <section className='flex justify-evenly items-center w-full p-5'>
           {
             pets.map( pet => (
               <PetCard
