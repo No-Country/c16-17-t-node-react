@@ -20,6 +20,15 @@ const createPet = async ({ owner, ...newData }) => {
 	return newPet;
 };
 
+const searchPets = async (filter) => {
+	let options = {};
+	if (filter === 'lost') options.lost = true;
+	const pets = await petModel
+		.find(options)
+		.populate('owner', 'name telephone');
+	return pets;
+};
+
 const searchPet = async (id) => {
 	const pet = await petModel.findById(id).populate('owner', 'name telephone');
 	return pet;
@@ -47,4 +56,4 @@ const deletePet = async ({ owner, id }) => {
 	return isDelete;
 };
 
-module.exports = { createPet, searchPet, updatePet, deletePet };
+module.exports = { createPet, searchPets, searchPet, updatePet, deletePet };
