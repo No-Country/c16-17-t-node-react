@@ -31,7 +31,7 @@ export const handleLogin = (e) => {
             const result = await response.json() 
             localStorage.setItem('petpal_user', JSON.stringify(result))
             localStorage.setItem('petpal_token', JSON.stringify(result.accessToken))
-            location.replace('/home')
+            location.replace('/mypets')
         }catch (error){
             throw new Error(error.message)
         }

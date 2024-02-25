@@ -1,21 +1,25 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import usePets from '../../hooks/usePets';
+import { useUserStore } from '../../store/user';
 
+export const PetCard = ({ petId }) => {
+	const { petData, deletePet, getPetData, addLostPet, removeLostPet } =
+		usePets(petId);
 
-export const PetCard = ({petId})=> {
-	
-	const { petData, deletePet, getPetData } = usePets(petId)
-	
-	useEffect(()=>{
-		getPetData(petId)
-	},[])
-	
-	const { id, nickName, birth, images, breed } = petData
-	
+	useEffect(() => {
+		getPetData(petId);
+	}, []);
+
+	const { id, nickName, birth, images, breed } = petData;
+
 	return (
 		<div className="mb-10 overflow-hidden rounded-lg bg-slate-50 shadow-1 duration-300 hover:shadow-3 dark:bg-dark-2 dark:shadow-card dark:hover:shadow-3 w-80">
-			<img src={images ? images[0]?.url : null} alt="" className="w-full h-80 object-cover"/>
+			<img
+				src={images ? images[0]?.url : null}
+				alt=""
+				className="w-full h-80 object-cover"
+			/>
 			<div className="p-8 text-center sm:p-9 md:p-7 xl:p-9">
 				<h3 className="mb-4 block text-xl font-semibold text-dark hover:text-zinc-600 sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] cursor-default">
 					Nombre: {nickName}
@@ -26,9 +30,9 @@ export const PetCard = ({petId})=> {
 				<p className="mb-7 text-base leading-relaxed text-body-color dark:text-dark-6">
 					Nació: {new Date(birth).toLocaleDateString()}
 				</p>
-				<div className='flex justify-center items-center gap-5'>
+				<div className="flex justify-center items-center gap-5">
 					<Link
-						to='/home'
+						to="/home"
 						className="inline-block rounded-full border border-black px-7 py-2 text-base font-medium text-body-color transition hover:border-primary hover:bg-black hover:text-white dark:border-dark-3 dark:text-dark-6"
 					>
 						Volver
@@ -40,6 +44,18 @@ export const PetCard = ({petId})=> {
 						Eliminar
 					</button>
 				</div>
+				<button
+					onClick={() => addLostPet(petData)}
+					className="p-3 font-semibold border rounded-md bg-yellow-400 mt-5"
+				>
+					Se Perdió
+				</button>
+				<button
+					onClick={() => removeLostPet(petData)}
+					className="p-3 border rounded-md bg-blue-400 mt-5 font-semibold"
+				>
+					Se Encontró
+				</button>
 			</div>
 		</div>
 	);
