@@ -14,8 +14,7 @@ const {
 
 const createPet = async ({ owner, ...newData }) => {
 	const user = await userModel.findById(owner);
-	if (!user)
-		throw new IncorrectData('The "User" field must reference a valid UserID.');
+	if (!user) throw new IncorrectData('The "User" field must reference a valid UserID.');
 	const newPet = await this.model('Pet').create({ owner, ...newData });
 	await userModel.findByIdAndUpdate(user._id, { $push: { pets: newPet._id } });
 	return newPet;
@@ -41,8 +40,7 @@ const searchPet = async (id) => {
 const updatePet = async ({ owner, id, ...updateData }) => {
 	const pet = await petModel.findById(id);
 	if (!pet) throw new IncorrectData(`The pet with id ${id} was not found.`);
-	if (pet.owner != owner)
-		throw new ValidationError('Insufficient permissions.');
+	if (pet.owner != owner)	throw new ValidationError('Insufficient permissions.');
 	const updatedPet = await petModel.findByIdAndUpdate(id, updateData, {
 		new: true,
 		runValidators: true,
