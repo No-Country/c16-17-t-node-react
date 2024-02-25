@@ -7,9 +7,9 @@ import { ErrorPage, Home } from './pages';
 
 
 export function App() {
-	
+
 	return (
-		<BrowserRouter>
+    <BrowserRouter>
 			<AppRoutes/>
 		</BrowserRouter>
 	);
