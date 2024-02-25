@@ -1,6 +1,5 @@
 // pet.schema.js
 const { Schema, model } = require('mongoose');
-const { IncorrectData } = require('../middleware/customErrors');
 
 const petSchema = new Schema({
 	nickName: {
@@ -14,6 +13,14 @@ const petSchema = new Schema({
 	birth: {
 		type: Number,
 		default: 0,
+	},
+	lost: {
+		type: Boolean,
+		default: false,
+	},
+	description: {
+		type: String,
+		default: '',
 	},
 	images: {
 		type: [
@@ -46,32 +53,12 @@ const petSchema = new Schema({
 	},
 });
 
-petSchema.statics.createPet = async function ({ owner, ...newData }) {
-	const User = require('./userSchema');
-	const user = await User.findById(owner);
-	if (!user) throw new IncorrectData('The "User" field must reference a valid UserID.');
-	const newPet = await this.model('Pet').create({ owner, ...newData });
-	await User.findByIdAndUpdate(user._id, { $push: { pets: newPet._id } });
-	return newPet;
-};
-
-petSchema.statics.deletePet = async function ({ id, owner }) {
-	const pet = await this.findById(id);
-	if (!pet) throw new IncorrectData(`The pet with id ${id} was not found.`);
-	if (pet.owner != owner) throw new IncorrectData('Insufficient permissions.');
-	const User = require('./userSchema');
-	await User.findOneAndUpdate({ _id: pet.owner }, { $pull: { pets: id } });
-	const isDelete = await this.deleteOne({ _id: id });
-	return isDelete;
-};
-
 petSchema.methods.toJSON = function () {
 	const petObject = this.toObject();
 	petObject.id = petObject._id;
 	delete petObject._id;
 	delete petObject.__v;
-	if (Array.isArray(petObject.owner)) {
-		petObject.owner.id = petObject.owner._id;
+	if (typeof petObject.owner === 'object') {
 		delete petObject.owner._id;
 	}
 	return petObject;

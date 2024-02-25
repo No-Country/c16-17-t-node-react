@@ -53,6 +53,7 @@ route.post('/login', async (req, res, next) => {
 route.post('/password', async (req, res, next) => {
 	try {
 		const { body } = req;
+		// eslint-disable-next-line no-unused-vars
 		const newData = {
 			email: body.email,
 			oldPassword: body.password,
@@ -69,7 +70,8 @@ route.post('/password', async (req, res, next) => {
 route.get('/:id', userExtractor, async (req, res, next) => {
 	try {
 		const { userId } = req.user;
-		const user = await searchUser(userId);
+		const { id } = req.params;
+		const user = await searchUser({ id, userId });
 		res.status(200).json(user).end();
 	} catch (err) {
 		next(err);
@@ -77,8 +79,9 @@ route.get('/:id', userExtractor, async (req, res, next) => {
 });
 
 // Ruta para actualizar un usuario por ID
-route.put('/:id', async (req, res, next) => {
+route.put('/:id', userExtractor, async (req, res, next) => {
 	try {
+		const { userId } = req.user;
 		const { id } = req.params;
 		const { body } = req;
 		const updateData = {
@@ -86,7 +89,7 @@ route.put('/:id', async (req, res, next) => {
 			telephone: body.telephone,
 			image: body.image,
 		};
-		const updatedUser = await updateUser(id, updateData);
+		const updatedUser = await updateUser({ ...updateData, id, userId });
 		res.status(200).json(updatedUser).end();
 	} catch (err) {
 		next(err);
