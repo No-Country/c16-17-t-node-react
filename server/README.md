@@ -431,5 +431,9 @@ Volver al [Índice](#índice)
 - **git commit --amend** modifica el ultimo commit (cambiar archivos y mensaje, en rama propia)
 - **git push** sube el commit a la nube
 - **git push --force** sube el commit a la nube de manera forzosa, para luego de haber realizado un amend (cuidado! solo en rama propia)
+- **git reset --soft HEAD^** deshacer el commit y mantener los cambios en el área de preparación (staging)
+- **git reset --mixed HEAD^** deshacer el commit y deshacer los cambios (los cambios se mantienen en tu directorio de trabajo)
+- **git reset --hard HEAD^** deshacer el commit y descartar los cambios (eliminar todos los cambios)
 
 Volver al [Índice](#índice)
+

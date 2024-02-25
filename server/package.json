@@ -6,7 +6,7 @@
   "author": "PetPal",
   "license": "ISC",
   "scripts": {
-    "start": "nodemon src/index.js",
+    "start": "src/index.js",
     "dev": "cross-env LOCATION=localhost nodemon ./src/index.ts"
   },
   "dependencies": {
