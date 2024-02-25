@@ -185,6 +185,9 @@ volver al [Índice](#índice)
   ```
 - **Query**:
 - **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
 - **Body**:
   ```javascript
   {
@@ -217,6 +220,9 @@ volver al [Índice](#índice)
   ```
 - **Query**:
 - **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
 - **Body**:
 - **Request Body** example: Status **200**
   ```javascript
@@ -246,6 +252,7 @@ Volver al [Índice](#índice)
     "breed": string - requires - Raza de la mascota.
     "images": array - requires - Imágenes de la mascota.
     "birth": number - optional - Nacimiento de la mascota.
+    "description": string - optional - Descripción de la mascota.
   }
   ```
 - **Request Body** example: Status **201**
@@ -262,6 +269,8 @@ Volver al [Índice](#índice)
         URL: "String",
       }
     ],
+    description: "",
+    lost: false
   }
   ```
 
@@ -291,6 +300,8 @@ volver al [Índice](#índice)
         URL: "String",
       }
     ],
+    description: "",
+    lost: false
   }
   ```
 
@@ -305,6 +316,9 @@ volver al [Índice](#índice)
   ```
 - **Query**:
 - **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
 - **Body**:
   ```javascript
   {
@@ -312,6 +326,8 @@ volver al [Índice](#índice)
     "breed": string - requires - Raza de la mascota.
     "images": array - requires - Imágenes de la mascota.
     "birth": number - optional - Nacimiento de la mascota.
+    "description": string - optional - Descripción de la mascota.
+    "lost": boolean - optional - Si el estado es perdido.
   }
   ```
 - **Request Body** example: Status **200**
@@ -328,6 +344,8 @@ volver al [Índice](#índice)
         URL: "String",
       }
     ],
+    description: "",
+    lost: false
   }
   ```
 
@@ -342,6 +360,9 @@ volver al [Índice](#índice)
   ```
 - **Query**:
 - **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
 - **Body**:
 - **Request Body** example: Status **200**
   ```javascript
