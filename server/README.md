@@ -436,4 +436,3 @@ Volver al [Índice](#índice)
 - **git reset --hard HEAD^** deshacer el commit y descartar los cambios (eliminar todos los cambios)
 
 Volver al [Índice](#índice)
-
