@@ -20,6 +20,18 @@ const createPet = async ({ owner, ...newData }) => {
 	return newPet;
 };
 
+const searchPets = async ({ filter, page = 1, limit = 4 }) => {
+	let options = {};
+	if (filter === 'lost') options.lost = true;
+	const pets = await petModel
+		.find(options)
+		.skip((parsedInt(page) - 1) * parsedInt(limit))
+		.limit(parsedInt(limit))
+		.select('-lost')
+		.populate('owner', 'name telephone');
+	return pets;
+};
+
 const searchPet = async (id) => {
 	const pet = await petModel.findById(id).populate('owner', 'name telephone');
 	return pet;
@@ -47,4 +59,11 @@ const deletePet = async ({ owner, id }) => {
 	return isDelete;
 };
 
-module.exports = { createPet, searchPet, updatePet, deletePet };
+function parsedInt(value) {
+	const parsedValue = parseInt(value, 10);
+	if (!parsedValue || parsedValue <= 0)
+		throw new IncorrectData(`Invalid value: ${value}`);
+	return parsedValue;
+}
+
+module.exports = { createPet, searchPets, searchPet, updatePet, deletePet };

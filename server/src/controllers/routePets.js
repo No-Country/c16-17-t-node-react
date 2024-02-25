@@ -12,6 +12,7 @@ const {
 	deletePet,
 	searchPet,
 	updatePet,
+	searchPets,
 } = require('../services/petService');
 const userExtractor = require('../middleware/userExtractor');
 const route = Router();
@@ -30,6 +31,17 @@ route.post('/', userExtractor, async (req, res, next) => {
 		};
 		const newPet = await createPet({ ...newData, owner });
 		res.status(201).json(newPet).end();
+	} catch (err) {
+		next(err);
+	}
+});
+
+// Ruta para obtener mascotas perdidas
+route.get('/lost', async (req, res, next) => {
+	try {
+		const { page, limit } = req.query;
+		const pets = await searchPets({ filter: 'lost', page, limit });
+		res.status(200).json(pets).end();
 	} catch (err) {
 		next(err);
 	}
