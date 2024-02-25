@@ -21,13 +21,11 @@ const createUser = async ({ email, password, name, lastName }) => {
 	if (password.length < 8) {
 		throw new ValidationError('Password must be at least 8 characters.');
 	}
-
 	if (!/[A-Z]/.test(password)) {
 		throw new ValidationError(
 			'The password must contain at least one uppercase letter.',
 		);
 	}
-
 	if (!/[\W_]/.test(password)) {
 		throw new ValidationError(
 			'The password must contain at least one special character.',
@@ -49,7 +47,6 @@ const loginUser = async ({ email = '', password = '' }) => {
 		userFound === null
 			? false
 			: await bcrypt.compare(password, userFound.password);
-
 	if (!isMatch) throw new ValidationError('Invalid user or password.');
 
 	const accessToken = jwt.sign(
@@ -57,19 +54,20 @@ const loginUser = async ({ email = '', password = '' }) => {
 		process.env.SECRET_TOKEN,
 		{ expiresIn: 60 * 60 * 24 * 7 }, //Tiempo de expiración en seg
 	);
-
 	return {
 		...userFound.toJSON(),
 		accessToken,
 	};
 };
 
-const searchUser = async (id) => {
+const searchUser = async ({ userId, id }) => {
+	if (id != userId) throw new ValidationError('Insufficient permissions');
 	const user = await userSchema.findById(id);
 	return user;
 };
 
-const updateUser = async (id, updateData) => {
+const updateUser = async ({ userId, id, updateData }) => {
+	if (id != userId) throw new ValidationError('Insufficient permissions');
 	const updatedUser = await userSchema.findByIdAndUpdate(id, updateData, {
 		new: true,
 		runValidators: true,
@@ -77,7 +75,7 @@ const updateUser = async (id, updateData) => {
 	return updatedUser;
 };
 
-const deleteUser = async ({ id, userId }) => {
+const deleteUser = async ({ userId, id }) => {
 	if (id != userId) throw new ValidationError('Insufficient permissions');
 	const data = await userSchema.deleteUserAndPets({ _id: id });
 	return data;
