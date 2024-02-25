@@ -37,10 +37,10 @@ route.post('/', userExtractor, async (req, res, next) => {
 });
 
 // Ruta para obtener mascotas perdidas
-route.get('/lost', async (_req, res, next) => {
+route.get('/lost', async (req, res, next) => {
 	try {
-		const filter = 'lost';
-		const pets = await searchPets(filter);
+		const { page, limit } = req.query;
+		const pets = await searchPets({ filter: 'lost', page, limit });
 		res.status(200).json(pets).end();
 	} catch (err) {
 		next(err);

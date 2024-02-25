@@ -14,17 +14,21 @@ const {
 
 const createPet = async ({ owner, ...newData }) => {
 	const user = await userModel.findById(owner);
-	if (!user) throw new IncorrectData('The "User" field must reference a valid UserID.');
+	if (!user)
+		throw new IncorrectData('The "User" field must reference a valid UserID.');
 	const newPet = await this.model('Pet').create({ owner, ...newData });
 	await userModel.findByIdAndUpdate(user._id, { $push: { pets: newPet._id } });
 	return newPet;
 };
 
-const searchPets = async (filter) => {
+const searchPets = async ({ filter, page = 1, limit = 4 }) => {
 	let options = {};
 	if (filter === 'lost') options.lost = true;
 	const pets = await petModel
 		.find(options)
+		.skip((parsedInt(page) - 1) * parsedInt(limit))
+		.limit(parsedInt(limit))
+		.select('-lost')
 		.populate('owner', 'name telephone');
 	return pets;
 };
@@ -37,7 +41,8 @@ const searchPet = async (id) => {
 const updatePet = async ({ owner, id, ...updateData }) => {
 	const pet = await petModel.findById(id);
 	if (!pet) throw new IncorrectData(`The pet with id ${id} was not found.`);
-	if (pet.owner != owner)	throw new ValidationError('Insufficient permissions.');
+	if (pet.owner != owner)
+		throw new ValidationError('Insufficient permissions.');
 	const updatedPet = await petModel.findByIdAndUpdate(id, updateData, {
 		new: true,
 		runValidators: true,
@@ -55,5 +60,12 @@ const deletePet = async ({ owner, id }) => {
 	const isDelete = await petModel.deleteOne({ _id: id });
 	return isDelete;
 };
+
+function parsedInt(value) {
+	const parsedValue = parseInt(value, 10);
+	if (!parsedValue || parsedValue <= 0)
+		throw new IncorrectData(`Invalid value: ${value}`);
+	return parsedValue;
+}
 
 module.exports = { createPet, searchPets, searchPet, updatePet, deletePet };
