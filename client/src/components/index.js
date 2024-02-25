@@ -5,3 +5,5 @@ export { Header } from './Header/Header'
 export { Banner } from './Banner/Banner'
 export { Services } from './SectionServices/Services'
 export { Footer } from './Footer/Footer'
+export { Img } from './Img/Img';
+export { Button } from './Button/Button';

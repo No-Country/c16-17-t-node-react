@@ -6,7 +6,7 @@ import x from './icons/x.png'
 
 export const Footer = () => {
   return (
-    <footer className='flex flex-col sm:flex-row justify-between items-center sm:h-48 w-full gap-5 mt-5 bg-secondary rounded-xl p-2 sm:p-5'>
+    <footer className='mt-16 flex flex-col sm:flex-row justify-between items-center sm:h-48 w-full gap-5 mt-5 bg-secondary rounded-xl p-2 sm:p-5'>
         <figure className='w-full sm:w-1/3 h-full bg-secondaryBtn rounded-md'>
             <img src="" alt="" className='w-full h-full'/>
         </figure>
