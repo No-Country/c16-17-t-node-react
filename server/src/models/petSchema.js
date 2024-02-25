@@ -58,8 +58,7 @@ petSchema.methods.toJSON = function () {
 	petObject.id = petObject._id;
 	delete petObject._id;
 	delete petObject.__v;
-	if (Array.isArray(petObject.owner)) {
-		petObject.owner.id = petObject.owner._id;
+	if (typeof petObject.owner === 'object') {
 		delete petObject.owner._id;
 	}
 	return petObject;
