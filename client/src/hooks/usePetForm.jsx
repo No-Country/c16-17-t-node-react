@@ -50,7 +50,7 @@ const usePetForm = () => {
     const petBirth = Number(new Date(formData.get('birth')))
     const petDetail = formData.get('detail')
     const petBreed = formData.get('breed')
-    // const petIsLost = formData.get('petIsLost')
+    const petIsLost = formData.get('petIsLost')
     let petImg = petCloudData.url
     const img_id = petCloudData.public_id
     // //Validacion
@@ -66,7 +66,7 @@ const usePetForm = () => {
       },
       breed: petBreed,
       birth: petBirth,
-      // isLost: petIsLost
+      lost: petIsLost == 'false' ? false : true 
     }
     const sendPetData = async () => {
       const response = await toast.promise(
@@ -85,6 +85,7 @@ const usePetForm = () => {
       if(!response.ok) return toast.error('Ocurrió un error')
       toast.success('Mascota creada exitosamente')
       const result = await response.json()
+      return result
     }
     await sendPetData()
     e.target.reset()
