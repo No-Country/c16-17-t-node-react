@@ -1,24 +1,22 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import usePets from '../../hooks/usePets';
 import { useUserStore } from '../../store/user';
 import { Img } from '../Img/Img';
 import { CardButtons } from './components/CardButtons';
+import { Link } from 'react-router-dom';
 
 export const PetCard = ({ petId }) => {
-	const { petData, deletePet, getPetData, addLostPet, removeLostPet } =
-		usePets(petId);
-
+	const { petData, deletePet, getPetData, addLostPets, removeLostPets } =
+		usePets();
 	const {user} = useUserStore();
-
 	useEffect(() => {
 		getPetData(petId);
-	}, []);
-
-	const { id, nickName, birth, images, breed, owner } = petData;
-	
+	}, [petData]);
+	const { nickName, birth, images, breed, lost, owner } = petData;
 	return (
-		<div className="overflow-hidden rounded-lg bg-slate-200 shadow-1 duration-300 hover:shadow-3 w-80 max-h-[500px]">
+
+		<div className="overflow-hidden rounded-lg bg-slate-200 shadow-1 duration-300 hover:shadow-3 min-w-80 max-w-80 snap-end snap-always max-h-[500px] relative">
+			<div className={`absolute w-full h-16 top-5 right-0 left-28 bg-danger justify-center items-center font-semibold text-white text-2xl rotate-45 ${lost ? 'flex' : 'hidden'}`}>Perdida</div>
 			<figure className='w-full h-[200px]'>
 				<Img src={images ? images[0]?.url : null} alt={nickName}/>
 			</figure>
@@ -40,18 +38,32 @@ export const PetCard = ({ petId }) => {
 					</p>
 				</article>
 				<div className='flex items-center justify-around text-white mt-5 gap-2'>
-					<button
-						onClick={() => addLostPet(petData)}
-						className="p-3 w-full font-semibold rounded-md bg-danger hover:bg-red-700"
-					>
-						Se Perdió 😢
-					</button>
-					<button
-						onClick={() => removeLostPet(petData)}
-						className="p-3 w-full rounded-md bg-secondaryBtn font-semibold hover:bg-black"
-					>
-						La Encontré 🥳
-					</button>
+					{
+						!lost &&
+							<button
+								onClick={() => addLostPets(petData)}
+								className="p-3 w-full font-semibold rounded-md bg-danger hover:bg-red-700"
+							>
+								Se Perdió 😢
+							</button>
+					}
+					{
+						!user.name
+							? 	(<button
+									// onClick={() => removeLostPets(petData)}
+									className="p-3 w-full rounded-md bg-primaryBtn font-semibold hover:bg-black"
+								>
+									<Link to={`https://api.whatsapp.com/send?phone=+54${owner}&text=Hola%20${owner},%20creo%20que%20acabo%20de%20ver%20a%20tu%20mascota%0A`}>
+										Avisar al Dueño 🥳
+									</Link>
+								</button>)
+							:	(<button
+									onClick={() => removeLostPets(petData)}
+									className="p-3 w-full rounded-md bg-secondaryBtn font-semibold hover:bg-black"
+								>
+									La Encontré 🥳
+								</button>)
+					}
 				</div>
 			</div>
 		</div>

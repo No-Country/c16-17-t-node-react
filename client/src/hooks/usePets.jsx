@@ -2,10 +2,11 @@ import { useEffect, useState } from "react"
 import { toast } from "react-toastify";
 import { useUserStore } from "../store/user";
 
-export const usePets = () => {
+const usePets = () => {
     const [petData, setPetData] = useState({})
-    const addLostPet = useUserStore((state) => state.addToLostPets)
-    const removeLostPet = useUserStore((state) => state.removeFromLostPets)
+    // const addLostPet = useUserStore((state) => state.addToLostPets)
+    // const removeLostPet = useUserStore((state) => state.removeFromLostPets)
+    const {addLostPets, removeLostPets} = useUserStore()
 
     const deletePet = async (id) => {
         const response = await toast.promise(
@@ -34,16 +35,13 @@ export const usePets = () => {
             throw new Error(error.message)
         }
     }
-    
-
 
   return {
     deletePet,
     petData,
     getPetData,
-    addLostPet,
-    removeLostPet
+    addLostPets,
+    removeLostPets
   }
 }
-
 export default usePets

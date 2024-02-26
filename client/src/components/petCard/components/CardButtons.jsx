@@ -5,7 +5,7 @@ export const CardButtons = ({user, petData, handleDelete, flexDirection, addLost
   return (
     <div className={`flex justify-center items-center gap-2 ${flexDirection}`}>
         {
-            user?.name == petData?.owner?.name 
+            user?.id == petData?.owner?.id 
                 ? (<>
                     <Link
                         to="/"
@@ -13,7 +13,7 @@ export const CardButtons = ({user, petData, handleDelete, flexDirection, addLost
                         Editar Datos
                     </Link>
                     <button
-                        onClick={() => handleDelete(id)}
+                        onClick={() => handleDelete(petData.id)}
                         className="inline-block rounded-md bg-red-500 p-2 w-full text-white font-medium transition hover:bg-red-700"
                     >
                         Quitar Mascota
