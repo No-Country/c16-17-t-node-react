@@ -53,8 +53,7 @@ const deletePet = async ({ owner, id }) => {
 	if (!pet) throw new IncorrectData(`The pet with id ${id} was not found.`);
 	if (pet.owner != owner)
 		throw new ValidationError('Insufficient permissions.');
-	const User = require('./userSchema');
-	await User.findOneAndUpdate({ _id: pet.owner }, { $pull: { pets: id } });
+	await userSchema.findOneAndUpdate({ _id: pet.owner }, { $pull: { pets: id } });
 	const isDelete = await petSchema.deleteOne({ _id: id });
 	return isDelete;
 };
