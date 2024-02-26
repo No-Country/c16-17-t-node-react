@@ -1,6 +1,5 @@
 // user.schema.js
 const { Schema, model } = require('mongoose');
-const { IncorrectData } = require('../middleware/customErrors');
 
 const userSchema = new Schema({
 	email: {
@@ -48,14 +47,6 @@ const userSchema = new Schema({
 		},
 	],
 });
-
-userSchema.statics.deleteUserAndPets = async function (userId) {
-	const user = await this.findById(userId);
-	if (!user) IncorrectData(`The user with id ${userId} was not found.`);
-	const Pet = require('./petSchema');
-	await Pet.deleteMany({ owner: userId });
-	return await this.deleteOne({ _id: userId });
-};
 
 userSchema.methods.toJSON = function () {
 	const userObject = this.toObject();
