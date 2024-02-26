@@ -1,5 +1,6 @@
 import { PhotoIcon } from '@heroicons/react/24/solid'
 import usePetForm from "../../hooks/usePetForm";
+import { Link } from 'react-router-dom';
 
 
 export const PetForm = () => {
@@ -8,10 +9,7 @@ export const PetForm = () => {
     
  return (
      
-    <form 
-        onSubmit={e => handleSubmit(e)}  
-        id="petform" 
-        className="w-11/12 sm:w-4/5">
+    <form onSubmit={e => handleSubmit(e)}  id="petform" className="w-11/12 sm:w-4/5">
         <h2 className="text-base font-semibold leading-7 text-gray-900">Registra tu mascota</h2>
             
         <div className="mt-10 flex flex-col gap-x-6 gap-y-8 ">
@@ -26,7 +24,7 @@ export const PetForm = () => {
                         name="nickName"
                         id="nickName"
                         autoComplete="on"
-                        className="block flex-1 border-0 bg-transparent placeholder:text-sm sm:placeholder:text-base py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        className="block p-2 flex-1 border-0 bg-transparent placeholder:text-sm sm:placeholder:text-base outline-none text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         placeholder="Introduce el nombre de tu mascota"
                         required
                     />
@@ -45,11 +43,20 @@ export const PetForm = () => {
                         name="breed"
                         id="breed"
                         autoComplete="on"
-                        className="block flex-1 border-0 bg-transparent placeholder:text-sm sm:placeholder:text-base py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        className="block p-2 flex-1 border-0 bg-transparent placeholder:text-sm sm:placeholder:text-base outline-none text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         placeholder="Introduce la raza de tu mascota"
                         required
                     />
                     </div>
+                </div>
+            </div>
+            <div className="flex flex-col w-full items-start gap-3 p-2">
+                <p className='block text-sm font-medium leading-6 text-gray-900'>Está Perdid@?</p>
+                <div className='flex justify-center items-center gap-10'>
+                    <label className='block text-md font-medium leading-6 text-gray-900' htmlFor='petIsLost'>Si</label>
+                    <input className='ms-[-30px] w-6 h-6' type='radio' name='petIsLost' value={true} />
+                    <label className='block text-sm font-medium leading-6 text-gray-900' htmlFor='petIsLost'>No</label>
+                    <input className='ms-[-30px] w-6 h-6' type='radio' name='petIsLost' value={false} defaultChecked/>
                 </div>
             </div>
             <div className="">
@@ -61,7 +68,7 @@ export const PetForm = () => {
                     id="detail"
                     name="detail"
                     rows={3}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block p-2 w-full rounded-md outline-none border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     defaultValue={''}
                     />
                 </div>
@@ -80,7 +87,7 @@ export const PetForm = () => {
                         type="date"
                         name="birth"
                         id="birth"
-                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        className="block  p-2 flex-1 border-0 bg-transparent outline-none text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         />
                     </div>
                 </div>
@@ -103,7 +110,7 @@ export const PetForm = () => {
                             >
                                 
                             <span className=''>Sube una foto</span>
-                            <input id="image" name="image" type="file" onChange={e => handlePetFile(e)} className="sr-only" required/>
+                            <input id="image" name="image" type="file" accept='image/png image/jpg image/jpeg' onChange={e => handlePetFile(e)} className="sr-only" required/>
                             </label>
                         </div>
                         <p className="text-xs leading-5 text-gray-600">PNG, JPG, JPEG hasta 10MB</p>
@@ -112,15 +119,20 @@ export const PetForm = () => {
             </div>
             
                 <div className="mt-6 flex justify-center gap-x-6">
-                    <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                    Cancelar
-                    </button>
                     <button
                     type="submit"
-                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="rounded-md bg-secondaryBtn px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                     Guardar
                     </button>
+                    <Link to='/'>
+                        <button
+                        type="button"
+                        className="rounded-md bg-secondary px-3 py-2 text-sm font-semibold text-black border-2 shadow-sm hover:bg-black hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            Volver al Inicio
+                        </button>
+                    </Link>
                 </div>
         </div>
     </form>     

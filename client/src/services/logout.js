@@ -5,6 +5,7 @@ export const handleLogout = () => {
     
     if(user){
         localStorage.removeItem('petpal_user')
+        localStorage.removeItem('petpal_token')
         location.reload()
     }else{
         return

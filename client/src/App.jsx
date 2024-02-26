@@ -1,16 +1,16 @@
 import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { AppRoutes } from './routes/AppRoutes';
-import PrivateRoute from './routes/PrivateRoutes';
-import { FormLogin } from './components';
-import { ErrorPage, Home } from './pages';
-
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function App() {
 
 	return (
-    <BrowserRouter>
-			<AppRoutes/>
-		</BrowserRouter>
+		<div className='max-w-[1400px] m-auto bg-secondary'>
+			<BrowserRouter>
+				<ToastContainer autoClose={1500} position='top-center' />
+				<AppRoutes/>
+			</BrowserRouter>
+		</div>
 	);
 }

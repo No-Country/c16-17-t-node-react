@@ -1,10 +1,10 @@
-import { handleSubmit } from "../../services"
+
+import { handleLogin } from "../../services"
 
 export const FormLogin = () => {
-
     return (
     <form
-        onSubmit={handleSubmit} 
+        onSubmit={handleLogin} 
         className='container flex flex-col items-center justify-center gap-5 border-2 mx-auto p-5 h-[600px]'>
         <div className='px-4 md:w-1/2'>
             <label className='mb-[10px] block text-base font-medium text-dark dark:text-white'>
