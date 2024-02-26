@@ -1,6 +1,9 @@
+import { config } from '../config';
+
+const { apiCloudinary } = config;
+
 export const getPetUrl = petBlob => {
-    const cloudUrl = import.meta.env.VITE_APP_CLOUDINARY_API
-    return (fetch(cloudUrl, {
+    return (fetch(apiCloudinary, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

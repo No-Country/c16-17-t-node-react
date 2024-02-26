@@ -1,8 +1,7 @@
 import { toast } from 'react-toastify';
 import { config } from '../config';
 
-// const { apiUrl } = config;
-const apiUrl = import.meta.env.VITE_API_URL
+const { apiUrl } = config;
 
 export const authRegister = async (e) => {
 	e.preventDefault();
@@ -28,7 +27,7 @@ export const authRegister = async (e) => {
 			}),{
 				pending: 'Enviando...'
 			}
-		) 
+		)
 		if (!response.ok) {
 			toast.error('Error en el Servidor')
 			return
@@ -51,7 +50,7 @@ export const authRegister = async (e) => {
 // 		}),{
 // 			pending: 'Enviando...'
 // 		}
-// 	) 
+// 	)
 // 	if (!response.ok) {
 // 		toast.error('Error en el Servidor')
 // 		return

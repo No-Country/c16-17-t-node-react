@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify";
 import { useUserStore } from "../store/user";
+import { config } from '../config';
+
+const { apiUrl } = config;
 
 export const usePets = () => {
     const [petData, setPetData] = useState({})
@@ -9,7 +12,7 @@ export const usePets = () => {
 
     const deletePet = async (id) => {
         const response = await toast.promise(
-            fetch(`${import.meta.env.VITE_API_URL}/pets/${id}`, {
+            fetch(`${apiUrl}/pets/${id}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${JSON.parse(localStorage.getItem('petpal_token'))}`
@@ -27,14 +30,14 @@ export const usePets = () => {
     }
     const getPetData = async(id) => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/pets/${id}`)
+            const response = await fetch(`${apiUrl}/pets/${id}`)
             const result = await response.json()
             setPetData(result)
         } catch (error) {
             throw new Error(error.message)
         }
     }
-    
+
 
 
   return {
