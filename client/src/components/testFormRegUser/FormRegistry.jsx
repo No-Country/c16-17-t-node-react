@@ -38,6 +38,20 @@ const FormRegistry = () => {
 				</div>
 				<div className="px-4 md:w-1/2">
 					<label className="mb-[10px] block text-base font-medium text-dark dark:text-white">
+						Teléfono
+					</label>
+					<div className="relative">
+						<input
+							id="telephone"
+							name="telephone"
+							type="number"
+							placeholder="Cod.Área + Cel (sin 15)..."
+							className="w-full bg-transparent rounded-md border border-stroke dark:border-dark-3 py-[10px] pr-3 pl-12 text-dark-6 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-2"
+						/>
+					</div>
+				</div>
+				<div className="px-4 md:w-1/2">
+					<label className="mb-[10px] block text-base font-medium text-dark dark:text-white">
 						Email
 					</label>
 					<div className="relative">

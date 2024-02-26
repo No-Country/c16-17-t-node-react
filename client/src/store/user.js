@@ -28,7 +28,10 @@ export const useUserStore = create((set, get) => ({
 		}), {
 			pending: 'Un momento...'
 		})
-		if(!response.ok) toast.error('Ocurrió un error')
+		if(!response.ok) {
+			toast.error('Ocurrió un error')
+			return
+		}
 		toast.success('Agregada a la lista de Mascotas Perdidas')
 		const result = await response.json()
 		return result
@@ -47,7 +50,10 @@ export const useUserStore = create((set, get) => ({
 		}), {
 			pending: 'Un momento...'
 		})
-		if(!response.ok) toast.error('Ocurió un error')
+		if(!response.ok) {
+			toast.error('Ocurió un error')
+			return
+		}
 		toast.success('🥳 Encontrada!!')
 		const result = await response.json()
 		return result

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { useUserStore } from '../../store/user'
 import { PetCard } from '../petCard/PetCard'
-
+import './lostpetslist.css'
 const LostPetsList = () => {
     
     const {lostPets, getLostPets} = useUserStore()
@@ -17,7 +17,7 @@ const LostPetsList = () => {
     },[lostPets])
   return (
     <>
-        <div className="flex flex-row gap-5 overflow-auto snap-mandatory snap-x justify-start items-center w-full p-5 [-webkit-scrollbar]:none ">
+        <div className="flex flex-row gap-5 overflow-auto snap-mandatory snap-x justify-start items-center w-full p-5">
             {
                 lostPets.map(pet => (
                     <PetCard 

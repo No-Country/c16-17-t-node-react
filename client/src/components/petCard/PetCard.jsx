@@ -6,6 +6,7 @@ import { CardButtons } from './components/CardButtons';
 import { Link } from 'react-router-dom';
 
 export const PetCard = ({ petId }) => {
+
 	const { petData, deletePet, getPetData, addLostPets, removeLostPets } =
 		usePets();
 	const {user} = useUserStore();
@@ -13,9 +14,10 @@ export const PetCard = ({ petId }) => {
 		getPetData(petId);
 	}, [petData]);
 	const { nickName, birth, images, breed, lost, owner } = petData;
+	
 	return (
 
-		<div className="overflow-hidden rounded-lg bg-slate-200 shadow-1 duration-300 hover:shadow-3 min-w-80 max-w-80 snap-end snap-always max-h-[500px] relative">
+		<div className="overflow-hidden rounded-lg bg-slate-200 shadow-1 duration-300 hover:shadow-3 min-w-80 max-w-80 snap-end snap-always max-h-[500px] min-h-[500px] relative flex flex-col justify-between">
 			<div className={`absolute w-full h-16 top-5 right-0 left-28 bg-danger justify-center items-center font-semibold text-white text-2xl rotate-45 ${lost ? 'flex' : 'hidden'}`}>Perdida</div>
 			<figure className='w-full h-[200px]'>
 				<Img src={images ? images[0]?.url : null} alt={nickName}/>

@@ -52,7 +52,8 @@ const usePetForm = () => {
     const img_id = petCloudData.public_id
     // //Validacion
     if(petName.trim() == ''|| petBirth.length<0 || petDetail.trim() == '' || petImg.trim() == '' || petBreed.trim() == ''){
-      throw new Error('Todos los campos son obligatorios')
+      toast.error('Todos los campos son obligatorios')
+      return
     }
     const petData = {
       nickName: petName,

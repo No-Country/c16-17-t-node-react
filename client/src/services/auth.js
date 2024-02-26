@@ -10,10 +10,12 @@ export const authRegister = async (e) => {
 	const name = formData.get('name')
 	const lastName = formData.get('lastName')
 	const password = formData.get('password')
+	const telephone = formData.get('telephone')
 	const email = formData.get('email')
 	const data = {
 		name,
 		lastName,
+		telephone,
 		email,
 		password
 	}
