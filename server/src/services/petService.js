@@ -5,8 +5,8 @@
  * y la conexión con la base de datos.
  */
 
-const petSchema = require('../models/petSchema');
 const userSchema = require('../models/userSchema');
+const petSchema = require('../models/petSchema');
 const {
 	IncorrectData,
 	ValidationError,
