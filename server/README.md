@@ -437,3 +437,4 @@ Volver al [Índice](#índice)
 - **git merge --squash main** fusionar la rama fuente con squash
 
 Volver al [Índice](#índice)
+
