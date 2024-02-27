@@ -9,7 +9,7 @@ const ERROR_HANDLERS = {
 	JsonWebTokenError: (err, res) => {
 		const name = err.name || err.code || 'Error';
 		const message = err.message || 'Internal Server Error';
-		res.status(400).json({ name, message }).end();
+		res.status(401).json({ name, message }).end();
 	},
 	MongoServerError: (err, res) => {
 		const name = err.name || err.code || 'Error';

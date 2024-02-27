@@ -1,7 +1,7 @@
 // pet.schema.js
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 
-const petSchema = new Schema({
+const petSchema = new mongoose.Schema({
 	nickName: {
 		type: String,
 		required: [true, 'The "nickname" field is required.'],
@@ -39,12 +39,12 @@ const petSchema = new Schema({
 		},
 	},
 	owner: {
-		type: Schema.Types.ObjectId,
+		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',
 		required: [true, 'The "user" field is required.'],
 		validate: {
 			validator: async function (value) {
-				const User = require('./userSchema');
+				const User = mongoose.model('User');
 				const user = await User.findById(value);
 				return user !== null;
 			},
@@ -65,4 +65,8 @@ petSchema.methods.toJSON = function () {
 	return petObject;
 };
 
-module.exports = model('Pet', petSchema);
+if (mongoose.models.Pet) {
+	module.exports = mongoose.models.Pet;
+} else {
+	module.exports = mongoose.model('Pet', petSchema);
+}

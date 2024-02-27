@@ -6,6 +6,7 @@
  */
 
 const userSchema = require('../models/userSchema');
+const petSchema = require('../models/petSchema');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
@@ -14,7 +15,6 @@ const {
 	ValidationError,
 	IncorrectData,
 } = require('../middleware/customErrors');
-const petSchema = require('../models/petSchema');
 
 const createUser = async ({ email, password, name, lastName }) => {
 	if (!email || !password || !name || !lastName) {
@@ -51,7 +51,7 @@ const loginUser = async ({ email = '', password = '' }) => {
 		userFound === null
 			? false
 			: await bcrypt.compare(password, userFound.password);
-	if (!isMatch) throw new ValidationError('Invalid user or password.');
+	if (!isMatch) throw new ValidationError('Invalid email or password.');
 
 	const accessToken = jwt.sign(
 		{ id: userFound._id },
