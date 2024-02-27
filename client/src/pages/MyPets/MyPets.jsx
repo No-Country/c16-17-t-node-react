@@ -3,6 +3,7 @@ import { useGetUserPets } from '../../hooks/useGetUserPets';
 import { PetCard } from '../../components';
 import { Link } from 'react-router-dom';
 import { useUserStore } from '../../store/user';
+import '../../components/lostPetsList/lostpetslist.css'
 
 export const MyPets = () => {
 	const user = useUserStore((state) => state.user);
@@ -17,7 +18,7 @@ export const MyPets = () => {
 			>
 				Agregar Mascota
 			</Link>
-			<section className="flex flex-row gap-5 overflow-auto snap-mandatory snap-x justify-start items-center w-full p-5 [-webkit-scrollbar]:none ">
+			<section className="flex flex-row gap-5 overflow-auto snap-mandatory snap-x justify-start items-center w-full p-5">
 				{pets?.map((pet) => (
 					<PetCard key={pet} petId={pet} />
 				))}
