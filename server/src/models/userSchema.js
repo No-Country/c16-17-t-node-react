@@ -1,8 +1,7 @@
 // user.schema.js
-const { Schema, model } = require('mongoose');
-const { IncorrectData } = require('../middleware/customErrors');
+const mongoose = require('mongoose');
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
 	email: {
 		type: String,
 		unique: true,
@@ -34,12 +33,12 @@ const userSchema = new Schema({
 	},
 	pets: [
 		{
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			default: [],
 			ref: 'Pet',
 			validate: {
 				validator: async function (value) {
-					const Pet = require('./petSchema');
+					const Pet = mongoose.model('Pet');
 					const pet = await Pet.findById(value);
 					return pet !== null;
 				},
@@ -48,14 +47,6 @@ const userSchema = new Schema({
 		},
 	],
 });
-
-userSchema.statics.deleteUserAndPets = async function (userId) {
-	const user = await this.findById(userId);
-	if (!user) IncorrectData(`The user with id ${userId} was not found.`);
-	const Pet = require('./petSchema');
-	await Pet.deleteMany({ owner: userId });
-	return await this.deleteOne({ _id: userId });
-};
 
 userSchema.methods.toJSON = function () {
 	const userObject = this.toObject();
@@ -66,4 +57,8 @@ userSchema.methods.toJSON = function () {
 	return userObject;
 };
 
-module.exports = model('User', userSchema);
+if (mongoose.models.User) {
+	module.exports = mongoose.models.User;
+} else {
+	module.exports = mongoose.model('User', userSchema);
+}

@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
 dotenv.config();
-
 const MONGO_URL = process.env.MONGO_URL;
 const DB_NAME = process.env.DB_NAME || 'PetPal';
 
@@ -16,17 +15,5 @@ const connectToDatabase = async () => {
 		console.error('Error connecting to the database:', err.stack);
 	}
 };
-
-// Manejo de desconexión al recibir la señal de cierre (SIGINT)
-process.on('SIGINT', async () => {
-	try {
-		await mongoose.connection.close();
-		console.log('Disconnected from the database.');
-		process.exit(0);
-	} catch (err) {
-		console.error(err.stack);
-		process.exit(1);
-	}
-});
 
 module.exports = connectToDatabase;

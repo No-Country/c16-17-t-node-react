@@ -434,6 +434,6 @@ Volver al [Índice](#índice)
 - **git reset --soft HEAD^** deshacer el commit y mantener los cambios en el área de preparación (staging)
 - **git reset --mixed HEAD^** deshacer el commit y deshacer los cambios (los cambios se mantienen en tu directorio de trabajo)
 - **git reset --hard HEAD^** deshacer el commit y descartar los cambios (eliminar todos los cambios)
+- **git merge --squash main** fusionar la rama fuente con squash
 
 Volver al [Índice](#índice)
-
