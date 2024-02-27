@@ -51,7 +51,7 @@ const loginUser = async ({ email = '', password = '' }) => {
 		userFound === null
 			? false
 			: await bcrypt.compare(password, userFound.password);
-	if (!isMatch) throw new ValidationError('Invalid user or password.');
+	if (!isMatch) throw new ValidationError('Invalid email or password.');
 
 	const accessToken = jwt.sign(
 		{ id: userFound._id },

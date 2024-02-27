@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node ./index.js",
     "dev": "cross-env LOCATION=localhost nodemon ./index.js",
-    "test": "cross-env LOCATION=localhost mocha ./tests/*.spec.js -w"
+    "test": "cross-env LOCATION=localhost DB_NAME='test' mocha ./tests/*.spec.js -w"
   },
   "dependencies": {
     "bcrypt": "5.1.1",

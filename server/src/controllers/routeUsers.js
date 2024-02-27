@@ -22,10 +22,11 @@ route.post('/', async (req, res, next) => {
 	try {
 		const { body } = req;
 		const newData = {
-			email: body.email,
-			password: body.password,
-			name: body.name,
-			lastName: body.lastName,
+			email: body.email, // required
+			password: body.password, // required
+			name: body.name, // optional
+			lastName: body.lastName, // optional
+			telephone: body.telephone, // optional
 		};
 		const newUser = await createUser(newData);
 		res.status(201).json(newUser).end();
@@ -39,8 +40,8 @@ route.post('/login', async (req, res, next) => {
 	try {
 		const { body } = req;
 		const data = {
-			email: body.email,
-			password: body.password,
+			email: body.email, // required
+			password: body.password, // required
 		};
 		const user = await loginUser(data);
 		res.status(201).json(user).end();
@@ -85,9 +86,10 @@ route.put('/:id', userExtractor, async (req, res, next) => {
 		const { id } = req.params;
 		const { body } = req;
 		const updateData = {
-			nickName: body.nickName,
-			telephone: body.telephone,
-			image: body.image,
+			name: body.name, // optional
+			lastName: body.lastName, // optional
+			telephone: body.telephone, // optional
+			image: body.image, // optional
 		};
 		const updatedUser = await updateUser({ ...updateData, id, userId });
 		res.status(200).json(updatedUser).end();
