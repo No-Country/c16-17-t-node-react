@@ -10,7 +10,7 @@ export const authRegister = async (e) => {
 	const name = formData.get('name')
 	const lastName = formData.get('lastName')
 	const password = formData.get('password')
-	const telephone = formData.get('telephone')
+	const telephone = Number(formData.get('telephone'))
 	const email = formData.get('email')
 	const data = {
 		name,
@@ -19,6 +19,7 @@ export const authRegister = async (e) => {
 		email,
 		password
 	}
+	console.log(data)
 	const userRegistration = async (data) => {
 		const response = await toast.promise(
 			fetch(`${apiUrl}/users`, {
@@ -38,7 +39,7 @@ export const authRegister = async (e) => {
 		toast.success('Registro exitoso!')
 		const user = await response.json();
 		location.replace('/login')
-		return user;
+		return console.log(user);
 	}
 	userRegistration(data)
 };

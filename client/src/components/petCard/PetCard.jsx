@@ -4,7 +4,7 @@ import { useUserStore } from '../../store/user';
 import { Img } from '../Img/Img';
 import { CardButtons } from './components/CardButtons';
 import { Link } from 'react-router-dom';
-
+import wsp from './icons/wsp.png'
 export const PetCard = ({ petId }) => {
 
 	const { petData, deletePet, getPetData, addLostPets, removeLostPets } =
@@ -50,13 +50,19 @@ export const PetCard = ({ petId }) => {
 							</button>
 					}
 					{
-						!user.name
+						user.id != owner?.id
 							? 	(<button
 									// onClick={() => removeLostPets(petData)}
-									className="p-3 w-full rounded-md bg-primaryBtn font-semibold hover:bg-black"
+									className="p-3 w-full rounded-md bg-green-500 font-semibold hover:bg-black flex justify-center items-center"
 								>
-									<Link to={`https://api.whatsapp.com/send?phone=+54${owner}&text=Hola%20${owner},%20creo%20que%20acabo%20de%20ver%20a%20tu%20mascota%0A`}>
-										Avisar al Dueño 🥳
+									<Link className='flex items-center justify-center gap-3' 
+										to={`https://api.whatsapp.com/send?phone=+54${owner?.telephone}&text=Hola%20,%20creo%20que%20acabo%20de%20ver%20a%20tu%20mascota%0A`}>
+										Avisar al Dueño
+										<span>
+											<img
+												className='w-9 h-9' 
+												src={wsp} alt="wsp logo" />
+										</span>
 									</Link>
 								</button>)
 							:	(<button

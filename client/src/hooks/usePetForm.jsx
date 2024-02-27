@@ -57,7 +57,7 @@ const usePetForm = () => {
     }
     const petData = {
       nickName: petName,
-      detail: petDetail,
+      description: petDetail,
       images: {
         id: img_id,
         url: petImg
@@ -83,7 +83,7 @@ const usePetForm = () => {
       if(!response.ok) return toast.error('Ocurrió un error')
       toast.success('Mascota creada exitosamente')
       const result = await response.json()
-      return result
+      return console.log(result)
     }
     await sendPetData()
     e.target.reset()
