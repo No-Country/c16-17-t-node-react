@@ -1,4 +1,4 @@
-// index.js
+// app.js
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -7,9 +7,6 @@ const routerUsers = require('./controllers/routeUsers');
 const routerPets = require('./controllers/routePets');
 const notFound = require('./middleware/notFound');
 const handleErrors = require('./middleware/handleErrors');
-
-const dotenv = require('dotenv');
-dotenv.config();
 const connectToDatabase = require('./middleware/connectToDataBase');
 connectToDatabase();
 
@@ -38,13 +35,9 @@ app.get('/', (_req, res, next) => {
 		next(err);
 	}
 });
-
 app.use('/users', routerUsers);
 app.use('/pets', routerPets);
 app.use(notFound);
 app.use(handleErrors);
 
-const port = process.env.PORT ? parseInt(process.env.PORT) : 3001;
-app.listen(port, () => {
-	console.log(`Server listening on http://localhost:${port}`);
-});
+module.exports = app;
