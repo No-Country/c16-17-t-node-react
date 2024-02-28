@@ -7,3 +7,4 @@ export { Services } from './SectionServices/Services'
 export { Footer } from './Footer/Footer'
 export { Img } from './Img/Img';
 export { Button } from './Button/Button';
+export { UserProfile } from './UserProfile/UserProfile';

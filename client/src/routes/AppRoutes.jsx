@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { Footer, Header } from '../components';
-import { ErrorPage, Home, LoginView, LostPetsView, MyPets, PetFormView, PetProfile } from '../pages';
+import { ErrorPage, Home, LoginView, LostPetsView, MyPets, PetFormView, Profile } from '../pages';
 import PrivateRoute from './PrivateRoutes';
 import FormRegistry from '../components/testFormRegUser/FormRegistry';
 
@@ -22,18 +22,18 @@ export function AppRoutes() {
 					}
 				/>
 				<Route
-					path="/pets/:id"
-					element={
-						<PrivateRoute>
-							<PetProfile />
-						</PrivateRoute>
-					}
-				/>
-				<Route
 					path='/mypets'
 					element={
 						<PrivateRoute>
 							<MyPets/>
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path='/profile'
+					element={
+						<PrivateRoute>
+							<Profile />
 						</PrivateRoute>
 					}
 				/>

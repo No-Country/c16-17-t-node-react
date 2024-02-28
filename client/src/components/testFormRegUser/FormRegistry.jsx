@@ -1,11 +1,12 @@
-import React from 'react';
-import { authRegister } from '../../services';
+import { useFormRegister } from '../../hooks';
 
 const FormRegistry = () => {
+  const { handleSubmit } = useFormRegister();
+
 	return (
 		<div>
 			<form
-				onSubmit={authRegister}
+				onSubmit={handleSubmit}
 				className="container flex flex-col items-center justify-center gap-5 border-2 mx-auto p-5 h-[600px]"
 			>
 				<div className="px-4 md:w-1/2">

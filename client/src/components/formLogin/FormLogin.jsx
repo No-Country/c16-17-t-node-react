@@ -1,10 +1,11 @@
-
-import { handleLogin } from "../../services"
+import { useFormLogin } from '../../hooks';
 
 export const FormLogin = () => {
+  const { handleSubmitLogin } = useFormLogin();
+
     return (
     <form
-        onSubmit={handleLogin} 
+        onSubmit={handleSubmitLogin}
         className='container flex flex-col items-center justify-center gap-5 border-2 mx-auto p-5 h-[600px]'>
         <div className='px-4 md:w-1/2'>
             <label className='mb-[10px] block text-base font-medium text-dark dark:text-white'>
@@ -74,7 +75,7 @@ export const FormLogin = () => {
         </div>
         <div className='w-full px-4 md:w-1/2 flex justify-center flex-col items-center gap-5'>
             <button
-                type='submit' 
+                type='submit'
                 className='bg-black dark:bg-black-2 border-black dark:border-black-2 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-white hover:bg-body-color hover:border-body-color disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5'>
                 Ingresar
             </button>
@@ -84,7 +85,7 @@ export const FormLogin = () => {
                     <a
                         className='font-semibold'
                         href="/registro">Registrarse</a>
-                </span> 
+                </span>
             </p>
         </div>
     </form>

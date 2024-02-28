@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import { create } from 'zustand';
+import { authLogin, authRegister } from '../services';
 
 export const useUserStore = create((set, get) => ({
 	visible: false,
@@ -54,6 +55,18 @@ export const useUserStore = create((set, get) => ({
 	},
 	notifyOwner: async(petData) => {
 		const ownerPhone = petData.owner.telephone
-		
-	}
+
+  },
+  login: async (userData) => {
+  const { accessToken, ...user } = await authLogin(userData);
+  localStorage.setItem('petpal_user', JSON.stringify(user));
+  localStorage.setItem('petpal_token', JSON.stringify(accessToken));
+  set((state) => ({ user, token: accessToken }));
+  },
+  registerAndLogin: async (data) => {
+    await authRegister(data);
+    const login = get().login;
+    const { email, password } = data;
+    await login({ email, password });
+  },
 }));

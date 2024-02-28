@@ -11,6 +11,7 @@ export const Nav = () => {
                 <Link to='/' className='cursor-pointer transition-all duration-300 hover:scale-110 min-w-fit'>Inicio</Link>
                 <Link to='lostpets' className='cursor-pointer transition-all duration-300 hover:scale-110 min-w-fit'>Mascotas Perdidas</Link>
                 <Link to='mypets' className='cursor-pointer transition-all duration-300 hover:scale-110 min-w-fit'>Mis Mascotas</Link>
+                <Link to='profile' className='cursor-pointer transition-all duration-300 hover:scale-110 min-w-fit'>Mi Perfil</Link>
                 <LoginBtn />
             </ul>
         </nav>
