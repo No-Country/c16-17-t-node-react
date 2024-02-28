@@ -55,11 +55,12 @@ const usePetForm = () => {
     const img_id = petCloudData.public_id
     // //Validacion
     if(petName.trim() == ''|| petBirth.length<0 || petDetail.trim() == '' || petImg.trim() == '' || petBreed.trim() == ''){
-      throw new Error('Todos los campos son obligatorios')
+      toast.error('Todos los campos son obligatorios')
+      return
     }
     const petData = {
       nickName: petName,
-      detail: petDetail,
+      description: petDetail,
       images: {
         id: img_id,
         url: petImg
@@ -85,7 +86,7 @@ const usePetForm = () => {
       if(!response.ok) return toast.error('Ocurrió un error')
       toast.success('Mascota creada exitosamente')
       const result = await response.json()
-      return result
+      return console.log(result)
     }
     await sendPetData()
     e.target.reset()

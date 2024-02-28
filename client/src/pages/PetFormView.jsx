@@ -1,4 +1,4 @@
-import { PetForm } from "../components/PetProfile/PetForm";
+import { PetForm } from "../components/";
 
 export function PetFormView () {
 

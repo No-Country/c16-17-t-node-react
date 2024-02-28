@@ -4,8 +4,9 @@ import { useUserStore } from '../../store/user';
 import { Img } from '../Img/Img';
 import { CardButtons } from './components/CardButtons';
 import { Link } from 'react-router-dom';
-
+import wsp from './icons/wsp.png'
 export const PetCard = ({ petId }) => {
+
 	const { petData, deletePet, getPetData, addLostPets, removeLostPets } =
 		usePets();
 	const {user} = useUserStore();
@@ -13,9 +14,10 @@ export const PetCard = ({ petId }) => {
 		getPetData(petId);
 	}, [petData]);
 	const { nickName, birth, images, breed, lost, owner } = petData;
+	
 	return (
 
-		<div className="overflow-hidden rounded-lg bg-slate-200 shadow-1 duration-300 hover:shadow-3 min-w-80 max-w-80 snap-end snap-always max-h-[500px] relative">
+		<div className="overflow-hidden rounded-lg bg-slate-200 shadow-1 duration-300 hover:shadow-3 min-w-80 max-w-80 snap-end snap-always max-h-[500px] min-h-[500px] relative flex flex-col justify-between">
 			<div className={`absolute w-full h-16 top-5 right-0 left-28 bg-danger justify-center items-center font-semibold text-white text-2xl rotate-45 ${lost ? 'flex' : 'hidden'}`}>Perdida</div>
 			<figure className='w-full h-[200px]'>
 				<Img src={images ? images[0]?.url : null} alt={nickName}/>
@@ -48,13 +50,19 @@ export const PetCard = ({ petId }) => {
 							</button>
 					}
 					{
-						!user.name
+						user.id != owner?.id
 							? 	(<button
 									// onClick={() => removeLostPets(petData)}
-									className="p-3 w-full rounded-md bg-primaryBtn font-semibold hover:bg-black"
+									className="p-3 w-full rounded-md bg-green-500 font-semibold hover:bg-black flex justify-center items-center"
 								>
-									<Link to={`https://api.whatsapp.com/send?phone=+54${owner}&text=Hola%20${owner},%20creo%20que%20acabo%20de%20ver%20a%20tu%20mascota%0A`}>
-										Avisar al Dueño 🥳
+									<Link className='flex items-center justify-center gap-3' 
+										to={`https://api.whatsapp.com/send?phone=+54${owner?.telephone}&text=Hola%20,%20creo%20que%20acabo%20de%20ver%20a%20tu%20mascota%0A`}>
+										Avisar al Dueño
+										<span>
+											<img
+												className='w-9 h-9' 
+												src={wsp} alt="wsp logo" />
+										</span>
 									</Link>
 								</button>)
 							:	(<button

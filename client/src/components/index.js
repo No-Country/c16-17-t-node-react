@@ -1,4 +1,4 @@
-export { PetForm } from './PetProfile/PetForm'
+export { PetForm } from './PetForm/PetForm'
 export { FormLogin } from './formLogin/FormLogin'
 export { PetCard } from './petCard/PetCard'
 export { Header } from './Header/Header'
