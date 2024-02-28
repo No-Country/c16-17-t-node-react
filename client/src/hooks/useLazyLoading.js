@@ -11,7 +11,7 @@ export function useLazyLoading({ src }) {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const { isIntersecting } = entries[0];
-      if (isIntersecting) setimgSrc(src);
+      if (isIntersecting && src !== '') setimgSrc(src);
     });
     observer.observe(node.current);
 

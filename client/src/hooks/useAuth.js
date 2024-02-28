@@ -1,25 +1,42 @@
-import { useState } from 'react';
-import { authRegister } from './../services';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useUserStore } from '../store/user';
 
 export function useAuth() {
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(null);
+	const registerAndLogin = useUserStore(state => state.registerAndLogin);
+  const login = useUserStore(state => state.login);
+  const navigate = useNavigate();
 
-	const register = async (data) => {
-		try {
-			setLoading(true);
-			setError(null);
-			await authRegister(data);
-		} catch (error) {
-			setError(error);
-		} finally {
-			setLoading(false);
-		}
-	};
+	const registerAndLoginToPetPal  = async (data) => {
+    try {
+      await toast.promise(registerAndLogin(data),
+        {
+          pending: 'Enviando...',
+          success: 'Registro exitoso!. Ingresando...',
+          error: 'Error en el Servidor',
+        });
+      navigate('/profile');
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const loginToPetPal = async (userData) => {
+    try {
+      await toast.promise(login(userData),
+      {
+        pending: 'Ingresando...',
+        success: 'Ingreso correcto',
+        error: 'Usuario o contraseña incorrectos',
+      });
+      navigate('/profile');
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
 	return {
-		loading,
-		error,
-		register,
+		registerAndLoginToPetPal,
+    loginToPetPal,
 	};
 }
