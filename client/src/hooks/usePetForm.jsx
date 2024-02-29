@@ -11,6 +11,12 @@ const usePetForm = () => {
     public_id:'',
     img_tag:''
   });
+  const [invalid, setInvalid] = useState({
+    nickName: null,
+    breed: null,
+    detail: null,
+    image: null,
+  });
   //OBTENER BLOB
   const handlePetFile = (e) => {
     const reader = new FileReader();
@@ -55,7 +61,12 @@ const usePetForm = () => {
     const img_id = petCloudData.public_id
     // //Validacion
     if(petName.trim() == ''|| petBirth.length<0 || petDetail.trim() == '' || petImg.trim() == '' || petBreed.trim() == ''){
-      toast.error('Todos los campos son obligatorios')
+      setInvalid({
+        nickName: petName === '' ? 'Ingrese el nombre de su mascota' : null,
+        breed: petBreed === '' ? 'Ingrese la raza de su mascota' : null,
+        detail: petDetail === '' ? 'Ingrese un detalle de su mascota' : null,
+        image: petImg === '' ? 'Ingrese una foto de su mascota' : null,
+      });
       return
     }
     const petData = {
@@ -67,7 +78,7 @@ const usePetForm = () => {
       },
       breed: petBreed,
       birth: petBirth,
-      lost: petIsLost == 'false' ? false : true 
+      lost: petIsLost == 'false' ? false : true
     }
     const sendPetData = async () => {
       const response = await toast.promise(
@@ -96,7 +107,8 @@ const usePetForm = () => {
     petCloudData,
     handlePetFile,
     petBlob,
-    handleSubmit
+    handleSubmit,
+    invalid,
   };
 };
 
