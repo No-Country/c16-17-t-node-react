@@ -1,7 +1,7 @@
 import { useFormLogin } from '../../hooks';
 
 export const FormLogin = () => {
-  const { handleSubmitLogin } = useFormLogin();
+  const { invalid, handleSubmitLogin } = useFormLogin();
 
     return (
     <form
@@ -34,6 +34,9 @@ export const FormLogin = () => {
                     </svg>
                 </span>
             </div>
+            {invalid.email &&
+              <p className='bg-danger text-white pl-5 mt-2 self-start rounded-md'>{invalid.email}</p>
+            }
         </div>
         <div className='px-4 md:w-1/2'>
             <label className='mb-[10px] block text-base font-medium text-dark dark:text-white'>
@@ -72,6 +75,9 @@ export const FormLogin = () => {
                     </svg>
                 </span>
             </div>
+            {invalid.password &&
+              <p className='bg-danger text-white pl-5 mt-2 self-start rounded-md'>{invalid.password}</p>
+            }
         </div>
         <div className='w-full px-4 md:w-1/2 flex justify-center flex-col items-center gap-5'>
             <button
