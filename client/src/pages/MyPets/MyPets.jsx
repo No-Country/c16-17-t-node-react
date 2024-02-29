@@ -20,7 +20,10 @@ export const MyPets = () => {
 			</Link>
 			<section className="flex flex-row gap-5 overflow-auto snap-mandatory snap-x justify-start items-center w-full p-5">
 				{pets?.map((pet) => (
-					<PetCard key={pet} petId={pet} />
+						<PetCard 
+							key={pet}	
+							petId={pet} />
+					
 				))}
 			</section>
 		</section>
