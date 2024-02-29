@@ -23,6 +23,7 @@
     - [Crear Mascota](#crear-mascota)
     - [Obtener mascotas perdidas](#obtener-mascotas-perdidas)
     - [Obtener mascota especifica](#obtener-mascota-especifica)
+    - [Reportar mascota encontrada](#reportar-mascota-encontrada)
     - [Actualizar mascota especifica](#actualizar-mascota-especifica)
     - [Eliminar mascota especifica](#eliminar-mascota-especifica)
   - [**Developers!**](#developers)
@@ -255,9 +256,10 @@ Volver al [Índice](#índice)
   {
     "nickName": string - required - Nombre de la mascota.
     "breed": string - requires - Raza de la mascota.
-    "images": array - requires - Imágenes de la mascota.
     "birth": number - optional - Nacimiento de la mascota.
+    "images": array - optional - Imágenes de la mascota.
     "description": string - optional - Descripción de la mascota.
+    "lost": boolean - optional - Si el estado es perdido.
   }
   ```
 - **Request Body** example: Status **201**
@@ -349,12 +351,39 @@ volver al [Índice](#índice)
 
 volver al [Índice](#índice)
 
+### Reportar mascota encontrada
+
+- **`PUT /pets/report/{:id}`** - Actualizar una mascota específica.
+- **Params**:
+  ```javascript
+  "id": string - required - id de la mascota.
+  ```
+- **Query**:
+- **header**:
+- **Body**:
+  ```javascript
+  {
+    "heroName": string - optional - Nombre del heroe.
+    "email": string - optional - Email del heroe.
+    "telephone": number - optional - Teléfono del Heroe.
+    "description": string - optional - Mas información que ayude.
+  }
+  ```
+- **Request Body** example: Status **200**
+  ```javascript
+  {
+    "message": "Report sent successfully!"
+  }
+  ```
+
+volver al [Índice](#índice)
+
 ### Actualizar mascota especifica
 
 - **`PUT /pets/{:id}`** - Actualizar una mascota específica.
 - **Params**:
   ```javascript
-  "id": string - required - id del usuario.
+  "id": string - required - id de la mascota.
   ```
 - **Query**:
 - **header**:
@@ -364,10 +393,10 @@ volver al [Índice](#índice)
 - **Body**:
   ```javascript
   {
-    "nickName": string - required - Nombre de la mascota.
-    "breed": string - requires - Raza de la mascota.
-    "images": array - requires - Imágenes de la mascota.
+    "nickName": string - optional - Nombre de la mascota.
+    "breed": string - optional - Raza de la mascota.
     "birth": number - optional - Nacimiento de la mascota.
+    "images": array - optional - Imágenes de la mascota.
     "description": string - optional - Descripción de la mascota.
     "lost": boolean - optional - Si el estado es perdido.
   }
@@ -398,7 +427,7 @@ volver al [Índice](#índice)
 - **`DELETE /pets/{:id}`** - Eliminar una mascota específica.
 - **Params**:
   ```javascript
-  "id": string - required - id del usuario.
+  "id": string - required - id de la mascota.
   ```
 - **Query**:
 - **header**:

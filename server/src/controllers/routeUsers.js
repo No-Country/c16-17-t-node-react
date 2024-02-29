@@ -16,7 +16,6 @@ const {
 } = require('../services/userService');
 const userExtractor = require('../middleware/userExtractor');
 const route = Router();
-const sendMail = require('../middleware/sendEmail');
 
 // Ruta para crear un nuevo usuario
 route.post('/', async (req, res, next) => {
@@ -106,21 +105,6 @@ route.delete('/:id', userExtractor, async (req, res, next) => {
 		const { id } = req.params;
 		const data = await deleteUser({ id, userId });
 		res.status(200).json(data).end();
-	} catch (err) {
-		next(err);
-	}
-});
-
-route.post('/email', async (req, res, next) => {
-	try {
-		const mailOptions = {
-			to: 'petpal.group@gmail.com',
-			subject: 'Configuración exitosa!',
-			text: 'Hola, esto es un correo electrónico de prueba!.',
-			// html: '<b>Hello world?</b>',
-		};
-		const info = await sendMail(mailOptions);
-		res.status(200).send(info.accepted);
 	} catch (err) {
 		next(err);
 	}
