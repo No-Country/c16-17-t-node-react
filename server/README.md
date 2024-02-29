@@ -90,6 +90,9 @@ Volver al [Índice](#índice)
   {
     "email": string - required - Correo electrónico del usuario.
     "password": string - required - Password del usuario.
+    "name": string - required - Nombre de usuario.
+    "lastName": string - required - Apellido de usuario.
+    "telephone": number - optional - Teléfono del usuario.
   }
   ```
 - **Request Body** example: Status **201**
@@ -192,7 +195,8 @@ volver al [Índice](#índice)
 - **Body**:
   ```javascript
   {
-    "nickName": string - optional - Nombre de usuario.
+    "name": string - optional - Nombre de usuario.
+    "lastName": string - optional - Apellido de usuario.
     "telephone": number - optional - Teléfono del usuario.
     "image": string - optional - Imagen del usuario.
   }
