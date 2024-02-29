@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { config } from '../config';
+
+const { apiUrl, apiCloudinary } = config
 
 const usePetForm = () => {
   const [petBlob, setPetBlob] = useState("");
@@ -19,7 +22,7 @@ const usePetForm = () => {
   };
   //SUBIR A CLOUDINARY Y OBTENER URL DE IMAGEN
   const getPetUrl = petBlob => {
-    fetch(`${import.meta.env.VITE_APP_CLOUDINARY_API}`, {
+    fetch(`${apiCloudinary}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -57,7 +60,7 @@ const usePetForm = () => {
     }
     const petData = {
       nickName: petName,
-      detail: petDetail,
+      description: petDetail,
       images: {
         id: img_id,
         url: petImg
@@ -68,7 +71,7 @@ const usePetForm = () => {
     }
     const sendPetData = async () => {
       const response = await toast.promise(
-        fetch(`${import.meta.env.VITE_API_URL}/pets/`, {
+        fetch(`${apiUrl}/pets/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -83,7 +86,7 @@ const usePetForm = () => {
       if(!response.ok) return toast.error('Ocurrió un error')
       toast.success('Mascota creada exitosamente')
       const result = await response.json()
-      return result
+      return console.log(result)
     }
     await sendPetData()
     e.target.reset()
