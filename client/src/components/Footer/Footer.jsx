@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import fb from './icons/fb.png'
 import insta from './icons/insta.png'
 import x from './icons/x.png'
-
+import logo from '../../assets/logoPetpal2.png'
 export const Footer = () => {
   return (
     <footer className='flex flex-col sm:flex-row justify-between sm:items-center h-52 w-full gap-5 mt-5 bg-secondary rounded-xl p-2 sm:py-5'>
         <figure className='w-full sm:w-1/3 h-full min-h-48 bg-secondaryBtn rounded-xl outline-none border-none overflow-hidden'>
-            <img src="" alt="petpal logo" className='w-full h-full object-cover'/>
+            <img src={logo} alt="petpal logo" className='w-full h-full object-cover'/>
         </figure>
         <article className='w-full sm:w-1/2 rounded-md bg-primary flex justify-center items-center h-full min-h-48'>
             <ul className='flex justify-evenly items-center flex-col h-full min-h-52 font-semibold'>
