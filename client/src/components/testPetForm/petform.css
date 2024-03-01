@@ -1,0 +1,17 @@
+.formContainer{
+    margin: auto;
+    width: 600px;
+    height: 100%;
+}
+
+input:not(input[type="file"]){
+    border-bottom: 2px solid rgb(162, 162, 248);
+    border-right: 2px solid rgb(162, 162, 248);
+    padding: 5px 10px;
+    margin-left: 10px;
+    outline: none;
+}
+img{
+    border-radius: 50%;
+    object-fit: contain;
+}
