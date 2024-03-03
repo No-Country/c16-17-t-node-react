@@ -7,7 +7,7 @@ import logo from '../../assets/logoPetpal2.png'
 export const Footer = () => {
   return (
     <footer className='flex flex-col sm:flex-row justify-between sm:items-center h-52 w-full gap-5 mt-5 bg-secondary rounded-xl p-2 sm:py-5'>
-        <figure className='w-full sm:w-1/3 h-full min-h-48 bg-secondaryBtn rounded-xl outline-none border-none overflow-hidden'>
+        <figure className='w-full sm:w-1/3 h-full min-h-48 bg-bgBtn p-2 rounded-xl outline-none border-none overflow-hidden'>
             <img src={logo} alt="petpal logo" className='w-full h-full object-cover'/>
         </figure>
         <article className='w-full sm:w-1/2 rounded-md bg-primary flex justify-center items-center h-full min-h-48'>

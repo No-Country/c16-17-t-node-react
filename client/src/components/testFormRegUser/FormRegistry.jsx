@@ -142,7 +142,7 @@ const FormRegistry = () => {
 						<input
 							id="repeatPassword"
 							name="repeatPassword"
-							type="repeatPassword"
+							type="password"
 							placeholder="**********"
 							className="w-full bg-transparent rounded-md border border-black py-[10px] px-12 text-dark-6 outline-none transition focus:border-danger active:border-danger"
             />

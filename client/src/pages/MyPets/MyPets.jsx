@@ -8,9 +8,9 @@ import '../../components/lostPetsList/lostpetslist.css'
 export const MyPets = () => {
 	const user = useUserStore((state) => state.user);
 	const { pets } = useGetUserPets(user.id);
-
+	
 	return (
-		<section className="container flex justify-center items-center rounded-xl flex-col gap-5">
+		<section className="container flex justify-center items-center rounded-xl flex-col gap-5 mx-auto">
 			<h1 className="text-5xl font-semibold">Mis Mascotas</h1>
 			<Link
 				className="border rounded-md w-fit p-2 bg-black text-white font-bold"

@@ -5,8 +5,10 @@ import { authLogin, authRegister } from '../services';
 export const useUserStore = create((set, get) => ({
 	visible: false,
 	lostPets: [],
+	active: false,
 	user: JSON.parse(localStorage.getItem('petpal_user')) || {},
 	token: JSON.parse(localStorage.getItem('petpal_token')) || '',
+	setActive: () => set((state) =>({active: !state.active})),
 	handleVisible: () => set((state) => ({visible: !state.visible})),
 	getLostPets: async() => {
 		const response = await fetch(`${import.meta.env.VITE_API_URL}/pets/lost`)
