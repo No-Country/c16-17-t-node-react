@@ -97,7 +97,7 @@ const usePetForm = () => {
       if(!response.ok) return toast.error('Ocurrió un error')
       toast.success('Mascota creada exitosamente')
       const result = await response.json()
-      return console.log(result)
+      return location.replace('/mypets')
     }
     await sendPetData()
     e.target.reset()

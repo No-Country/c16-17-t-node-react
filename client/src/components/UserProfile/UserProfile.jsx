@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
 import { Button, Img } from './../';
 import { useUser } from '../../hooks';
 
 export function UserProfile() {
   const { user } = useUser();
+
+  const {deleteProfile} = useUser()
 
   return (
     <>
@@ -18,9 +19,9 @@ export function UserProfile() {
         <p className="text-2xl">{user.name} {user.lastName}</p>
       </section>
       <section className="my-4 flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4 w-full">
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col md:w-3/4 mx-auto">
           <div className="w-full flex-1 bg-white rounded-lg shadow-xl p-6">
-            <h4 className="text-xl text-gray-900 font-bold">Información Personal</h4>
+            <h4 className="text-xl text-gray-900 font-bold text-end">Información Personal</h4>
             <ul className="w-full mt-2 text-gray-700 ">
               <li className="flex border-y py-2">
                 <span className="font-bold w-24">Nombre</span>
@@ -42,16 +43,18 @@ export function UserProfile() {
           </div>
         </div>
       </section>
-      <section className="w-full flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
-        <div className="flex items-center space-x-4 mt-2">
-          <Link to='/'>
-            <Button
-              color='success'
-              type='button'
-            >
-                <span>Editar</span>
-            </Button>
-          </Link>
+      <section className="w-full flex-1 flex flex-col items-center lg:items-end justify-end mt-2">
+        <div className="flex items-center justify-center mt-2 gap-2 w-full mx-auto md:w-2/3">
+          <button
+            className='bg-secondaryBtn p-3 w-1/2 rounded-lg transition-all hover:bg-blue-400 text-white font-semibold'
+          >
+              <span>Editar Datos</span>
+          </button>          
+          <button
+            onClick={()=> deleteProfile(user.id)} 
+            className='bg-red-500 transition-all hover:bg-red-700 p-3 w-1/2 rounded-lg text-white font-semibold'>
+            Eliminar Cuenta
+          </button>
         </div>
       </section>
     </>

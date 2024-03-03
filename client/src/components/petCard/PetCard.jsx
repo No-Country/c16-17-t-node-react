@@ -27,15 +27,6 @@ export const PetCard = ({petId}) => {
 				<Img src={images ? images[0]?.url : null} alt={nickName}/>
 			</figure>
 			<div className="p-3">
-				{
-					!params.id 
-						? null
-						: <CardButtons
-							user={user}
-							petData={petData} 
-							handleDelete={deletePet} 
-							/>
-				}
 				<article className='rounded-md bg-secondaryBtn w-full p-2 text-white my-4'>
 					<Link to={`/pets/${petId}`}>
 						<h3 className="mb-4 text-xl font-semibold text-dark hover:text-zinc-600 sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] cursor-pointer flex items-center justify-center gap-3">
