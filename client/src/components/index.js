@@ -6,5 +6,6 @@ export { Banner } from './Banner/Banner'
 export { Services } from './SectionServices/Services'
 export { Footer } from './Footer/Footer'
 export { Img } from './Img/Img';
+export { ModalUser } from './ModalUser/ModalUser';
 export { Button } from './Button/Button';
 export { UserProfile } from './UserProfile/UserProfile';

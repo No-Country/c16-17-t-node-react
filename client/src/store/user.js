@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { create } from 'zustand';
-import { authLogin, authRegister } from '../services';
+import { authLogin, authRegister, updateUser } from '../services';
 
 export const useUserStore = create((set, get) => ({
 	visible: false,
@@ -76,5 +76,9 @@ export const useUserStore = create((set, get) => ({
     const login = get().login;
     const { email, password } = data;
     await login({ email, password });
+  },
+  editUser: async (id, data) => {
+    const user = await updateUser(id, data);
+    set((state) => ({ user }));
   },
 }));
