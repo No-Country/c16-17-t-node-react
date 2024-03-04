@@ -70,7 +70,7 @@ const searchUser = async ({ userId, id }) => {
 	return user;
 };
 
-const updateUser = async ({ userId, id, updateData }) => {
+const updateUser = async ({ userId, id, ...updateData }) => {
 	if (id != userId) throw new ValidationError('Insufficient permissions');
 	const updatedUser = await userSchema.findByIdAndUpdate(id, updateData, {
 		new: true,
