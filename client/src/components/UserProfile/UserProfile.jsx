@@ -5,7 +5,7 @@ import { ModalUser } from './../';
 export function UserProfile() {
   const { user, deleteProfile } = useUser();
   const { isVisibleModalUser, toggleModalUser } = useUserProfile();
-
+  console.log(user)
   return (
     <>
       <section className="flex flex-col items-center">
