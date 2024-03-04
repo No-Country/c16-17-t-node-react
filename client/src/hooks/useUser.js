@@ -5,11 +5,25 @@ import { useNavigate } from 'react-router-dom';
 
 export function useUser() {
   const user = useUserStore(state => state.user);
+  const editUser = useUserStore(state => state.editUser);
   const { token } = useUserStore()
   const { apiUrl } = config;
   const navigate = useNavigate()
 
-  const editUserData = () => {}
+  const editUserData = async (data) => {
+    try {
+      await toast.promise(editUser(user.id, data),
+        {
+          pending: 'Enviando...',
+          success: 'Datos actualizados',
+          error: 'Error en el Servidor',
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const deleteProfile = async (id) => {
     const result = await toast.promise(fetch(`${apiUrl}/users/${id}`, {
       method: 'DELETE',

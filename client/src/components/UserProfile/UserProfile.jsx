@@ -1,10 +1,10 @@
 import { Button, Img } from './../';
-import { useUser } from '../../hooks';
+import { useUser, useUserProfile } from '../../hooks';
+import { ModalUser } from './../';
 
 export function UserProfile() {
-  const { user } = useUser();
-
-  const {deleteProfile} = useUser()
+  const { user, deleteProfile } = useUser();
+  const { isVisibleModalUser, toggleModalUser } = useUserProfile();
 
   return (
     <>
@@ -12,7 +12,7 @@ export function UserProfile() {
         <figure className='w-40 h-40 border-4 border-danger rounded-full'>
           <Img
             className='rounded-full'
-            src={user.image}
+            src={user.image.url}
             alt={`${user.name} ${user.lastName}`}
           />
         </figure>
@@ -47,16 +47,18 @@ export function UserProfile() {
         <div className="flex items-center justify-center mt-2 gap-2 w-full mx-auto md:w-2/3">
           <button
             className='bg-secondaryBtn p-3 w-1/2 rounded-lg transition-all hover:bg-blue-400 text-white font-semibold'
+            onClick={toggleModalUser}
           >
               <span>Editar Datos</span>
-          </button>          
+          </button>
           <button
-            onClick={()=> deleteProfile(user.id)} 
+            onClick={()=> deleteProfile(user.id)}
             className='bg-red-500 transition-all hover:bg-red-700 p-3 w-1/2 rounded-lg text-white font-semibold'>
             Eliminar Cuenta
           </button>
         </div>
       </section>
+      {isVisibleModalUser && <ModalUser toggleModalUser={toggleModalUser} />}
     </>
   );
 }
