@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import usePets from '../../hooks/usePets';
 import { useUserStore } from '../../store/user';
 import { Img } from '../Img/Img';
-import { CardButtons } from './components/CardButtons';
 import { Link, useParams } from 'react-router-dom';
 import wsp from './icons/wsp.png'
 import link from './icons/link.png'
@@ -18,6 +17,7 @@ export const PetCard = ({petId}) => {
 		useEffect(() => {
 		getPetData(petId);
 	}, [petData]);
+
 	const { nickName, birth, images, breed, lost, owner } = petData;
 	
 	return (

@@ -66,10 +66,10 @@ export const useUserStore = create((set, get) => ({
 
   },
   login: async (userData) => {
-  const { accessToken, ...user } = await authLogin(userData);
-  localStorage.setItem('petpal_user', JSON.stringify(user));
-  localStorage.setItem('petpal_token', JSON.stringify(accessToken));
-  set((state) => ({ user, token: accessToken }));
+	const { accessToken, ...user } = await authLogin(userData);
+	localStorage.setItem('petpal_user', JSON.stringify(user));
+	localStorage.setItem('petpal_token', JSON.stringify(accessToken));
+	set((state) => ({ user, token: accessToken }));
   },
   registerAndLogin: async (data) => {
     await authRegister(data);

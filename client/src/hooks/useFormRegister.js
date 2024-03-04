@@ -17,8 +17,10 @@ export function useFormRegister() {
     const name = formData.get('name');
     const lastName = formData.get('lastName');
     const email = formData.get('email');
+    const telephone = formData.get('telephone');
     const password = formData.get('password');
     const repeatPassword = formData.get('repeatPassword');
+    console.log(telephone)
 
     if (name === '' || lastName === '' || email === '' || password === '' || repeatPassword === '') {
       setInvalid({
@@ -58,6 +60,7 @@ export function useFormRegister() {
       name,
       lastName,
       email,
+      telephone,
       password
     };
 
