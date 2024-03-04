@@ -21,7 +21,9 @@
     - [Eliminar usuario especifico](#eliminar-usuario-especifico)
   - [**Endpoint Pets**](#endpoint-pets)
     - [Crear Mascota](#crear-mascota)
+    - [Obtener mascotas perdidas](#obtener-mascotas-perdidas)
     - [Obtener mascota especifica](#obtener-mascota-especifica)
+    - [Reportar mascota encontrada](#reportar-mascota-encontrada)
     - [Actualizar mascota especifica](#actualizar-mascota-especifica)
     - [Eliminar mascota especifica](#eliminar-mascota-especifica)
   - [**Developers!**](#developers)
@@ -89,6 +91,9 @@ Volver al [Índice](#índice)
   {
     "email": string - required - Correo electrónico del usuario.
     "password": string - required - Password del usuario.
+    "name": string - required - Nombre de usuario.
+    "lastName": string - required - Apellido de usuario.
+    "telephone": number - optional - Teléfono del usuario.
   }
   ```
 - **Request Body** example: Status **201**
@@ -185,10 +190,14 @@ volver al [Índice](#índice)
   ```
 - **Query**:
 - **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
 - **Body**:
   ```javascript
   {
-    "nickName": string - optional - Nombre de usuario.
+    "name": string - optional - Nombre de usuario.
+    "lastName": string - optional - Apellido de usuario.
     "telephone": number - optional - Teléfono del usuario.
     "image": string - optional - Imagen del usuario.
   }
@@ -217,6 +226,9 @@ volver al [Índice](#índice)
   ```
 - **Query**:
 - **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
 - **Body**:
 - **Request Body** example: Status **200**
   ```javascript
@@ -244,8 +256,10 @@ Volver al [Índice](#índice)
   {
     "nickName": string - required - Nombre de la mascota.
     "breed": string - requires - Raza de la mascota.
-    "images": array - requires - Imágenes de la mascota.
     "birth": number - optional - Nacimiento de la mascota.
+    "images": array - optional - Imágenes de la mascota.
+    "description": string - optional - Descripción de la mascota.
+    "lost": boolean - optional - Si el estado es perdido.
   }
   ```
 - **Request Body** example: Status **201**
@@ -262,7 +276,46 @@ Volver al [Índice](#índice)
         URL: "String",
       }
     ],
+    description: "",
+    lost: false,
   }
+  ```
+
+volver al [Índice](#índice)
+
+### Obtener mascotas perdidas
+
+- **`GET /pets/lost`** - Registro de nueva mascota.
+- **Params**:
+- **Query**:
+  ```javascript
+  page: number - optional - Número de página (por defecto es 1).
+  limit: number - optional - Cantidad de resultados por página (por defecto es 4).
+  ```
+- **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
+- **Body**:
+- **Request Body** example: Status **200**
+  ```javascript
+  [
+  	{
+  		id: '65ccbc44a4e9f43e7b4460b4',
+  		nickName: 'loky',
+  		owner: '65ccba58e023b17ef6697de1',
+  		breed: '',
+  		birth: 0,
+  		images: [
+  			{
+  				id: 'String',
+  				URL: 'String',
+  			},
+  		],
+  		description: '',
+  	},
+  	// Otros resultados de búsqueda...
+  ];
   ```
 
 volver al [Índice](#índice)
@@ -291,6 +344,35 @@ volver al [Índice](#índice)
         URL: "String",
       }
     ],
+    description: "",
+    lost: false,
+  }
+  ```
+
+volver al [Índice](#índice)
+
+### Reportar mascota encontrada
+
+- **`PUT /pets/report/{:id}`** - Actualizar una mascota específica.
+- **Params**:
+  ```javascript
+  "id": string - required - id de la mascota.
+  ```
+- **Query**:
+- **header**:
+- **Body**:
+  ```javascript
+  {
+    "heroName": string - optional - Nombre del heroe.
+    "email": string - optional - Email del heroe.
+    "telephone": number - optional - Teléfono del Heroe.
+    "description": string - optional - Mas información que ayude.
+  }
+  ```
+- **Request Body** example: Status **200**
+  ```javascript
+  {
+    "message": "Report sent successfully!"
   }
   ```
 
@@ -301,17 +383,22 @@ volver al [Índice](#índice)
 - **`PUT /pets/{:id}`** - Actualizar una mascota específica.
 - **Params**:
   ```javascript
-  "id": string - required - id del usuario.
+  "id": string - required - id de la mascota.
   ```
 - **Query**:
 - **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
 - **Body**:
   ```javascript
   {
-    "nickName": string - required - Nombre de la mascota.
-    "breed": string - requires - Raza de la mascota.
-    "images": array - requires - Imágenes de la mascota.
+    "nickName": string - optional - Nombre de la mascota.
+    "breed": string - optional - Raza de la mascota.
     "birth": number - optional - Nacimiento de la mascota.
+    "images": array - optional - Imágenes de la mascota.
+    "description": string - optional - Descripción de la mascota.
+    "lost": boolean - optional - Si el estado es perdido.
   }
   ```
 - **Request Body** example: Status **200**
@@ -328,6 +415,8 @@ volver al [Índice](#índice)
         URL: "String",
       }
     ],
+    description: "",
+    lost: false,
   }
   ```
 
@@ -338,10 +427,13 @@ volver al [Índice](#índice)
 - **`DELETE /pets/{:id}`** - Eliminar una mascota específica.
 - **Params**:
   ```javascript
-  "id": string - required - id del usuario.
+  "id": string - required - id de la mascota.
   ```
 - **Query**:
 - **header**:
+  ```javascript
+  Authorization: `Bearer ${token}` string - required - token de acceso.
+  ```
 - **Body**:
 - **Request Body** example: Status **200**
   ```javascript
@@ -372,5 +464,9 @@ Volver al [Índice](#índice)
 - **git commit --amend** modifica el ultimo commit (cambiar archivos y mensaje, en rama propia)
 - **git push** sube el commit a la nube
 - **git push --force** sube el commit a la nube de manera forzosa, para luego de haber realizado un amend (cuidado! solo en rama propia)
+- **git reset --soft HEAD^** deshacer el commit y mantener los cambios en el área de preparación (staging)
+- **git reset --mixed HEAD^** deshacer el commit y deshacer los cambios (los cambios se mantienen en tu directorio de trabajo)
+- **git reset --hard HEAD^** deshacer el commit y descartar los cambios (eliminar todos los cambios)
+- **git merge --squash main** fusionar la rama fuente con squash
 
 Volver al [Índice](#índice)

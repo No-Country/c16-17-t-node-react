@@ -1,7 +1,7 @@
 // user.schema.js
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
 	email: {
 		type: String,
 		unique: true,
@@ -25,7 +25,7 @@ const userSchema = new Schema({
 	},
 	telephone: {
 		type: Number,
-		default: 0,
+		default: null,
 	},
 	image: {
 		type: String,
@@ -33,16 +33,16 @@ const userSchema = new Schema({
 	},
 	pets: [
 		{
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			default: [],
-			ref: "Pet",
+			ref: 'Pet',
 			validate: {
 				validator: async function (value) {
-					const Pet = require("./petSchema");
+					const Pet = mongoose.model('Pet');
 					const pet = await Pet.findById(value);
 					return pet !== null;
 				},
-				message: "The 'Pet' field must reference a valid PetID.",
+				message: 'The "Pet" field must reference a valid PetID.',
 			},
 		},
 	],
@@ -57,4 +57,8 @@ userSchema.methods.toJSON = function () {
 	return userObject;
 };
 
-module.exports = model("User", userSchema);
+if (mongoose.models.User) {
+	module.exports = mongoose.models.User;
+} else {
+	module.exports = mongoose.model('User', userSchema);
+}
