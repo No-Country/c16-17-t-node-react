@@ -65,7 +65,7 @@ const usePetForm = () => {
         nickName: petName === '' ? 'Ingrese el nombre de su mascota' : null,
         breed: petBreed === '' ? 'Ingrese la raza de su mascota' : null,
         detail: petDetail === '' ? 'Ingrese un detalle de su mascota' : null,
-        image: petImg === '' ? 'Ingrese una foto de su mascota' : null,
+        image: petImg == '' ? 'Ingrese una foto de su mascota' : null,
       });
       return
     }

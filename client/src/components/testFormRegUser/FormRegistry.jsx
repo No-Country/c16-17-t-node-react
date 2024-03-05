@@ -51,7 +51,7 @@ const FormRegistry = () => {
 						<input
 							id="telephone"
 							name="telephone"
-							type="number"
+							type="tel"
 							placeholder="Cod.Área + Cel (sin 15)..."
 							className="w-full bg-transparent rounded-md border border-black dark:border-dark-3 py-[10px] pr-3 pl-12 text-dark-6 outline-none transition focus:border-danger active:border-danger disabled:cursor-default disabled:bg-gray-2"
 						/>
