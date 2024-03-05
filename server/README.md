@@ -114,8 +114,8 @@ Volver al [Índice](#índice)
   {
     id: "6570bb7db2ad523394706c12",
     email: "test@gmail.com",
-    name: "",
-    lastName: "",
+    name: "Maxi",
+    lastName: "Van",
     pets: [],
     telephone: 0,
     image: {
@@ -187,8 +187,8 @@ Volver al [Índice](#índice)
   {
     id: "6570bb7db2ad523394706c12",
     email: "test@gmail.com",
-    name: "",
-    lastName: "",
+    name: "Maxi",
+    lastName: "Van",
     pets: [],
     telephone: 0,
     image: {
@@ -219,6 +219,10 @@ volver al [Índice](#índice)
     "lastName": string - optional - Apellido de usuario.
     "telephone": number - optional - Teléfono del usuario.
     "image": string - optional - Imagen del usuario.
+    "linkedin": string - optional
+    "facebook": string - optional
+    "instagram": string - optional
+    "twitter": string - optional
   }
   ```
 - **Request Body** example: Status **200**
@@ -226,8 +230,8 @@ volver al [Índice](#índice)
   {
     id: "6570bb7db2ad523394706c12",
     email: "test@gmail.com",
-    name: "",
-    lastName: "",
+    name: "Maxi",
+    lastName: "Van",
     pets: [],
     telephone: 0,
     image: {
@@ -357,7 +361,16 @@ volver al [Índice](#índice)
   {
     id: "65ccbc44a4e9f43e7b4460b4",
     nickName: "loky",
-    owner: "65ccba58e023b17ef6697de1",
+    owner: {
+      id: "65ccba58e023b17ef6697de1",
+      name: "Maxi",
+      telephone: 1234,
+      email: "test@gmail.com",
+      linkedin: "https://"
+      facebook: "https://"
+      instagram: "https://"
+      twitter: "https://"
+      },
     breed: "",
     birth: 0,
     images: [
