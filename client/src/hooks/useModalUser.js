@@ -34,6 +34,7 @@ export function useModalUser({ toggleModalUser }) {
     const formData = new FormData(e.target);
     const name = formData.get('name');
     const lastName = formData.get('lastName');
+    const telephone = formData.get('telephone');
 
     if (name === '' || lastName === '') {
       setInvalid({
@@ -46,6 +47,7 @@ export function useModalUser({ toggleModalUser }) {
     const data = {
       name,
       lastName,
+      telephone,
     };
 
     if (userBlob !== '') {
