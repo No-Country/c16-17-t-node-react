@@ -1,8 +1,7 @@
 const session = require('supertest-session');
-// const { expect } = require('chai');
+const { expect } = require('chai');
 const app = require('../src/app');
 const userSchema = require('../src/models/userSchema');
-const petSchema = require('../src/models/petSchema');
 
 let testSession = null;
 
@@ -10,11 +9,140 @@ before(() => {
 	testSession = session(app);
 });
 
-describe('Route Users', () => {
-	it('should fail accessing a restricted page', async () => {
-		await testSession.get('/users/1').expect(401);
+describe('Route Users - POST /users', () => {
+	it('should not sign in, email is missing', async () => {
+		await testSession
+			.post('/users')
+			.send({
+				password: 'P@ssw0rd',
+				name: 'test',
+				lastName: 'test',
+			})
+			.expect(400)
+			.expect((res) => {
+				expect(res.body.name).to.be.equal('ValidationError');
+				expect(res.body.message).to.be.equal(
+					'Email, password, name and lastName are required for user creation.',
+				);
+			});
 	});
-	it('should log in', async () => {
+	it('should not sign in, password is missing', async () => {
+		await testSession
+			.post('/users')
+			.send({
+				email: 'test1@mail.com',
+				name: 'test',
+				lastName: 'test',
+			})
+			.expect(400)
+			.expect((res) => {
+				expect(res.body.name).to.be.equal('ValidationError');
+				expect(res.body.message).to.be.equal(
+					'Email, password, name and lastName are required for user creation.',
+				);
+			});
+	});
+	it('should not sign in, name is missing', async () => {
+		await testSession
+			.post('/users')
+			.send({
+				email: 'test1@mail.com',
+				password: 'P@ssw0rd',
+				lastName: 'test',
+			})
+			.expect(400)
+			.expect((res) => {
+				expect(res.body.name).to.be.equal('ValidationError');
+				expect(res.body.message).to.be.equal(
+					'Email, password, name and lastName are required for user creation.',
+				);
+			});
+	});
+	it('should not sign in, lastName is missing', async () => {
+		await testSession
+			.post('/users')
+			.send({
+				email: 'test1@mail.com',
+				password: 'P@ssw0rd',
+				name: 'test',
+			})
+			.expect(400)
+			.expect((res) => {
+				expect(res.body.name).to.be.equal('ValidationError');
+				expect(res.body.message).to.be.equal(
+					'Email, password, name and lastName are required for user creation.',
+				);
+			});
+	});
+	it('should not sign in, invalid email format', async () => {
+		await testSession
+			.post('/users')
+			.send({
+				email: 'mail.com',
+				password: 'P@ssw0rd',
+				name: 'test',
+				lastName: 'test',
+			})
+			.expect(400)
+			.expect((res) => {
+				expect(res.body.name).to.be.equal('ValidationError');
+				expect(res.body.message).to.be.equal(
+					'User validation failed: email: Invalid email format. Please enter a valid email address.',
+				);
+			});
+	});
+	it('should not sign in, invalid password format', async () => {
+		await testSession
+			.post('/users')
+			.send({
+				email: 'test1@mail.com',
+				password: 'Password',
+				name: 'test',
+				lastName: 'test',
+			})
+			.expect(400)
+			.expect((res) => {
+				expect(res.body.name).to.be.equal('ValidationError');
+				expect(res.body.message).to.be.equal(
+					'The password must contain at least one special character.',
+				);
+			});
+	});
+	it('should not sign in, invalid password format', async () => {
+		await testSession
+			.post('/users')
+			.send({
+				email: 'test1@mail.com',
+				password: '*',
+				name: 'test',
+				lastName: 'test',
+			})
+			.expect(400)
+			.expect((res) => {
+				expect(res.body.name).to.be.equal('ValidationError');
+				expect(res.body.message).to.be.equal(
+					'Password must be at least 8 characters.',
+				);
+			});
+	});
+	it('should not sign in, invalid password format', async () => {
+		await testSession
+			.post('/users')
+			.send({
+				email: 'test1@mail.com',
+				password: '********',
+				name: 'test',
+				lastName: 'test',
+			})
+			.expect(400)
+			.expect((res) => {
+				expect(res.body.name).to.be.equal('ValidationError');
+				expect(res.body.message).to.be.equal(
+					'The password must contain at least one uppercase letter.',
+				);
+			});
+	});
+	it('should sign in, correct data', async () => {
 		await testSession
 			.post('/users')
 			.send({
@@ -25,26 +153,8 @@ describe('Route Users', () => {
 			})
 			.expect(201);
 	});
-	it('should sign in', async () => {
-		await testSession
-			.post('/users/login')
-			.send({ email: 'test1@mail.com', password: 'P@ssw0rd' })
-			.expect(201)
-			.expect((data) => {
-				testSession.id = data.body.id;
-				testSession.accessToken = data.body.accessToken;
-				return data;
-			});
-	});
-	it('accessing a restricted page', async () => {
-		await testSession
-			.get(`/users/${testSession.id}`)
-			.set('authorization', `Bearer ${testSession.accessToken}`)
-			.expect(200);
-	});
+});
 
-	after(async () => {
-		await userSchema.deleteMany({});
-		await petSchema.deleteMany({});
-	});
+after(async () => {
+	await userSchema.deleteMany({});
 });
