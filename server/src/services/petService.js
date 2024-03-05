@@ -47,12 +47,20 @@ const searchPets = async ({ filter, page = 1, limit = 4 }) => {
 		.skip((parsedInt(page) - 1) * parsedInt(limit))
 		.limit(parsedInt(limit))
 		.select('-lost')
-		.populate('owner', 'name telephone');
+		.populate(
+			'owner',
+			'name telephone email linkedin	facebook instagram twitter',
+		);
 	return pets;
 };
 
 const searchPet = async (id) => {
-	const pet = await petSchema.findById(id).populate('owner', 'name telephone');
+	const pet = await petSchema
+		.findById(id)
+		.populate(
+			'owner',
+			'name telephone email linkedin	facebook instagram twitter',
+		);
 	return pet;
 };
 
