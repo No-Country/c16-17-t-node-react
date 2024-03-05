@@ -12,7 +12,8 @@
     "test:01": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/01.*.spec.js -w",
     "test:02": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/02.*.spec.js -w",
     "test:03": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/03.*.spec.js -w",
-    "test:04": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/04.*.spec.js -w"
+    "test:04": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/04.*.spec.js -w",
+    "test:05": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/05.*.spec.js -w"
   },
   "dependencies": {
     "bcrypt": "5.1.1",

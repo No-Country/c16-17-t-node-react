@@ -150,8 +150,23 @@ describe('Route Users - POST /users \n', () => {
 				password: 'P@ssw0rd',
 				name: 'test',
 				lastName: 'test',
+				telephone: 1234
 			})
-			.expect(201);
+			.expect(201).expect((res) => {
+				expect(res.body).to.have.property('id');
+				expect(res.body).to.have.property('email');
+				expect(res.body).to.have.property('name');
+				expect(res.body).to.have.property('lastName');
+				expect(res.body).to.have.property('telephone');
+				expect(res.body).to.have.property('image');
+				expect(res.body).to.have.property('pets');
+				expect(res.body.email).to.equal('test1@mail.com');
+				expect(res.body.name).to.equal('test');
+				expect(res.body.lastName).to.equal('test');
+				expect(res.body.telephone).to.equal(1234);
+				expect(res.body.image).to.be.a('Object');
+				expect(res.body.pets).to.be.a('Array');
+			});;
 	});
 
 	after(async () => {
