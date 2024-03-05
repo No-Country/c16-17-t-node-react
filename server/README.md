@@ -66,15 +66,28 @@ Asegúrate de tener instalados los siguientes requisitos antes de ejecutar la ap
   PORT=puerto_por_defecto_3001
   MONGO_URL=uri_mongo_db o 'mongodb://127.0.0.1:27017/'
   DB_NAME=name_mongoDB_por_defecto_'PetPal'
+
+  MAIL_USERNAME='send@gmail.com'
+  MAIL_PASSWORD='password_mail'
+  OAUTH_CLIENT_ID='id.apps.googleUserContent.com'
+  OAUTH_CLIENT_SECRET='secret_token'
+  OAUTH_REFRESH_TOKEN='refresh_token'
   ```
 
-5. Para iniciar la aplicación:
+  Mas información en [Nodemailer in Node.js](https://www.freecodecamp.org/espanol/news/como-usar-nodemailer-para-enviar-correos-electronicos-desde-tu-servidor-node-js/)
+
+5. Para realizar tests:
+
+- ```bash
+  npm test
+  ```
+
+6. Para iniciar la aplicación:
 
 - ```bash
   npm run dev
   ```
-
-La aplicación estará disponible en http://localhost:3001
+  La aplicación estará disponible en http://localhost:3001
 
 Volver al [Índice](#índice)
 
@@ -105,7 +118,10 @@ Volver al [Índice](#índice)
     lastName: "",
     pets: [],
     telephone: 0,
-    image: "",
+    image: {
+      id: "String",
+      URL: "String",
+    },
   }
   ```
   volver al [Índice](#índice)
@@ -123,7 +139,7 @@ Volver al [Índice](#índice)
     "password": string - required - Password del usuario.
   }
   ```
-- **Request Body** example: Status **200**
+- **Request Body** example: Status **201**
   ```javascript
   {
   	accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC';
@@ -133,7 +149,7 @@ Volver al [Índice](#índice)
 
 ### Cambio de contraseña
 
-- **`POST /users/password`** - Inicio de sesión de usuario.
+- **`POST /users/password`** - Cambio de contraseña. (no implementado)
 - **Params**:
 - **Query**:
 - **header**:
@@ -175,7 +191,10 @@ Volver al [Índice](#índice)
     lastName: "",
     pets: [],
     telephone: 0,
-    image: "",
+    image: {
+      id: "String",
+      URL: "String",
+    },
   }
   ```
 
@@ -211,7 +230,10 @@ volver al [Índice](#índice)
     lastName: "",
     pets: [],
     telephone: 0,
-    image: "",
+    image: {
+      id: "String",
+      URL: "String",
+    },
   }
   ```
 
@@ -285,7 +307,7 @@ volver al [Índice](#índice)
 
 ### Obtener mascotas perdidas
 
-- **`GET /pets/lost`** - Registro de nueva mascota.
+- **`GET /pets/lost`** - Obtener listado de mascotas perdidas con paginado.
 - **Params**:
 - **Query**:
   ```javascript

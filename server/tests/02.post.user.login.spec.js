@@ -11,12 +11,12 @@ const userTest1 = {
 	lastName: 'test',
 };
 
-before(async () => {
-	testSession = session(app);
-	await testSession.post('/users').send(userTest1);
-});
+describe('Route Users - POST /users/login \n', () => {
+	before(async () => {
+		testSession = session(app);
+		await testSession.post('/users').send(userTest1);
+	});
 
-describe('Route Users - POST /users/login', () => {
 	it('should not log in, email is missing', async () => {
 		await testSession
 			.post('/users/login')
@@ -63,12 +63,15 @@ describe('Route Users - POST /users/login', () => {
 				testSession.accessToken = res.body.accessToken;
 			});
 	});
-
 	it('accessing a restricted page', async () => {
 		await testSession
 			.get(`/users/${testSession.id}`)
 			.set('authorization', `Bearer ${testSession.accessToken}`)
 			.expect(200);
+	});
+
+	after(async () => {
+		await userSchema.deleteMany({});
 	});
 });
 

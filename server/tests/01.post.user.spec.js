@@ -5,11 +5,11 @@ const userSchema = require('../src/models/userSchema');
 
 let testSession = null;
 
-before(() => {
-	testSession = session(app);
-});
+describe('Route Users - POST /users \n', () => {
+	before(() => {
+		testSession = session(app);
+	});
 
-describe('Route Users - POST /users', () => {
 	it('should not sign in, email is missing', async () => {
 		await testSession
 			.post('/users')
@@ -152,6 +152,10 @@ describe('Route Users - POST /users', () => {
 				lastName: 'test',
 			})
 			.expect(201);
+	});
+
+	after(async () => {
+		await userSchema.deleteMany({});
 	});
 });
 
