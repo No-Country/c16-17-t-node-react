@@ -16,7 +16,7 @@ const {
 	IncorrectData,
 } = require('../middleware/customErrors');
 
-const createUser = async ({ email, password, name, lastName }) => {
+const createUser = async ({ email, password, name, lastName, ...data }) => {
 	if (!email || !password || !name || !lastName) {
 		throw new ValidationError(
 			'Email, password, name and lastName are required for user creation.',
@@ -41,6 +41,7 @@ const createUser = async ({ email, password, name, lastName }) => {
 		password: hashedPassword,
 		name,
 		lastName,
+		...data,
 	});
 	return newUser;
 };
