@@ -85,7 +85,8 @@ const deleteUser = async ({ userId, id }) => {
 	const user = await userSchema.findById(userId);
 	if (!user) IncorrectData(`The user with id ${userId} was not found.`);
 	await petSchema.deleteMany({ owner: userId });
-	return await userSchema.deleteOne({ _id: userId });
+	const isDelete = await userSchema.deleteOne({ _id: userId });
+	return isDelete;
 };
 
 module.exports = { createUser, loginUser, searchUser, updateUser, deleteUser };
