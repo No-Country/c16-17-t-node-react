@@ -22,7 +22,7 @@ export function UserProfile() {
         </figure>
         <p className="text-2xl">{user.name} {user.lastName}</p>
       </section>
-      <div className='w-full flex flex-col lg:flex-row'>
+      <div className='w-full flex flex-col lg:flex-row'>|
         <section className="my-4 flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4 w-full">
           <div className="w-full flex flex-col md:w-3/4 mx-auto">
             <div className="w-full flex-1 bg-white rounded-lg shadow-xl p-6">

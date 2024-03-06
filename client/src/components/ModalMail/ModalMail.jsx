@@ -1,33 +1,10 @@
 import { createPortal } from 'react-dom';
 import { Button } from '../';
-import { config } from '../../config';
+import { useModal } from '../../hooks';
 
-export function ModalMail({id, closeModal}) {
-    const { apiUrl } = config
+export function ModalMail({closeModal}) {
 
-	const handleSendMail = async (e) => {
-		e.preventDefault();
-		const formData = new FormData(e.target);
-		const heroName = formData.get('heroName')
-        const heroTel = formData.get('heroTel')
-        const heroEmail = formData.get('heroEmail')
-        const heroMsg = formData.get('heroMsg')
-        const heroData = {
-            heroName: heroName,
-            telephone: heroTel,
-            email: heroEmail,
-            description: heroMsg,
-        }
-        const response = await fetch(`${apiUrl}/pets/report/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify(heroData)
-        })
-        const result = await response.json()
-        console.log(result)
-	};
+	const { handleSendMail } = useModal()
 
 	return createPortal(
 		<div
@@ -48,7 +25,7 @@ export function ModalMail({id, closeModal}) {
                 </div>
                 <form
                     className="container bg-primary flex flex-col justify-center gap-5 mx-auto p-5 overflow-y-scroll"
-                    onSubmit={handleSendMail}
+                    onSubmit={(e)=>handleSendMail(e,closeModal)}
                 >
                     <div className="sm:px-4">
                         <label

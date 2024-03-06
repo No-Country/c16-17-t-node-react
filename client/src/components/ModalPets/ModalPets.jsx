@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { useModal, usePets } from '../../hooks';
+import { usePets } from '../../hooks';
 
 export function ModalPets({ data, closeModal }) {
 	const { editPetData } = usePets();
