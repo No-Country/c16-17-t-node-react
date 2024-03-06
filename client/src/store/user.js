@@ -79,6 +79,7 @@ export const useUserStore = create((set, get) => ({
   },
   editUser: async (id, data) => {
     const user = await updateUser(id, data);
+    localStorage.setItem('petpal_user', JSON.stringify(user));
     set((state) => ({ user }));
   },
 }));
