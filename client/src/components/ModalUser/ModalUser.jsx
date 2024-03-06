@@ -6,7 +6,6 @@ import { Button } from '../';
 export function ModalUser({ toggleModalUser }) {
   const { user } = useUser();
   const { userBlob, invalid, handleUploadUserFile, handleSubmit } = useModalUser({ toggleModalUser });
-  console.log(user);
 
   return createPortal(
     <div

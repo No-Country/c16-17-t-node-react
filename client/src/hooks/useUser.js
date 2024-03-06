@@ -20,7 +20,7 @@ export function useUser() {
         }
       );
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
