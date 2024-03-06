@@ -20,7 +20,6 @@ export function useFormRegister() {
     const telephone = formData.get('telephone');
     const password = formData.get('password');
     const repeatPassword = formData.get('repeatPassword');
-    console.log(telephone)
 
     if (name === '' || lastName === '' || email === '' || password === '' || repeatPassword === '') {
       setInvalid({

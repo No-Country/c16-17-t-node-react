@@ -34,6 +34,10 @@ export function useModalUser({ toggleModalUser }) {
     const formData = new FormData(e.target);
     const name = formData.get('name');
     const lastName = formData.get('lastName');
+    const telephone = formData.get('telephone');
+    const facebook = formData.get('facebook');
+    const twitter = formData.get('twitter');
+    const instagram = formData.get('instagram');
 
     if (name === '' || lastName === '') {
       setInvalid({
@@ -46,6 +50,10 @@ export function useModalUser({ toggleModalUser }) {
     const data = {
       name,
       lastName,
+      telephone,
+      facebook,
+      twitter,
+      instagram,
     };
 
     if (userBlob !== '') {

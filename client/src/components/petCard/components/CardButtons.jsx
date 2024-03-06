@@ -1,10 +1,11 @@
 import React from 'react'
 import { useUserStore } from '../../../store/user'
-import ModalPets from '../../Modal/ModalPets'
-import usePets from '../../../hooks/usePets'
+import {ModalPets} from '../../'
+import {useModal, usePets} from '../../../hooks'
 
 export const CardButtons = ({petData, flexDirection}) => {
-    const {user, setActive} = useUserStore()
+    const {user} = useUserStore()
+    const {active,setActive, closeModal} = useModal()
     const {deletePet} = usePets()
     const handleDelete = async () => {
         await deletePet(petData.id)
@@ -13,17 +14,17 @@ export const CardButtons = ({petData, flexDirection}) => {
   return (
     <div className={`flex justify-center items-center gap-2 ${flexDirection}`}>
         {
-            user?.id == petData?.owner?.id 
+            user?.id == petData?.owner?.id
                 ? (<>
                     <button
-                        onClick={setActive}
+                        onClick={()=>setActive(true)}
                         to="/"
-                        className="inline-block rounded-md border-black p-2 w-full text-base text-center font-medium bg-secondaryBtn transition hover:border-primary hover:bg-black text-white">
+                        className="inline-block rounded-md border-black p-3 w-full text-base text-center font-medium bg-secondaryBtn transition hover:border-primary hover:bg-black text-white">
                         Editar Datos
                     </button>
                     <button
                         onClick={handleDelete}
-                        className="inline-block rounded-md bg-red-500 p-2 w-full text-white font-medium transition hover:bg-red-700"
+                        className="inline-block rounded-md bg-red-500 p-3 w-full text-white font-medium transition hover:bg-red-700"
                     >
                         Quitar Mascota
                     </button>
@@ -31,8 +32,14 @@ export const CardButtons = ({petData, flexDirection}) => {
                 )
                 : null
         }
-        <ModalPets
-            data={petData} />
+        {
+            active
+                ? <ModalPets
+                    data={petData}
+                    closeModal={closeModal} />
+                : null
+        }
+
     </div>
   )
 }

@@ -7,7 +7,7 @@ export const Img = ({ className, src, alt }) => {
 			ref={node}
 			src={imgSrc}
 			alt={alt}
-			className={`w-full h-full object-cover bg-gray-100 ${className} `}
+			className={`w-full h-full object-cover ${className} `}
 		/>
 	);
 };

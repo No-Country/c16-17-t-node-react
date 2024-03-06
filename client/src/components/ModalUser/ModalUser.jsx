@@ -16,7 +16,7 @@ export function ModalUser({ toggleModalUser }) {
       <div className="fixed overflow-y-scroll">
         <div className="flex items-end justify-center p-2 sm:items-center sm:p-0">
           <div className='rounded-lg bg-white text-left sm:my-8 sm:w-full sm:max-w-lg'>
-            <div className='relative flex flex-col p-2 sm:p-6 overflow-y-scroll rounded-md h-full w-96'>
+            <div className='relative flex flex-col p-2 sm:p-6 overflow-y-scroll rounded-md h-full'>
               <div className='absolute right-14 sm:right-1 top-2 rounded-full justify-self-end w-8 h-8'>
                 <Button
                   color='danger'
@@ -31,52 +31,106 @@ export function ModalUser({ toggleModalUser }) {
                 className="container bg-primary flex flex-col justify-center gap-5 border-2 mx-auto p-5 overflow-y-scroll"
                 onSubmit={handleSubmit}
               >
-                <div className="px-4">
-                  <label className="mb-1 block text-base font-medium text-black">
-                    Nombre (*)
-                  </label>
-                  <div className="relative">
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      placeholder={user.name}
-                      className="w-full bg-transparent rounded-md border border-black dark:border-dark-3 py-[10px] pr-3 pl-4 text-dark-6 outline-none transition focus:border-danger active:border-danger disabled:cursor-default disabled:bg-gray-2"
-                    />
+                <div className='flex flex-col sm:flex-row'>
+                  <div>
+                    <div className="px-4">
+                      <label className="mb-1 block text-base font-medium text-black">
+                        Nombre (*)
+                      </label>
+                      <div className="relative">
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          placeholder='Nombre'
+                          defaultValue={user.name}
+                          className="w-full bg-transparent rounded-md border border-black dark:border-dark-3 py-[10px] pr-3 pl-4 text-dark-6 outline-none transition focus:border-danger active:border-danger disabled:cursor-default disabled:bg-gray-2"
+                        />
+                      </div>
+                      {invalid.name &&
+                        <p className='bg-danger text-white px-3 mt-2 rounded-md'>{invalid.name}</p>
+                      }
+                    </div>
+                    <div className="px-4">
+                      <label className="mb-1 block text-base font-medium text-black">
+                        Apellido (*)
+                      </label>
+                      <div className="relative">
+                        <input
+                          id="lastName"
+                          name="lastName"
+                          type="text"
+                          placeholder='Apellido'
+                          defaultValue={user.lastName}
+                          className="w-full bg-transparent rounded-md border border-black dark:border-dark-3 py-[10px] pr-3 pl-4 text-dark-6 outline-none transition focus:border-danger active:border-danger disabled:cursor-default disabled:bg-gray-2"
+                        />
+                      </div>
+                      {invalid.lastName &&
+                        <p className='bg-danger text-white px-3 mt-2 rounded-md'>{invalid.lastName}</p>
+                      }
+                    </div>
+                    <div className="px-4">
+                      <label className="mb-1 block text-base font-medium text-black">
+                        Teléfono
+                      </label>
+                      <div className="relative">
+                        <input
+                          id="telephone"
+                          name="telephone"
+                          type="tel"
+                          placeholder="Cod.Área + Cel (sin 15)..."
+                          defaultValue={user.telephone}
+                          className="w-full bg-transparent rounded-md border border-black dark:border-dark-3 py-[10px] pr-3 pl-4 text-dark-6 outline-none transition focus:border-danger active:border-danger disabled:cursor-default disabled:bg-gray-2"
+                        />
+                      </div>
+                    </div>
                   </div>
-                  {invalid.name &&
-                    <p className='bg-danger text-white px-3 mt-2 rounded-md'>{invalid.name}</p>
-                  }
-                </div>
-                <div className="px-4">
-                  <label className="mb-1 block text-base font-medium text-black">
-                    Apellido (*)
-                  </label>
-                  <div className="relative">
-                    <input
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      placeholder={user.lastName}
-                      className="w-full bg-transparent rounded-md border border-black dark:border-dark-3 py-[10px] pr-3 pl-4 text-dark-6 outline-none transition focus:border-danger active:border-danger disabled:cursor-default disabled:bg-gray-2"
-                    />
-                  </div>
-                  {invalid.lastName &&
-                    <p className='bg-danger text-white px-3 mt-2 rounded-md'>{invalid.lastName}</p>
-                  }
-                </div>
-                <div className="px-4">
-                  <label className="mb-1 block text-base font-medium text-black">
-                    Teléfono
-                  </label>
-                  <div className="relative">
-                    <input
-                      id="telephone"
-                      name="telephone"
-                      type="tel"
-                      placeholder="Cod.Área + Cel (sin 15)..."
-                      className="w-full bg-transparent rounded-md border border-black dark:border-dark-3 py-[10px] pr-3 pl-4 text-dark-6 outline-none transition focus:border-danger active:border-danger disabled:cursor-default disabled:bg-gray-2"
-                    />
+                  <div>
+                    <div className="px-4">
+                      <label className="mb-1 block text-base font-medium text-black">
+                        Facebook
+                      </label>
+                      <div className="relative">
+                        <input
+                          id="facebook"
+                          name="facebook"
+                          type="text"
+                          placeholder="www.facebook.com"
+                          defaultValue={user?.facebook}
+                          className="w-full bg-transparent rounded-md border border-black dark:border-dark-3 py-[10px] pr-3 pl-4 text-dark-6 outline-none transition focus:border-danger active:border-danger disabled:cursor-default disabled:bg-gray-2"
+                        />
+                      </div>
+                    </div>
+                    <div className="px-4">
+                      <label className="mb-1 block text-base font-medium text-black">
+                        Twitter
+                      </label>
+                      <div className="relative">
+                        <input
+                          id="twitter"
+                          name="twitter"
+                          type="text"
+                          placeholder="www.twitter.com"
+                          defaultValue={user?.twitter}
+                          className="w-full bg-transparent rounded-md border border-black dark:border-dark-3 py-[10px] pr-3 pl-4 text-dark-6 outline-none transition focus:border-danger active:border-danger disabled:cursor-default disabled:bg-gray-2"
+                        />
+                      </div>
+                    </div>
+                    <div className="px-4">
+                      <label className="mb-1 block text-base font-medium text-black">
+                        Instragram
+                      </label>
+                      <div className="relative">
+                        <input
+                          id="instagram"
+                          name="instagram"
+                          type="text"
+                          placeholder="www.instagram.com"
+                          defaultValue={user?.instagram}
+                          className="w-full bg-transparent rounded-md border border-black dark:border-dark-3 py-[10px] pr-3 pl-4 text-dark-6 outline-none transition focus:border-danger active:border-danger disabled:cursor-default disabled:bg-gray-2"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="px-4">

@@ -8,7 +8,8 @@ export const Services = () => {
   return (
     <section className="bg-primary mb-10 p-10 rounded-xl">
       <h2 className='text-center font-bold text-4xl mb-10'>Aqui puedes</h2>
-      <section className="h-fit grid sm:grid-cols-2 sm:grid-rows-2 place-items-center gap-10 sm:gap-y-20 justify-items-center grid-cols-1 grid-rows-4">
+      {/* <section className="h-fit grid sm:grid-cols-2 sm:grid-rows-2 place-items-center sm:gap-y-20 py-20 justify-items-center grid-cols-1 grid-rows-4"> */}
+      <section className="h-fit flex py-20 flex-col justify-center items-center flex-wrap md:flex-row gap-10">
           <CardService
               title='Perfiles Adorables'
               img={img1}

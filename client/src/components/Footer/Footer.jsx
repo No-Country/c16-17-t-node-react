@@ -20,13 +20,13 @@ export const Footer = () => {
         <article className='w-full sm:w-1/2 rounded-md bg-primary flex justify-center items-center flex-col h-full min-h-48 gap-5 p-3'>
             <h3 className='font-semibold text-xl'>Nuestras Redes</h3>
             <ul className='flex justify-evenly w-full items-center'>
-                <Link to='#' className='w-16 h-16 rounded-full p-2 bg-bgBtn'>
+                <Link to='#' className='w-16 h-16 rounded-full p-2 bg-bgBtn flex justify-center items-center'>
                     <img className='w-16 object-cover h-fit' src={fb} alt="" />
                 </Link>
-                <Link to='#' className='w-16 h-16 rounded-full p-2 bg-bgBtn'>
+                <Link to='#' className='w-16 h-16 rounded-full p-2 bg-bgBtn flex justify-center items-center'>
                     <img className='w-16 object-cover h-fit' src={insta} alt="" />
                 </Link>
-                <Link to='#' className='w-16 h-16 rounded-full p-2 bg-bgBtn'>
+                <Link to='#' className='w-16 h-16 rounded-full p-2 bg-bgBtn flex justify-center items-center'>
                     <img className='w-16 object-cover h-fit' src={x} alt="" />
                 </Link>
             </ul>
