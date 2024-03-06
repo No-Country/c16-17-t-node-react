@@ -5,3 +5,5 @@ export { useLazyLoading } from './useLazyLoading';
 export { useModalUser } from './useModalUser';
 export { useUser } from './useUser';
 export { useUserProfile } from './useUserProfille';
+export { useModal } from './useModal';
+export { usePets } from './usePets';

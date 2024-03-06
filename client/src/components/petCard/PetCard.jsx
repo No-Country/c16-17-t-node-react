@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import usePets from '../../hooks/usePets';
+import {usePets} from '../../hooks';
 import { useUserStore } from '../../store/user';
 import { Img } from '../Img/Img';
 import { Link, useParams } from 'react-router-dom';

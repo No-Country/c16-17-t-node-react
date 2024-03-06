@@ -41,7 +41,7 @@ const usePetForm = () => {
       .then(res => res.json())
       .then(data =>
         setPetCloudData({
-          url: data.url,
+          url: data.secure_url,
           public_id: data.public_id,
           img_tag: data.tags[0],
         }));

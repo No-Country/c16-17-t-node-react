@@ -5,7 +5,7 @@ import { config } from '../config';
 
 const { apiUrl } = config;
 
-const usePets = () => {
+export const usePets = () => {
     const [petData, setPetData] = useState({})
     const {addLostPets, removeLostPets, getLostPets, lostPets, token} = useUserStore()
 
@@ -59,7 +59,28 @@ const usePets = () => {
         toast.success('Datos actualizados ✅')
         const result = response.json()
     }
+    const handleDownload = (e, nickName) => {
+        const svg = document.getElementById("QRCode");
+        const svgData = new XMLSerializer().serializeToString(svg);
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const img = new Image();
+        img.onload = () => {
+            canvas.width = 600;
+            canvas.height = 600;
+            ctx.fillStyle='white'
+            ctx.fillRect(0,0,600,600)
+            ctx.drawImage(img, 50, 50, 500, 500);
+            const pngFile = canvas.toDataURL("image/jpeg");
+            const downloadLink = document.createElement("a");
+            downloadLink.download = `${nickName}`;
+            downloadLink.href = `${pngFile}`;
+            downloadLink.click();
+        };
+        img.src = `data:image/svg+xml;base64,${btoa(svgData)}`;
+    };
   return {
+    handleDownload,
     deletePet,
     petData,
     getPetData,
@@ -69,5 +90,3 @@ const usePets = () => {
     editPetData
   }
 }
-
-export default usePets
