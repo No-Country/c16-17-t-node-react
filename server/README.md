@@ -375,7 +375,7 @@ volver al [Índice](#índice)
 
 ### Reportar mascota encontrada
 
-- **`PUT /pets/report/{:id}`** - Actualizar una mascota específica.
+- **`POST /pets/report/{:id}`** - Actualizar una mascota específica.
 - **Params**:
   ```javascript
   "id": string - required - id de la mascota.
@@ -391,7 +391,7 @@ volver al [Índice](#índice)
     "description": string - optional - Mas información que ayude.
   }
   ```
-- **Request Body** example: Status **200**
+- **Request Body** example: Status **201**
   ```javascript
   {
     "message": "Report sent successfully!"
