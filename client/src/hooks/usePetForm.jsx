@@ -41,7 +41,7 @@ const usePetForm = () => {
       .then(res => res.json())
       .then(data =>
         setPetCloudData({
-          url: data.url,
+          url: data.secure_url,
           public_id: data.public_id,
           img_tag: data.tags[0],
         }));
@@ -65,7 +65,7 @@ const usePetForm = () => {
         nickName: petName === '' ? 'Ingrese el nombre de su mascota' : null,
         breed: petBreed === '' ? 'Ingrese la raza de su mascota' : null,
         detail: petDetail === '' ? 'Ingrese un detalle de su mascota' : null,
-        image: petImg === '' ? 'Ingrese una foto de su mascota' : null,
+        image: petImg == '' ? 'Ingrese una foto de su mascota' : null,
       });
       return
     }
@@ -97,7 +97,7 @@ const usePetForm = () => {
       if(!response.ok) return toast.error('Ocurrió un error')
       toast.success('Mascota creada exitosamente')
       const result = await response.json()
-      return console.log(result)
+      return location.replace('/mypets')
     }
     await sendPetData()
     e.target.reset()

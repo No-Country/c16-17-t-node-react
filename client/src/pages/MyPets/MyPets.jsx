@@ -10,7 +10,7 @@ export const MyPets = () => {
 	const { pets } = useGetUserPets(user.id);
 
 	return (
-		<section className="container flex justify-center items-center rounded-xl flex-col gap-5">
+		<section className="container flex justify-center items-center rounded-xl flex-col gap-5 mx-auto">
 			<h1 className="text-5xl font-semibold">Mis Mascotas</h1>
 			<Link
 				className="border rounded-md w-fit p-2 bg-black text-white font-bold"
@@ -18,12 +18,12 @@ export const MyPets = () => {
 			>
 				Agregar Mascota
 			</Link>
-			<section className="flex flex-row gap-5 overflow-auto snap-mandatory snap-x justify-start items-center w-full p-5">
+			<section className="flex flex-row gap-5 overflow-auto snap-mandatory snap-x justify-start md:justify-center items-center w-full p-5">
 				{pets?.map((pet) => (
-						<PetCard 
-							key={pet}	
+						<PetCard
+							key={pet}
 							petId={pet} />
-					
+
 				))}
 			</section>
 		</section>
