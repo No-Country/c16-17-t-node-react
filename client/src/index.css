@@ -17,3 +17,17 @@
 textarea{
   resize: none;
 }
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-400px * 5 - 0.5rem * 90));
+  }
+}
+
+.animate-scroll {
+  animation: scroll 18s linear infinite;
+}
