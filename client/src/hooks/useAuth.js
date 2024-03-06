@@ -17,7 +17,7 @@ export function useAuth() {
         });
       navigate('/profile');
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -31,7 +31,7 @@ export function useAuth() {
       });
       navigate('/profile');
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
     }
   };
 

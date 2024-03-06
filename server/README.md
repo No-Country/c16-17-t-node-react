@@ -139,7 +139,7 @@ Volver al [Índice](#índice)
     "password": string - required - Password del usuario.
   }
   ```
-- **Request Body** example: Status **201**
+- **Request Body** example: Status **200**
   ```javascript
   {
   	accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC';
