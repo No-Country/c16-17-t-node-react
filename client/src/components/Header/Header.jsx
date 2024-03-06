@@ -5,7 +5,7 @@ import { PetPalLogo } from './components/PetPalLogo'
 
 
 export const Header = () => {
-    
+
     const {handleVisible} = useUserStore()
 
   return (

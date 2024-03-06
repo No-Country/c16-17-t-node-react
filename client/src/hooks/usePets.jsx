@@ -39,7 +39,7 @@ export const usePets = () => {
     useEffect(() => {
         getLostPets()
     }, [])
-    
+
     const editPetData = async (data, id) => {
         const response = await toast.promise(fetch(`${apiUrl}/pets/${id}`, {
             method: 'PUT',
@@ -55,7 +55,7 @@ export const usePets = () => {
         if(!response.ok){
             toast.error('Ocurrió un error al actualizar..')
             return
-        } 
+        }
         toast.success('Datos actualizados ✅')
         const result = response.json()
     }

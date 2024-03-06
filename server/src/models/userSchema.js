@@ -28,8 +28,17 @@ const userSchema = new mongoose.Schema({
 		default: null,
 	},
 	image: {
-		type: String,
-		default: '',
+		type: {
+			id: String,
+			url: String,
+		},
+		default: {},
+		validate: {
+			validator: function (image) {
+				return image.id && image.url;
+			},
+			message: 'the "image" object must have "id" and "url" properties.',
+		},
 	},
 	pets: [
 		{
@@ -46,6 +55,22 @@ const userSchema = new mongoose.Schema({
 			},
 		},
 	],
+	linkedin: {
+		type: String,
+		default: null,
+	},
+	facebook: {
+		type: String,
+		default: null,
+	},
+	instagram: {
+		type: String,
+		default: null,
+	},
+	twitter: {
+		type: String,
+		default: null,
+	},
 });
 
 userSchema.methods.toJSON = function () {

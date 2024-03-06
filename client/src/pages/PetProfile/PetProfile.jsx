@@ -17,7 +17,7 @@ export const PetProfile = () => {
 	const { user } = useUserStore();
 	const { active, setActive, closeModal } = useModal();
 	const profileAdress = location.origin + '/pets/' + params.id;
-	
+
 	useEffect(() => {
 		getPetData(params.id);
 	}, []);

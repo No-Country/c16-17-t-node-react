@@ -5,7 +5,6 @@ import PrivateRoute from './PrivateRoutes';
 import FormRegistry from '../components/testFormRegUser/FormRegistry';
 
 export function AppRoutes() {
-
 	return (
 		<>
 			<Header />

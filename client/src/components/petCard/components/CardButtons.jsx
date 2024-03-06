@@ -14,7 +14,7 @@ export const CardButtons = ({petData, flexDirection}) => {
   return (
     <div className={`flex justify-center items-center gap-2 ${flexDirection}`}>
         {
-            user?.id == petData?.owner?.id 
+            user?.id == petData?.owner?.id
                 ? (<>
                     <button
                         onClick={()=>setActive(true)}
@@ -33,13 +33,13 @@ export const CardButtons = ({petData, flexDirection}) => {
                 : null
         }
         {
-            active 
+            active
                 ? <ModalPets
-                    data={petData} 
-                    closeModal={closeModal} /> 
+                    data={petData}
+                    closeModal={closeModal} />
                 : null
         }
-        
+
     </div>
   )
 }

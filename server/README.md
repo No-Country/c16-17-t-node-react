@@ -66,15 +66,28 @@ Asegúrate de tener instalados los siguientes requisitos antes de ejecutar la ap
   PORT=puerto_por_defecto_3001
   MONGO_URL=uri_mongo_db o 'mongodb://127.0.0.1:27017/'
   DB_NAME=name_mongoDB_por_defecto_'PetPal'
+
+  MAIL_USERNAME='send@gmail.com'
+  MAIL_PASSWORD='password_mail'
+  OAUTH_CLIENT_ID='id.apps.googleUserContent.com'
+  OAUTH_CLIENT_SECRET='secret_token'
+  OAUTH_REFRESH_TOKEN='refresh_token'
   ```
 
-5. Para iniciar la aplicación:
+  Mas información en [Nodemailer in Node.js](https://www.freecodecamp.org/espanol/news/como-usar-nodemailer-para-enviar-correos-electronicos-desde-tu-servidor-node-js/)
+
+5. Para realizar tests:
+
+- ```bash
+  npm test
+  ```
+
+6. Para iniciar la aplicación:
 
 - ```bash
   npm run dev
   ```
-
-La aplicación estará disponible en http://localhost:3001
+  La aplicación estará disponible en http://localhost:3001
 
 Volver al [Índice](#índice)
 
@@ -101,11 +114,14 @@ Volver al [Índice](#índice)
   {
     id: "6570bb7db2ad523394706c12",
     email: "test@gmail.com",
-    name: "",
-    lastName: "",
+    name: "Maxi",
+    lastName: "Van",
     pets: [],
     telephone: 0,
-    image: "",
+    image: {
+      id: "String",
+      URL: "String",
+    },
   }
   ```
   volver al [Índice](#índice)
@@ -133,7 +149,7 @@ Volver al [Índice](#índice)
 
 ### Cambio de contraseña
 
-- **`POST /users/password`** - Inicio de sesión de usuario.
+- **`POST /users/password`** - Cambio de contraseña. (no implementado)
 - **Params**:
 - **Query**:
 - **header**:
@@ -171,11 +187,14 @@ Volver al [Índice](#índice)
   {
     id: "6570bb7db2ad523394706c12",
     email: "test@gmail.com",
-    name: "",
-    lastName: "",
+    name: "Maxi",
+    lastName: "Van",
     pets: [],
     telephone: 0,
-    image: "",
+    image: {
+      id: "String",
+      URL: "String",
+    },
   }
   ```
 
@@ -200,6 +219,10 @@ volver al [Índice](#índice)
     "lastName": string - optional - Apellido de usuario.
     "telephone": number - optional - Teléfono del usuario.
     "image": string - optional - Imagen del usuario.
+    "linkedin": string - optional
+    "facebook": string - optional
+    "instagram": string - optional
+    "twitter": string - optional
   }
   ```
 - **Request Body** example: Status **200**
@@ -207,11 +230,14 @@ volver al [Índice](#índice)
   {
     id: "6570bb7db2ad523394706c12",
     email: "test@gmail.com",
-    name: "",
-    lastName: "",
+    name: "Maxi",
+    lastName: "Van",
     pets: [],
     telephone: 0,
-    image: "",
+    image: {
+      id: "String",
+      URL: "String",
+    },
   }
   ```
 
@@ -285,7 +311,7 @@ volver al [Índice](#índice)
 
 ### Obtener mascotas perdidas
 
-- **`GET /pets/lost`** - Registro de nueva mascota.
+- **`GET /pets/lost`** - Obtener listado de mascotas perdidas con paginado.
 - **Params**:
 - **Query**:
   ```javascript
@@ -335,7 +361,16 @@ volver al [Índice](#índice)
   {
     id: "65ccbc44a4e9f43e7b4460b4",
     nickName: "loky",
-    owner: "65ccba58e023b17ef6697de1",
+    owner: {
+      id: "65ccba58e023b17ef6697de1",
+      name: "Maxi",
+      telephone: 1234,
+      email: "test@gmail.com",
+      linkedin: "https://"
+      facebook: "https://"
+      instagram: "https://"
+      twitter: "https://"
+      },
     breed: "",
     birth: 0,
     images: [
