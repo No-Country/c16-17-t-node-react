@@ -53,12 +53,12 @@ export const PetProfile = () => {
 									</button>
 								)
 							) : !params.id ? (
-								<Link
+								<a
 									className="gap-2 p-3 sm:w-1/2 w-full rounded-md bg-green-500 font-semibold hover:bg-black flex justify-center items-center"
-									to={`/pets/${petId}`}
+									href={`/pets/${petId}`}
 								>
 									Ver Info
-								</Link>
+								</a>
 							) : (
 								<>
 									<Link
