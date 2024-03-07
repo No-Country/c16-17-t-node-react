@@ -10,7 +10,7 @@ export const PetCard = ({petId}) => {
 
 	const params = useParams()
 
-	const { petData, deletePet, getPetData, addLostPets, removeLostPets } =
+	const { petData, getPetData, addLostPets, removeLostPets } =
 		usePets();
 		const {user} = useUserStore();
 
@@ -42,13 +42,15 @@ export const PetCard = ({petId}) => {
 				</article>
 				<div className='flex items-center justify-around text-white mt-5 gap-2'>
 					{
-						!lost &&
-							<button
-								onClick={() => addLostPets(petData)}
-								className="p-3 w-full font-semibold rounded-md bg-danger hover:bg-red-700"
-							>
-								Se Perdió 😢
-							</button>
+						user.id === owner?.id 
+							? !lost &&
+								<button
+									onClick={() => addLostPets(petData)}
+									className="p-3 w-full font-semibold rounded-md bg-danger hover:bg-red-700"
+								>
+									Se Perdió 😢
+								</button>
+							: null
 					}
 					{
 						user.id != owner?.id

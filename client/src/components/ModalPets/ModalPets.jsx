@@ -1,8 +1,11 @@
 import { createPortal } from 'react-dom';
 import { usePets } from '../../hooks';
+import camera from './icons/camera.png'
+import usePetForm from '../../hooks/usePetForm';
 
 export function ModalPets({ data, closeModal }) {
 	const { editPetData } = usePets();
+	const {handlePetFile, petBlob, petCloudData } = usePetForm()
 
 	const handleModalSubmit = (e) => {
 		e.preventDefault();
@@ -10,10 +13,16 @@ export function ModalPets({ data, closeModal }) {
 		const newNickName = formData.get('nickName');
 		const newBirth = Number(new Date(formData.get('birth')));
 		const newDescription = formData.get('description');
+		const newImgUrl = petCloudData.url
+		const newImgId = petCloudData.public_id
 		const newPetData = {
 			nickName: newNickName,
 			birth: newBirth,
 			description: newDescription,
+			images:{
+				id: newImgId,
+				url: newImgUrl
+			}
 		};
 		editPetData(newPetData, data.id).then(() => closeModal());
 	};
@@ -26,7 +35,7 @@ export function ModalPets({ data, closeModal }) {
 					aria-modal="true"
 					className="fixed left-0 top-0 flex h-screen w-screen items-center justify-center overflow-hidden z-30"
 				>
-					<div className="relative flex w-[98%] md:w-3/4 min-h-[400px] md:h-[80%] flex-col items-center justify-between rounded-md  bg-primary font-bold shadow-box shadow-[1px_1px_12px_#bbb] transition-all duration-300 overflow-hidden">
+					<div className="relative flex w-[98%] md:w-3/5 min-h-[400px] md:h-[80%] flex-col items-center justify-between rounded-md  bg-primary font-bold shadow-box shadow-[1px_1px_12px_#bbb] transition-all duration-300 overflow-hidden overflow-y-auto">
 						<button
 							onClick={closeModal}
 							className="flex justify-end w-full bg-bgBtn p-3 h-15"
@@ -35,12 +44,20 @@ export function ModalPets({ data, closeModal }) {
 								X
 							</p>
 						</button>
-						<article className="flex items-center justify-between flex-col w-full h-full p-4">
-							<img
-								className="w-1/2 h-auto max-w-80 max-h-[300px] rounded-lg object-cover"
-								src={data?.images[0]?.url}
-								alt="pet image"
-							/>
+						<article className="flex items-center justify-around flex-col w-full h-full p-4">
+							<figure className='relative flex items-center justify-center'>
+								<img
+									className="w-full h-auto max-w-80 max-h-[150px] sm:max-h-96 rounded-lg object-cover"
+									src={petBlob ? petBlob : data?.images[0]?.url}
+									alt="pet image"
+								/>
+								<span className='rounded-full p-1 bg-black h-10 w-10 sm:h-14 sm:w-14 absolute bottom-1 sm:right-10 right-0'>
+									<label htmlFor="newImg" className='cursor-pointer'>
+										<img src={camera} alt="camera icon" className='w-full h-full' />
+									</label>
+									<input type="file" name="newImg" id="newImg" className='hidden' accept='image/png image/jpg image/jpeg' onChange={handlePetFile}/>
+								</span>
+							</figure>
 							<section className="w-full flex items-center justify-start gap-3 flex-col">
 								<form
 									onSubmit={(e) => handleModalSubmit(e)}
@@ -81,7 +98,7 @@ export function ModalPets({ data, closeModal }) {
 											placeholder={data.description}
 										/>
 									</div>
-									<section className="flex md:flex-row flex-col justify-center items-center p-1 w-full gap-2">
+									<section className="flex md:flex-row flex-col justify-center items-center p-1 w-full gap-2 my-5">
 										<button
 											className="cursor-pointer rounded-md w-full bg-bgBtn text-xl p-3 text-white font-semibold shadow-box-sm"
 											type="submit"
