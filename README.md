@@ -1,49 +1,64 @@
-# c16-17-t-node-react
+# PetPal
 
-Repositorio dedicado a la creación de aplicación para cuidado de mascotas, destinada a ayudar
-a los dueños de mascotas a cuidar, rastrear y encontrar a sus amigos peludos perdidos
+### Sector: Cuidado de mascotas
 
-### Nombre de la Aplicación: "PetPal"
+## Objetivo:
 
-### Objetivo:
+PetPal es una aplicación web diseñada para proporcionar a los dueños de mascotas una
+herramienta integral para el cuidado, seguimiento y localización de sus compañeros peludos.
+Con el aumento de la preocupación por el bienestar de las mascotas y la necesidad de
+mantenerlas seguras, PetPal se presenta como una solución eficiente y fácil de usar.
 
-Es una aplicación web/móvil diseñada para proporcionar a los dueños de mascotas una
-herramienta integral para el cuidado, seguimiento y localización de sus mascotas. 
-La aplicación ofrece funciones para mantener registros de salud, conexión con otros 
-dueños de mascotas y asistencia en caso de pérdida.
+La pérdida de mascotas es un problema importante a nivel mundial. Se estima que cada
+año millones de mascotas se pierden. Los códigos QR pueden ser una herramienta eficaz
+para ayudar a encontrar a las mascotas perdidas. PetPal aprovecha esta tecnología al
+proporcionar a cada mascota un código QR único que permite acceder a su perfil en la
+web y contactar al dueño en caso de extravío.
 
-### Características Principales:
+## Tecnologías:
 
-1. **Registro de Usuario**:
+_Font-End:_ JavaScrypt, React, Zustand, TailwindCSS
 
-- Crear una cuenta de usuario con información básica y detalles de mascotas.
+_Back-End:_ JavaScrypt, Express, MongoDB, Mocha y Supertest
+
+## Enlaces del Proyecto:
+
+_Repositorio:_ [GitHub](https://github.com/No-Country/c16-17-t-node-react)
+
+_Deploy:_ [Deploy](https://c16-17-t-node-react.web.app/)
+
+_Front-End README:_ [README.md-Front](/client/README.md)
+
+_Back-End README:_ [README.md-Back](/server/README.md)
+
+## Características Principales:
+
+1. **Perfil de Usuario**:
+
+- Los usuarios pueden crear una cuenta con información básica y detalles de sus mascotas.
 
 2. **Perfil de Mascotas**:
 
-- Permitir a los usuarios agregar perfiles individuales para cada una de sus mascotas,
-  incluyendo nombre, edad, raza, género, foto y cualquier información médica relevante.
-- Generación de QR único para contactar al dueño en caso de extravió
+- Permite a los usuarios agregar perfiles individuales para cada una de sus mascotas,
+  incluyendo características, datos de salud y cuidado.
+- Generación de un código QR único para cada mascota, facilitando el acceso a su perfil
+  en la web y la comunicación con el dueño en caso de pérdida.
 
-3. **Seguimiento de Salud**:
+3. **Mascotas Encontradas**:
 
-- Mantener un registro de visitas al veterinario, vacunas, medicamentos y otros detalles de
-  salud.
-- Establecer recordatorios para próximas citas y administración de medicamentos.
+- Facilita la comunicación entre los dueños de mascotas perdidas y aquellos que las han
+  encontrado, ayudando a reunir a las mascotas con sus dueños lo más rápido posible.
 
-4. **Alertas de Mascotas Perdidas**:
+Con un enfoque centrado en la experiencia del usuario y la seguridad de las mascotas,
+PetPal se posiciona como una herramienta imprescindible para cualquier amante de los
+animales que desee brindar el mejor cuidado a sus compañeros peludos.
 
-- Permitir a los usuarios activar alertas de mascotas perdidas, proporcionando detalles como
-  descripción, última ubicación conocida y contactos de emergencia.
-- Enviar notificaciones a otros usuarios cercanos para ayudar en la búsqueda.
+## Colaboradores:
 
-5. **Base de Datos de Mascotas Encontradas**:
-
-- Permitir a los usuarios registrar mascotas que han encontrado, incluyendo detalles como la
-  ubicación y una foto.
-- Facilitar la comunicación entre los dueños de mascotas perdidas y aquellos que han
-  encontrado mascotas.
-
-6. **Red Social para Mascotas**:
-
-- Permitir a los usuarios compartir fotos, videos y consejos sobre cuidado de mascotas.
-- Facilitar la conexión con otros dueños de mascotas en la comunidad.
+|                                                                                                                                                           |                                                                                                                                                                                                      |                                                                                                                                                             |                                                                                                                                                                      |                                                                                                                                                                       |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                           <img src="https://avatars.githubusercontent.com/u/99148932" width=90>                                           |                                                                <img src="https://avatars.githubusercontent.com/u/25778667" width=90>                                                                 |                                            <img src="https://avatars.githubusercontent.com/u/84166139" width=90>                                            |                                                <img src="https://avatars.githubusercontent.com/u/118027004" width=90>                                                |                                                 <img src="https://avatars.githubusercontent.com/u/84880622" width=90>                                                 |
+|                                                                      **Gared Lyon**                                                                       |                                                                                         **Rolando Castañon**                                                                                         |                                                                      **Matias Saade**                                                                       |                                                                     **Maximiliano Van_Megroot**                                                                      |                                                                           **Lucas Cabral**                                                                            |
+|                                                                      Product Manager                                                                      |                                                                                              Front-End                                                                                               |                                                                          Front-End                                                                          |                                                                               Back-End                                                                               |                                                                              QA Analyst                                                                               |
+|          [![](https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white)](https://github.com/GaredLyon)          |                               [![](https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white)](https://github.com/rolando22)                                |            [![](https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white)](https://github.com/Gadd88)             |                [![](https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white)](https://github.com/MaxiV95)                 |               [![](https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white)](https://github.com/LUCASCABRL)                |
+| [![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gared-lyon/) | [![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rolando-rafael-casta%C3%B1on-fern%C3%A1ndez-973917252/) | [![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/matias-saade/) | [![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/maximilianovanmegroot/) | [![](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lucas-cabral-b7aba12a5/) |

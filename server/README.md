@@ -45,7 +45,7 @@ Asegúrate de tener instalados los siguientes requisitos antes de ejecutar la ap
 1. Clona este repositorio:
 
 - ```bash
-  git clone https://github.com/MaxiV95/Practice-server
+  git clone https://github.com/No-Country/c16-17-t-node-react
   ```
 
 2. Navega al directorio del proyecto:
@@ -388,7 +388,7 @@ volver al [Índice](#índice)
 
 ### Reportar mascota encontrada
 
-- **`PUT /pets/report/{:id}`** - Actualizar una mascota específica.
+- **`POST /pets/report/{:id}`** - Actualizar una mascota específica.
 - **Params**:
   ```javascript
   "id": string - required - id de la mascota.
