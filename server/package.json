@@ -13,7 +13,12 @@
     "test:02": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/02.*.spec.js -w",
     "test:03": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/03.*.spec.js -w",
     "test:04": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/04.*.spec.js -w",
-    "test:05": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/05.*.spec.js -w"
+    "test:05": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/05.*.spec.js -w",
+    "test:06": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/06.*.spec.js -w",
+    "test:07": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/07.*.spec.js -w",
+    "test:08": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/08.*.spec.js -w",
+    "test:09": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/09.*.spec.js -w",
+    "test:10": "cross-env LOCATION=localhost DB_NAME='test' mocha tests/10.*.spec.js -w"
   },
   "dependencies": {
     "bcrypt": "5.1.1",
