@@ -55,6 +55,22 @@ const userSchema = new mongoose.Schema({
 			},
 		},
 	],
+	linkedin: {
+		type: String,
+		default: null,
+	},
+	facebook: {
+		type: String,
+		default: null,
+	},
+	instagram: {
+		type: String,
+		default: null,
+	},
+	twitter: {
+		type: String,
+		default: null,
+	},
 });
 
 userSchema.methods.toJSON = function () {

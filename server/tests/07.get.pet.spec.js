@@ -2,6 +2,7 @@ const session = require('supertest-session');
 const { expect } = require('chai');
 const app = require('../src/app');
 const userSchema = require('../src/models/userSchema');
+const petSchema = require('../src/models/petSchema');
 
 let testSession1 = null;
 const userTest1 = {
@@ -70,9 +71,11 @@ describe('Route Users - GET /pets/:id \n', () => {
 
 	after(async () => {
 		await userSchema.deleteMany({});
+		await petSchema.deleteMany({});
 	});
 });
 
 after(async () => {
 	await userSchema.deleteMany({});
+	await petSchema.deleteMany({});
 });

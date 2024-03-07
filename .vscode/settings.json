@@ -1,6 +1,9 @@
 {
   "cSpell.words": [
-    "heroe",
-    "loky"
-  ]
+  "facebook", 
+  "heroe", 
+  "instagram", 
+  "loky",
+  ],
+  "editor.formatOnSave": true
 }

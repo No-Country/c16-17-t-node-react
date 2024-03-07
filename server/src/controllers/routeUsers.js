@@ -27,6 +27,11 @@ route.post('/', async (req, res, next) => {
 			name: body.name, // optional
 			lastName: body.lastName, // optional
 			telephone: body.telephone, // optional
+			image: body.image, // optional
+			linkedin: body.linkedin, // optional
+			facebook: body.facebook, // optional
+			instagram: body.instagram, // optional
+			twitter: body.twitter, // optional
 		};
 		const newUser = await createUser(newData);
 		res.status(201).json(newUser).end();
@@ -90,6 +95,10 @@ route.put('/:id', userExtractor, async (req, res, next) => {
 			lastName: body.lastName, // optional
 			telephone: body.telephone, // optional
 			image: body.image, // optional
+			linkedin: body.linkedin, // optional
+			facebook: body.facebook, // optional
+			instagram: body.instagram, // optional
+			twitter: body.twitter, // optional
 		};
 		const updatedUser = await updateUser({ ...updateData, id, userId });
 		res.status(200).json(updatedUser).end();

@@ -2,6 +2,7 @@ const session = require('supertest-session');
 const { expect } = require('chai');
 const app = require('../src/app');
 const userSchema = require('../src/models/userSchema');
+const petSchema = require('../src/models/petSchema');
 
 let testSession1 = null;
 const userTest1 = {
@@ -17,6 +18,7 @@ const petTest1 = {
 	birth: 1234,
 	images: [{ id: 1, url: 'https://' }],
 	description: 'Un bonito perrito dorado',
+	lost: true,
 };
 const petTest2 = {
 	nickName: 'oni',
@@ -24,6 +26,7 @@ const petTest2 = {
 	birth: 1234,
 	images: [{ id: 2, url: 'https://' }],
 	description: 'Un bonito conejo blanco',
+	lost: true,
 };
 
 describe('Route Users - PUT /pets/:id \n', () => {
@@ -58,16 +61,34 @@ describe('Route Users - PUT /pets/:id \n', () => {
 			.get('/pets/lost')
 			.expect(200)
 			.expect((res) => {
-				// console.log(res.body);
-				expect(res.body).to.be.a('Array');
+				expect(res.body[0]).to.have.property('id');
+				expect(res.body[0]).to.have.property('nickName');
+				expect(res.body[0]).to.have.property('breed');
+				expect(res.body[0]).to.have.property('birth');
+				expect(res.body[0]).to.have.property('description');
+				expect(res.body[0]).to.have.property('images');
+				expect(res.body[0]).to.have.property('owner');
+				expect(res.body[0].nickName).to.equal(petTest1.nickName);
+				expect(res.body[0].breed).to.equal(petTest1.breed);
+				expect(res.body[0].birth).to.equal(petTest1.birth);
+				expect(res.body[0].description).to.equal(petTest1.description);
+				expect(res.body[0].images).to.be.a('Array');
+				expect(res.body[0].images[0]).to.have.property('id');
+				expect(res.body[0].images[0]).to.have.property('url');
+				expect(res.body[0].owner.id).to.equal(testSession1.id);
+				expect(res.body[0].owner).to.have.property('id');
+				expect(res.body[0].owner).to.have.property('name');
+				expect(res.body[0].owner).to.have.property('telephone');
 			});
 	});
 
 	after(async () => {
 		await userSchema.deleteMany({});
+		await petSchema.deleteMany({});
 	});
 });
 
 after(async () => {
 	await userSchema.deleteMany({});
+	await petSchema.deleteMany({});
 });
