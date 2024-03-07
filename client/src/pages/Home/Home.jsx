@@ -1,11 +1,15 @@
 import { Banner, Services } from '../../components'
 import LostPetsList from '../../components/lostPetsList/LostPetsList'
+import logo2 from '../../assets/logoPetpal2.png'
+
 
 export const Home = () => {
   return (
     <div className='max-w-[1400px] m-auto p-2'>
       <Banner />
-      <h1 className='text-5xl text-center font-bold my-10'>🐾 PetPal 🐾</h1>
+        <figure className='w-1/2 h-36 md:h-64 m-auto my-0 md:my-10 '>
+          <img src={logo2} alt="" className='object-contain w-full h-full'/>
+        </figure>
       <div className='container m-auto flex flex-col gap-5'>
         <Services />
       </div>

@@ -54,33 +54,26 @@ export const PetCard = ({petId}) => {
 					}
 					{
 						user.id != owner?.id
-							? 	(<button
-									className="p-3 w-full rounded-md bg-green-500 font-semibold hover:bg-black flex justify-center items-center"
-								>
-									{
-										!params.id
-										? <Link
-											className='flex justify-center items-center gap-2'
-											to={`/pets/${petId}`}>
-											Ver Info
-										</Link>
-										: <Link className='flex items-center justify-center gap-3'
-											to={`https://api.whatsapp.com/send?phone=+54${owner?.telephone}&text=Hola%20,%20creo%20que%20acabo%20de%20ver%20a%20tu%20mascota%0A`}>
-											Avisar al Dueño
-											<span>
-												<img
-													className='w-9 h-9'
-													src={wsp} alt="wsp logo" />
-											</span>
-										</Link>
-									}
-								</button>)
-							:	(<button
+							? 	!params.id
+									? <Link
+										className='flex justify-center items-center gap-2 p-3 w-full rounded-md bg-green-500 font-semibold hover:bg-black'
+										to={`/pets/${petId}`}>
+										Ver Info
+									</Link>
+									: <Link className='flex items-center justify-center gap-3 p-3 w-full rounded-md bg-green-500 font-semibold hover:bg-black'
+										to={`https://api.whatsapp.com/send?phone=+54${owner?.telephone}&text=Hola%20,%20creo%20que%20acabo%20de%20ver%20a%20tu%20mascota%0A`}>
+										Avisar al Dueño
+										<span>
+											<img
+												className='w-9 h-9'
+												src={wsp} alt="wsp logo" />
+										</span>
+									</Link>
+							:	<button
 									onClick={() => removeLostPets(petData)}
-									className="p-3 w-full rounded-md bg-secondaryBtn font-semibold hover:bg-black"
-								>
+									className="p-3 w-full rounded-md bg-secondaryBtn font-semibold hover:bg-black">
 									La Encontré 🥳
-								</button>)
+								</button>
 					}
 				</div>
 			</div>

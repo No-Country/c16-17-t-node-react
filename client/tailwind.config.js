@@ -18,6 +18,9 @@ export default {
 				danger: '#FE483B',
 				success: '#135CFE',
 				cancel: '#FFFFFF',
+			},
+			gridTemplateColumns: {
+				'servicesCol': 'repeat(auto-fit,minmax(230px, 1fr))',
 			}
 		},
 	},
