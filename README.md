@@ -4,16 +4,22 @@
 
 ## Objetivo:
 
-Es una aplicación web diseñada para proporcionar a los dueños de mascotas una
-herramienta integral para el cuidado, seguimiento y localización de sus mascotas.
-La aplicación ofrece funciones para mantener registros de salud, conexión con otros
-dueños de mascotas y asistencia en caso de pérdida.
+PetPal es una aplicación web diseñada para proporcionar a los dueños de mascotas una
+herramienta integral para el cuidado, seguimiento y localización de sus compañeros peludos.
+Con el aumento de la preocupación por el bienestar de las mascotas y la necesidad de
+mantenerlas seguras, PetPal se presenta como una solución eficiente y fácil de usar.
+
+La pérdida de mascotas es un problema importante a nivel mundial. Se estima que cada
+año millones de mascotas se pierden. Los códigos QR pueden ser una herramienta eficaz
+para ayudar a encontrar a las mascotas perdidas. PetPal aprovecha esta tecnología al
+proporcionar a cada mascota un código QR único que permite acceder a su perfil en la
+web y contactar al dueño en caso de extravío.
 
 ## Tecnologías:
 
-_Font-End:_ JavaScrypt, React, Zustand
+_Font-End:_ JavaScrypt, React, Zustand, TailwindCSS
 
-_Back-End:_ JavaScrypt, Express, MongoDB
+_Back-End:_ JavaScrypt, Express, MongoDB, Mocha y Supertest
 
 ## Enlaces del Proyecto:
 
@@ -27,24 +33,25 @@ _Back-End README:_ [README.md-Back](/server/README.md)
 
 ## Características Principales:
 
-1. **Registro de Usuario**:
+1. **Perfil de Usuario**:
 
-- Crear una cuenta de usuario con información básica y detalles de mascotas.
+- Los usuarios pueden crear una cuenta con información básica y detalles de sus mascotas.
 
 2. **Perfil de Mascotas**:
 
-- Permitir a los usuarios agregar perfiles individuales para cada una de sus mascotas.
-- Generación de QR único para contactar al dueño en caso de extravió
+- Permite a los usuarios agregar perfiles individuales para cada una de sus mascotas,
+  incluyendo características, datos de salud y cuidado.
+- Generación de un código QR único para cada mascota, facilitando el acceso a su perfil
+  en la web y la comunicación con el dueño en caso de pérdida.
 
-3. **Seguimiento de Salud**:
+3. **Mascotas Encontradas**:
 
-- Mantener un registro de salud, como visitas al veterinario, vacunas, medicamentos.
-- Establecer recordatorios para próximas citas y administración de medicamentos.
+- Facilita la comunicación entre los dueños de mascotas perdidas y aquellos que las han
+  encontrado, ayudando a reunir a las mascotas con sus dueños lo más rápido posible.
 
-4. **Mascotas Encontradas**:
-
-- Facilitar la comunicación entre los dueños de mascotas perdidas y aquellos que han
-  encontrado mascotas.
+Con un enfoque centrado en la experiencia del usuario y la seguridad de las mascotas,
+PetPal se posiciona como una herramienta imprescindible para cualquier amante de los
+animales que desee brindar el mejor cuidado a sus compañeros peludos.
 
 ## Colaboradores:
 
