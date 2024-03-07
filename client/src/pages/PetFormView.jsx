@@ -1,11 +1,11 @@
-import { PetForm } from "../components/";
+import { Banner, PetForm } from "../components/";
 
 export function PetFormView () {
 
 	return (
-        <section className="grid grid-cols-3">     
+        <section className="grid grid-cols-3 mt-10 p-5 md:mt-24">     
             <div className="col-span-4 flex justify-center items-center w-full h-52  bg-gray-200">
-                <p>Banner</p>
+                <Banner />
             </div>
             <div className="hidden md:flex md:justify-center col-span-1 text-center border-r-2 border-gray">
                 <p className="mt-8">Información adicional</p>
