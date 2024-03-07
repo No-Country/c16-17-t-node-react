@@ -10,7 +10,7 @@ export const MyPets = () => {
 	const { pets } = useGetUserPets(user.id);
 
 	return (
-		<section className="container flex justify-center items-center rounded-xl flex-col gap-5 mx-auto">
+		<section className="container flex justify-center items-center rounded-xl flex-col gap-5 mx-auto mt-10">
 			<h1 className="text-5xl font-semibold">Mis Mascotas</h1>
 			<Link
 				className="border rounded-md w-fit p-2 bg-black text-white font-bold"

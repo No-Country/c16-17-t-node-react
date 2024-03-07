@@ -7,8 +7,8 @@ export const FormLogin = () => {
     <form
         onSubmit={handleSubmitLogin}
         className='container flex flex-col items-center justify-center gap-5 border-2 mx-auto p-5 h-[600px]'>
-        <div className='px-4 md:w-1/2'>
-            <label className='mb-[10px] block text-base font-medium text-dark dark:text-white'>
+        <div className='px-4 md:w-1/2 w-full'>
+            <label className='mb-[10px] block text-base font-medium text-dark'>
                 Email
             </label>
             <div className='relative'>
@@ -38,8 +38,8 @@ export const FormLogin = () => {
               <p className='bg-danger text-white pl-5 mt-2 self-start rounded-md'>{invalid.email}</p>
             }
         </div>
-        <div className='px-4 md:w-1/2'>
-            <label className='mb-[10px] block text-base font-medium text-dark dark:text-white'>
+        <div className='px-4 md:w-1/2 w-full'>
+            <label className='mb-[10px] block text-base font-medium text-dark'>
                 Password
             </label>
             <div className='relative'>
@@ -82,14 +82,14 @@ export const FormLogin = () => {
         <div className='w-full px-4 md:w-1/2 flex justify-center flex-col items-center gap-5'>
             <button
                 type='submit'
-                className='bg-black dark:bg-black-2 border-black dark:border-black-2 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-white hover:bg-body-color hover:border-body-color disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5'>
+                className='bg-bgBtn border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-white hover:bg-secondaryBtn'>
                 Ingresar
             </button>
             <p className='flex justify-center items-center gap-4'>
                 Todavia no estas registrado?
                 <span>
                     <a
-                        className='font-semibold'
+                        className='font-semibold rounded-md p-2 bg-primaryBtn text-white'
                         href="/registro">Registrarse</a>
                 </span>
             </p>
