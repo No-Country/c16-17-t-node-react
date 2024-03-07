@@ -54,8 +54,7 @@ export const PetCard = ({petId}) => {
 					}
 					{
 						user.id != owner?.id
-							? 	
-								!params.id
+							? 	!params.id
 									? <Link
 										className='flex justify-center items-center gap-2 p-3 w-full rounded-md bg-green-500 font-semibold hover:bg-black'
 										to={`/pets/${petId}`}>
@@ -70,12 +69,11 @@ export const PetCard = ({petId}) => {
 												src={wsp} alt="wsp logo" />
 										</span>
 									</Link>
-							:	(<button
+							:	<button
 									onClick={() => removeLostPets(petData)}
-									className="p-3 w-full rounded-md bg-secondaryBtn font-semibold hover:bg-black"
-								>
+									className="p-3 w-full rounded-md bg-secondaryBtn font-semibold hover:bg-black">
 									La Encontré 🥳
-								</button>)
+								</button>
 					}
 				</div>
 			</div>
