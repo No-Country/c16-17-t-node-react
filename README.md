@@ -1,5 +1,7 @@
 # PetPal
 
+![alt text](petpalgroup.png)
+
 ### Sector: Cuidado de mascotas
 
 ## Objetivo:
