@@ -26,6 +26,7 @@
     - [Reportar mascota encontrada](#reportar-mascota-encontrada)
     - [Actualizar mascota especifica](#actualizar-mascota-especifica)
     - [Eliminar mascota especifica](#eliminar-mascota-especifica)
+  - [**Diagrama DB**](#diagrama-db)
   - [**Developers!**](#developers)
 
 Volver al [Índice](#índice)
@@ -64,14 +65,14 @@ Asegúrate de tener instalados los siguientes requisitos antes de ejecutar la ap
 
 - ```env
   PORT=puerto_por_defecto_3001
-  MONGO_URL=uri_mongo_db o 'mongodb://127.0.0.1:27017/'
-  DB_NAME=name_mongoDB_por_defecto_'PetPal'
+  MONGO_URL=uri_mongo_db o "mongodb://127.0.0.1:27017/"
+  DB_NAME=name_mongoDB_por_defecto_"PetPal"
 
-  MAIL_USERNAME='send@gmail.com'
-  MAIL_PASSWORD='password_mail'
-  OAUTH_CLIENT_ID='id.apps.googleUserContent.com'
-  OAUTH_CLIENT_SECRET='secret_token'
-  OAUTH_REFRESH_TOKEN='refresh_token'
+  MAIL_USERNAME="send@gmail.com"
+  MAIL_PASSWORD="password_mail"
+  OAUTH_CLIENT_ID="id.apps.googleUserContent.com"
+  OAUTH_CLIENT_SECRET="secret_token"
+  OAUTH_REFRESH_TOKEN="refresh_token"
   ```
 
   Mas información en [Nodemailer in Node.js](https://www.freecodecamp.org/espanol/news/como-usar-nodemailer-para-enviar-correos-electronicos-desde-tu-servidor-node-js/)
@@ -117,7 +118,7 @@ Volver al [Índice](#índice)
     name: "Maxi",
     lastName: "Van",
     pets: [],
-    telephone: 0,
+    telephone: null,
     image: {
       id: "String",
       URL: "String",
@@ -139,7 +140,7 @@ Volver al [Índice](#índice)
     "password": string - required - Password del usuario.
   }
   ```
-- **Request Body** example: Status **201**
+- **Request Body** example: Status **200**
   ```javascript
   {
   	accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC';
@@ -171,7 +172,7 @@ Volver al [Índice](#índice)
 
 ### Obtener usuario especifico
 
-- **`GET /users/{:id}`** - Obtener detalles de un usuario específico.
+- **`GET /users/:id`** - Obtener detalles de un usuario específico.
 - **Params**:
   ```javascript
   "id": string - required - id del usuario.
@@ -190,7 +191,7 @@ Volver al [Índice](#índice)
     name: "Maxi",
     lastName: "Van",
     pets: [],
-    telephone: 0,
+    telephone: null,
     image: {
       id: "String",
       URL: "String",
@@ -202,7 +203,7 @@ volver al [Índice](#índice)
 
 ### Actualizar usuario especifico
 
-- **`PUT /users/{:id}`** - Actualizar un usuario específico.
+- **`PUT /users/:id`** - Actualizar un usuario específico.
 - **Params**:
   ```javascript
   "id": string - required - id del usuario.
@@ -233,7 +234,7 @@ volver al [Índice](#índice)
     name: "Maxi",
     lastName: "Van",
     pets: [],
-    telephone: 0,
+    telephone: null,
     image: {
       id: "String",
       URL: "String",
@@ -245,7 +246,7 @@ volver al [Índice](#índice)
 
 ### Eliminar usuario especifico
 
-- **`DELETE /users/{:id}`** - Eliminar un usuario especifico.
+- **`DELETE /users/:id`** - Eliminar un usuario especifico.
 - **Params**:
   ```javascript
   "id": string - required - id del usuario.
@@ -292,9 +293,9 @@ Volver al [Índice](#índice)
   ```javascript
   {
     id: "65ccbc44a4e9f43e7b4460b4",
-    nickName: "loky",
+    nickName: "Loky",
     owner: "65ccba58e023b17ef6697de1",
-    breed: "",
+    breed: "Golden",
     birth: 0,
     images: [
       {
@@ -302,7 +303,7 @@ Volver al [Índice](#índice)
         URL: "String",
       }
     ],
-    description: "",
+    description: "Happy dog",
     lost: false,
   }
   ```
@@ -319,18 +320,19 @@ volver al [Índice](#índice)
   limit: number - optional - Cantidad de resultados por página (por defecto es 4).
   ```
 - **header**:
-  ```javascript
-  Authorization: `Bearer ${token}` string - required - token de acceso.
-  ```
 - **Body**:
 - **Request Body** example: Status **200**
   ```javascript
   [
   	{
   		id: '65ccbc44a4e9f43e7b4460b4',
-  		nickName: 'loky',
-  		owner: '65ccba58e023b17ef6697de1',
-  		breed: '',
+  		nickName: 'Loky',
+  		owner: {
+  			id: '65ccba58e023b17ef6697de1',
+  			name: 'Maxi',
+  			telephone: 1234,
+  		},
+  		breed: 'Golden',
   		birth: 0,
   		images: [
   			{
@@ -338,7 +340,7 @@ volver al [Índice](#índice)
   				URL: 'String',
   			},
   		],
-  		description: '',
+  		description: 'Happy dog',
   	},
   	// Otros resultados de búsqueda...
   ];
@@ -348,7 +350,7 @@ volver al [Índice](#índice)
 
 ### Obtener mascota especifica
 
-- **`GET /pets/{:id}`** - Obtener detalles de una mascota específica.
+- **`GET /pets/:id`** - Obtener detalles de una mascota específica.
 - **Params**:
   ```javascript
   "id": string - required - id de la mascota.
@@ -360,7 +362,7 @@ volver al [Índice](#índice)
   ```javascript
   {
     id: "65ccbc44a4e9f43e7b4460b4",
-    nickName: "loky",
+    nickName: "Loky",
     owner: {
       id: "65ccba58e023b17ef6697de1",
       name: "Maxi",
@@ -371,7 +373,7 @@ volver al [Índice](#índice)
       instagram: "https://"
       twitter: "https://"
       },
-    breed: "",
+    breed: "Golden",
     birth: 0,
     images: [
       {
@@ -379,7 +381,7 @@ volver al [Índice](#índice)
         URL: "String",
       }
     ],
-    description: "",
+    description: "Happy dog",
     lost: false,
   }
   ```
@@ -388,7 +390,7 @@ volver al [Índice](#índice)
 
 ### Reportar mascota encontrada
 
-- **`PUT /pets/report/{:id}`** - Actualizar una mascota específica.
+- **`POST /pets/report/:id`** - Actualizar una mascota específica.
 - **Params**:
   ```javascript
   "id": string - required - id de la mascota.
@@ -415,7 +417,7 @@ volver al [Índice](#índice)
 
 ### Actualizar mascota especifica
 
-- **`PUT /pets/{:id}`** - Actualizar una mascota específica.
+- **`PUT /pets/:id`** - Actualizar una mascota específica.
 - **Params**:
   ```javascript
   "id": string - required - id de la mascota.
@@ -440,9 +442,9 @@ volver al [Índice](#índice)
   ```javascript
   {
     id: "65ccbc44a4e9f43e7b4460b4",
-    nickName: "loky",
+    nickName: "Loky",
     owner: "65ccba58e023b17ef6697de1",
-    breed: "",
+    breed: "Golden",
     birth: 0,
     images: [
       {
@@ -450,7 +452,7 @@ volver al [Índice](#índice)
         URL: "String",
       }
     ],
-    description: "",
+    description: "Happy dog",
     lost: false,
   }
   ```
@@ -459,7 +461,7 @@ volver al [Índice](#índice)
 
 ### Eliminar mascota especifica
 
-- **`DELETE /pets/{:id}`** - Eliminar una mascota específica.
+- **`DELETE /pets/:id`** - Eliminar una mascota específica.
 - **Params**:
   ```javascript
   "id": string - required - id de la mascota.
@@ -480,6 +482,12 @@ volver al [Índice](#índice)
 
 Volver al [Índice](#índice)
 
+## **Diagrama DB**
+
+![alt text](Diagram.png)
+
+Volver al [Índice](#índice) Mas [información](https://dbdiagram.io/d/65e9c0afb1f3d4062c5efa2e)
+
 ## **Developers!**
 
 ### **💻 EXTENSIONES VSC!!** <!-- omit from toc -->
@@ -494,14 +502,15 @@ Volver al [Índice](#índice)
 
 - **git remote update origin --prune** estando en main actualiza las ramas
 - **git checkout nombre_de_la_rama** cambia de rama
+- **git merge --squash origin/main** fusionar la rama fuente con squash
+- **git merge origin/main** fusionar la rama fuente con merge
 - **git add .** agrega todos los archivos guardados para hacer commit
-- **git commit -m 'mensaje'** realiza un nuevo commit con un mensaje
+- **git commit -m "mensaje"** realiza un nuevo commit con un mensaje
 - **git commit --amend** modifica el ultimo commit (cambiar archivos y mensaje, en rama propia)
 - **git push** sube el commit a la nube
 - **git push --force** sube el commit a la nube de manera forzosa, para luego de haber realizado un amend (cuidado! solo en rama propia)
 - **git reset --soft HEAD^** deshacer el commit y mantener los cambios en el área de preparación (staging)
 - **git reset --mixed HEAD^** deshacer el commit y deshacer los cambios (los cambios se mantienen en tu directorio de trabajo)
 - **git reset --hard HEAD^** deshacer el commit y descartar los cambios (eliminar todos los cambios)
-- **git merge --squash main** fusionar la rama fuente con squash
 
 Volver al [Índice](#índice)
